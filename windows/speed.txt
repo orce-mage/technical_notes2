@@ -1,0 +1,29 @@
+---------------
+uninstall edge
+cd C:\Program Files (x86)\Microsoft\Edge\Application\87.0.664.66\Installer
+setup --uninstall --force-uninstall --system-level
+---------------
+1. Advanced System Settings/ settings in performance/ adjust for best performance in visual affects
+2. in Control Panel\Hardware and Sound\Power Options, select "High performance"
+3. disable Virtual Memory
+---------------
+Uninstall your phone
+Do a right-click on the Windows Start button and select Windows PowerShell(Admin)
+Copy and paste the following command and hit enter
+Get-AppxPackage Microsoft.YourPhone -AllUsers | Remove-AppxPackage
+----------------
+uninstall xbox game bar
+
+1. dism /Online /Get-ProvisionedAppxPackages | Select-String PackageName | Select-String xbox
+2. Get-ProvisionedAppxPackage -Online | Where-Object { $_.PackageName -match "xbox" } | ForEach-Object { Remove-ProvisionedAppxPackage -Online -PackageName $_.PackageName }
+
+-----------------
+remove microsoft store
+1.dism /Online /Get-ProvisionedAppxPackages | Select-String PackageName | Select-String store
+2.Get-ProvisionedAppxPackage -Online | Where-Object { $_.PackageName -match "store" } | ForEach-Object { Remove-ProvisionedAppxPackage -Online -PackageName $_.PackageName }
+
+-------------------
+microsoft text input application
+
+You should be able to disable it by navigating to C:\Windows\SystemApps and renaming the folder InputApp_cw5n1h2txyewy
+You will have to kill the process before it will let you rename it though. You can do the samething for Cortana by renaming Microsoft.Windows.Cortana_cw5n1h2txyewy

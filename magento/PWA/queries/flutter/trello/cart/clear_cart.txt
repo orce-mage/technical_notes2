@@ -1,0 +1,18 @@
+mutation {
+  clearCustomerCart(
+      cartUid: "8k0Q4MpH2IGahWrTRtqM61YV2MtLPApz"
+    ) {
+        status
+    }
+}
+
+------------------
+response
+
+{
+  "data": {
+    "clearCustomerCart": {
+        "status": "true"
+    }
+  }
+}

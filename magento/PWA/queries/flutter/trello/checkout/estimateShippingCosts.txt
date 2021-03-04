@@ -1,0 +1,56 @@
+mutation {
+    estimateShippingCosts(address: $address_1) {
+        amount,
+        available,
+        base_amount,
+        method_code,
+        carrier_code,
+        method_title,
+        carrier_title,
+        error_message,
+        price_excl_tax,
+        price_incl_tax
+    }
+}
+
+
+-----------------------------
+{
+  "address_1": {
+    "city": "test",
+    "country_id": "AE",
+    "region_id": 0,
+    "region": "test",
+    "postcode": "12345"
+  }
+}
+-----------------------------
+response
+{
+    "data": {
+        "estimateShippingCosts": [{
+                "amount": 0,
+                "available": false,
+                "base_amount": null,
+                "method_code": null,
+                "carrier_code": "ups",
+                "method_title": null,
+                "carrier_title": "United Parcel Service",
+                "error_message": "This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.",
+                "price_excl_tax": 0,
+                "price_incl_tax": 0
+            }, {
+                "amount": 30,
+                "available": true,
+                "base_amount": 30,
+                "method_code": "flatrate",
+                "carrier_code": "flatrate",
+                "method_title": "Fixed",
+                "carrier_title": "Flat Rate",
+                "error_message": "false",
+                "price_excl_tax": 30,
+                "price_incl_tax": 30
+            }
+        ]
+    }
+}

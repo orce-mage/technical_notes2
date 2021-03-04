@@ -1,0 +1,7 @@
+query {
+    urlResolver(url: "/comforter-alianna-micro-cotton-lace-embroidered-single-6-pcs.html") {
+        id,
+        sku,
+        type
+    }
+}

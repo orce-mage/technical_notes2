@@ -1,0 +1,114 @@
+mutation($addressInformation_1: SaveAddressInformation!, $guestCartId_1: String!) {
+    saveAddressInformation(addressInformation: $addressInformation_1, guestCartId: $guestCartId_1) {
+        payment_methods {
+            code,
+            title
+        },
+        totals {
+            subtotal,
+            tax_amount,
+            base_grand_total,
+            grand_total,
+            discount_amount,
+            shipping_amount,
+            subtotal_incl_tax,
+            shipping_incl_tax,
+            quote_currency_code,
+            shipping_tax_amount,
+            subtotal_with_discount,
+            shipping_discount_amount,
+            items {
+                qty,
+                name,
+                price,
+                item_id,
+                options,
+                tax_amount,
+                tax_percent,
+                price_incl_tax,
+                discount_amount,
+                discount_percent
+            }
+        }
+    }
+}
+
+--------------------------------
+{
+  "addressInformation_1": {
+    "shipping_carrier_code": "flatrate",
+    "shipping_method_code": "flatrate",
+    "shipping_address": {
+      "firstname": "aaaaaaaaa",
+      "lastname": "bbbbbbbb",
+      "telephone": "12345",
+      "country_id": "AE",
+      "city": "test",
+      "postcode": "12345",
+      "street": [
+        "tets",
+        null,
+        null
+      ],
+      "region": "test"
+    },
+    "billing_address": {
+      "firstname": "aaaaaaaaa",
+      "lastname": "bbbbbbbb",
+      "telephone": "12345",
+      "country_id": "AE",
+      "city": "test",
+      "postcode": "12345",
+      "street": [
+        "tets",
+        null,
+        null
+      ],
+      "region": "test"
+    }
+  },
+  "guestCartId_1": "gYGOOZfcAiF3jLpcDtLrirMnNYTh5CKI"
+}
+---------------------------------------------------
+response
+{
+    "data": {
+        "saveAddressInformation": {
+            "payment_methods": [{
+                    "code": "checkmo",
+                    "title": "Check \/ Money order"
+                }, {
+                    "code": "purchaseorder",
+                    "title": "Purchase Order"
+                }
+            ],
+            "totals": {
+                "subtotal": 249,
+                "tax_amount": 0,
+                "base_grand_total": 279,
+                "grand_total": 279,
+                "discount_amount": 0,
+                "shipping_amount": 30,
+                "subtotal_incl_tax": 249,
+                "shipping_incl_tax": 30,
+                "quote_currency_code": "AED",
+                "shipping_tax_amount": 0,
+                "subtotal_with_discount": 249,
+                "shipping_discount_amount": 0,
+                "items": [{
+                        "qty": 1,
+                        "name": "duvet cover artha cotton print double face 6 pcs",
+                        "price": 249,
+                        "item_id": 138,
+                        "options": "[{\"value\":\"27\",\"label\":\"colors\"},{\"value\":\"240x260\",\"label\":\"size\"}]",
+                        "tax_amount": 0,
+                        "tax_percent": 0,
+                        "price_incl_tax": 249,
+                        "discount_amount": 0,
+                        "discount_percent": 0
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+mutation {
+    clearWishlist: s_clearWishlist
+}
+---------------------
+response
+
+{"data":{"clearWishlist":true}}

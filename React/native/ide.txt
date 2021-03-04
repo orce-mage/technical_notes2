@@ -1,0 +1,2 @@
+https://www.icicletech.com/blog/top-10-editors-for-react-native
+https://github.com/Microsoft/vscode-react-native

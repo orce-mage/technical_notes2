@@ -1,0 +1,128 @@
+query{
+    products(
+      filter: {sku: {eq: "so3"}}
+    ){
+      items{
+            id
+            name
+            sku
+            short_description{
+                html
+            }
+            url
+            url_key
+            original_price
+            price_range{
+                maximum_price {
+                    discount {
+                        amount_off
+                        percent_off
+                    }
+                    final_price{
+                        currency
+                        value
+                    }
+                    regular_price{
+                        currency
+                        value
+                    }
+                }
+                minimum_price {
+                    discount {
+                        amount_off
+                        percent_off
+                    }
+                    final_price{
+                        currency
+                        value
+                    }
+                    regular_price{
+                        currency
+                        value
+                    }
+                }
+            }
+            price_tiers{
+                discount {
+                    amount_off
+                    percent_off
+                }
+                final_price{
+                    currency
+                    value
+                }
+                quantity
+            }
+            special_price
+            special_from_date
+            special_to_date
+            image{
+                label
+                path
+                url
+            }
+            small_image{
+                label
+                path
+                url
+            }
+            thumbnail {
+                label
+                path
+                url
+            }
+            ... on ConfigurableProduct {
+                configurable_options {
+                    id
+                    attribute_id_v2
+                    label
+                    position
+                    use_default
+                    attribute_code
+                    values {
+                        value_index
+                        label
+                        swatch_data{
+                            value
+                        }
+                    }
+                    product_id
+                }
+                variants {
+                    product{
+                        id
+                        name
+                        sku
+                        size
+                        colors
+                        attribute_set_id
+                        ... on PhysicalProductInterface {
+                            weight
+                        }
+                        price_range{
+                            minimum_price{
+                                regular_price{
+                                    value
+                                    currency
+                                }
+                            }
+                        }
+						
+						attributes {
+							uid
+							label
+							code
+							value_index
+						}
+                    }
+                    
+                }
+            }
+      }
+      page_info{
+            current_page
+            total_pages
+      }
+      total_count
+    }
+}

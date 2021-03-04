@@ -1,0 +1,13 @@
+mutation($itemId_1: ID!) {
+    removeProductFromWishlist: s_removeProductFromWishlist(itemId: $itemId_1)
+}
+------------------------------
+{
+  "itemId_1": 1
+}
+-------------------------------
+{
+    "data": {
+        "removeProductFromWishlist": true
+    }
+}

@@ -1,0 +1,35 @@
+1. Downloads Usage:
+  [wget|curl -O] https://MAG_ID:TOKEN@www.magentocommerce.com/products/downloads/file/[FILENAME]
+   curl -O https://MAG005720361:0422a00637872b1686331788452307b074b2ed83@www.magentocommerce.com/products/downloads/file/Magento-CE-2.3.6_sample_data.tar.gz
+   curl -O https://MAG005720361:0422a00637872b1686331788452307b074b2ed83@www.magentocommerce.com/products/downloads/file/Magento-CE-2.4.0_sample_data.tar.gz
+   curl -O https://MAG005720361:0422a00637872b1686331788452307b074b2ed83@www.magentocommerce.com/products/downloads/file/Magento-CE-2.4.1.tar.gz
+   curl -O https://MAG005720361:0422a00637872b1686331788452307b074b2ed83@www.magentocommerce.com/products/downloads/file/Magento-CE-2.4.2_sample_data.tar.gz
+2. Info Usage:
+   curl https://MAG_ID:TOKEN@www.magentocommerce.com/products/downloads/info/[OPTION]/[PARAMS]
+   
+   curl https://MAG005720361:0422a00637872b1686331788452307b074b2ed83@www.magentocommerce.com/products/downloads/info/[OPTION]/[PARAMS]
+   
+   -- get all files list
+      curl https://MAG005720361:0422a00637872b1686331788452307b074b2ed83@www.magentocommerce.com/products/downloads/info/files/
+   ----------------------------------------------------
+   Options:
+
+	  help          This help
+	  files         List of all available files for download
+	  versions      Versions list
+	  filter        Filtered list of all available files for download (see "Filter Options" for usage)
+	  json          The JSON feed of all available files
+   
+   Filters:
+      version
+				Shows files by version number. You can use wildcard.
+                Example: /downloads/info/filter/version/1.9.2.1
+                Example: /downloads/info/filter/version/1.9.*
+				curl https://MAG005720361:0422a00637872b1686331788452307b074b2ed83@www.magentocommerce.com/products/downloads/info/filter/version/1.9.*
+
+      type
+			    Shows files by file type:
+				Example: /downloads/info/filter/type/ce-full
+   ----------------------------------------------------  
+      
+  

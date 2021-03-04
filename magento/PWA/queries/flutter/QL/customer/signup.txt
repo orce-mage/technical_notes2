@@ -1,0 +1,51 @@
+mutation {
+    createCustomer(
+		input: {
+			firstname: "test1",
+			lastname: "test2",
+			email: "a@test.com",
+			is_subscribed: true,
+			password: "8UtA4TyqdSwBLt2j"
+		}
+	) {
+        customer {
+            created_at,
+            confirmation_required,
+            group_id,
+            prefix,
+            firstname,
+            middlename,
+            lastname,
+            suffix,
+            email,
+            default_billing,
+            default_shipping,
+            dob,
+            taxvat,
+            id,
+            is_subscribed,
+            addresses {
+                id,
+                customer_id,
+                country_id,
+                street,
+                telephone,
+                postcode,
+                city,
+                firstname,
+                lastname,
+                middlename,
+                prefix,
+                suffix,
+                default_shipping,
+                default_billing,
+                vat_id,
+                region {
+                    region_code,
+                    region,
+                    region_id
+                }
+            }
+        }
+    }
+}

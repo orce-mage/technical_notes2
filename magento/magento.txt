@@ -1,0 +1,785 @@
+adeelgod@gmail.com
+pwd: wjsrlrlrP1
+
+https://marketplace.magento.com/customer/accessKeys/
+access key: 
+	public: a70be309ce99624950821b7d470a2bac
+	private : fb36da9e1351aa4c5f6d211c2c3eaaa3
+
+install script
+php ./bin/magento setup:install --base-url=http://www.devmagento241.com/ \
+	--db-host=localhost --db-name=magento241 --db-user=magento --db-password=admin123 \
+        --admin-firstname=Adeel --admin-lastname=God --admin-email=admin@gmail.com \
+	--admin-user=admin --admin-password=admin123 --language=en_US \
+	--currency=USD --timezone=America/Chicago --use-rewrites=1 \
+	--search-engine=elasticsearch7 --elasticsearch-host=localhost \
+	--elasticsearch-port=9200
+	
+	admin_1h3ssf
+
+php bin\magento setup:install --base-url=http://www.magento241.com/ --db-host=localhost --db-name=magento241 --db-user=root --db-password= --admin-firstname=Adeel --admin-lastname=God --admin-email=admin@gmail.com --admin-user=admin --admin-password=admin123 --language=en_US --currency=USD --timezone=America/Chicago --use-rewrites=1
+
+
+notes: intl,xsl,sockets extensions should be enabled in php.ini
+
+https://devdocs.magento.com/guides/v2.4/install-gde/install/cli/install-cli-install.html
+
+https://magento.stackexchange.com/questions/208834/how-to-post-data-to-a-payment-provider-when-placing-an-order-in-magento-2
+///////////// learn ui component ///////
+https://amasty.com/blog/how-to-use-ui-components-in-magento-2/
+https://magento.stackexchange.com/
+https://learning.adobe.com/catalog.html
+https://www.emanualonline.com/Education/Programming/Magento/Mastering-Magento-2-_-Second-Edition-_-%2C-Jonathan-Bownds.html?currency=USD&product_country=US&product_id=468414&placement=&adtype=pla_with_promotion&keyword=&gclid=EAIaIQobChMI6eep6-qy7QIVgdiyCh23hg5CEAQYAyABEgLvKfD_BwE
+https://magento2tutorial.magestore.com/
+https://www.udemy.com/course/simplified-magento-2-video-course-from-beginner-to-expert/
+//////////// to developer mode change *****************
+	1. rm -rf <magento_root>/generated/metadata/* <magento_root>/generated/code/*
+	2. bin/magento deploy:mode:set developer
+*********************************
+  PHP Fatal error: Uncaught Error: Cannot instantiate interface
+  php bin\magento setup:di:compile
+************************************
+  main.ERROR: Notice: Undefined property: DOMDocument::$documentElement in /var/www/html/vendor/magento/framework/Config/Dom.php on line 149 [] []
+  
+  In my case the dom extension was enabled twice. Once in the dom.ini and also in the php.ini. 
+  I removed the extension=dom.so entry from the php.ini and reloaded the apache2 webserver.
+*************************************  
+https://www.minitool.com/backup-tips/windows-defender-not-turning-on.html
+*****************************
+  Module Install and Upgrade
+  
+  https://devdocs.magento.com/extensions/install/
+*****************************
+
+********************deploy issue *********
+    --------------------------
+	Error happened during deploy process:
+	The contents from the "/home/497627.cloudwaysapps.com/vprpprmspw/public_html/pub/static/adminhtml/Magento/backend/en_GB/requirejs-min-resolver.min.js" 
+	file can't be read. 
+	--------------------------
+    php bin/magento cache:clean
+	php bin/magento cache:flush
+	php bin/magento setup:upgrade
+	php bin/magento setup:di:compile
+	php bin/magento setup:static-content:deploy -f en_GB en_US
+	
+	************* zend log **************
+	$writer = new \Zend\Log\Writer\Stream(BP . '/var/log/minify.log');
+	$logger = new \Zend\Log\Logger();
+	$logger->addWriter($writer);
+	$logger->info('Your text message');
+***************
+
+*******************************************
+      js minify issue
+	  
+	  1. switch to developer mode
+	     php bin/magento maintenance:enable
+		 php bin/magento deploy:mode:set developer -s
+		 php bin/magento maintenance:disable
+      2. in admin panel, system/cache/flush static files (! Very Important)
+	  3. php bin/magento maintenance:enable, 
+	     php bin/magento deploy:mode:set production -s
+	  4. php bin/magento cache:clean
+	  5. php bin/magento setup:upgrade
+	  6. php bin/magento setup:di:compile
+	  7. remove all files & dirs from pub/static except for .htaccess and var/view_preprocessed/
+	     
+	     rm -rf pub/static/adminhtml/ && rm -rf pub/static/_cache/ && rm -rf pub/static/frontend/ && rm -rf pub/static/frontend/deployed_version.txt && rm -rf var/view_preprocessed/
+		 rm -rf pub/static/frontend/Scandiweb/ && rm -rf var/view_preprocessed/pub/static/frontend/Scandiweb
+		 rm -rf pub/static/adminhtml/* && rm -rf pub/static/_cache/* && rm -rf pub/static/frontend/* && rm -rf pub/static/frontend/deployed_version.txt && rm -rf var/view_preprocessed/*
+		 ** rm -rf var/{cache,di,generation,page_cache,view_preprocessed}	
+		 ** find app/code pub/static app/etc var/generation var/di var/view_preprocessed vendor \( -type f -or -type d \) -exec chmod u-w {} \; && chmod o-rwx app/etc/env.php && chmod u+x bin/magento
+		 
+		 find . -type d -print0 | xargs -0 chmod 0775
+find . -type f -print0 | xargs -0 chmod 0664
+find ./var -type d -exec chmod 777 {} \;
+find ./pub/media -type d -exec chmod 777 {} \;
+find ./pub/static -type d -exec chmod 777 {} \;
+chmod 777 ./app/etc
+chmod 644 ./app/etc/*.xml
+chmod u+x bin/magento
+
+php bin/magento cache:clean
+php bin/magento cache:flush
+
+	  8. php bin/magento setup:static-content:deploy -f en_GB en_US
+	  php bin/magento setup:static-content:deploy -f en_US it_IT
+	  php bin/magento setup:static-content:deploy -f en_US ar_SA
+	  magento setup:static-content:deploy -f en_US ar_SA -t Scandiweb/pwa
+	     Note: in this case, deploy mode shouldn't be developer 
+
+		 
+		 module:uninstall Plumrocket_PrivateSale --remove-data
+		 
+		 php bin/magento setup:store-config:set --base-url="https://calvocover.com/"
+		 php bin/magento setup:store-config:set --base-url-secure="https://calvocover.com/"
+
+
+INSERT INTO setup_module VALUES('Mageplaza_DeleteOrders','1.0.0','1.0.0');
+		  -------------------------------------
+		  public function isEnabled($contentType)
+         {
+            if (!isset($this->configCache[self::XML_PATH_MINIFICATION_ENABLED][$contentType])) {
+              $this->configCache[self::XML_PATH_MINIFICATION_ENABLED][$contentType] =
+                $this->appState->getMode() != State::MODE_DEVELOPER &&
+                $this->scopeConfig->isSetFlag(
+                    sprintf(self::XML_PATH_MINIFICATION_ENABLED, $contentType),
+                    $this->scope
+                );
+        } 
+		  ------------------------------------- 
+		  https://devdocs.magento.com/guides/v2.4/config-guide/cli/config-cli-subcommands-static-view.html?itm_source=devdocs&itm_medium=search_page&itm_campaign=federated_search&itm_term=static%20deploy
+	      ** php bin/magento setup:static-content:deploy en_GB --exclude-theme Magento/backend
+		  ** php bin/magento setup:static-content:deploy -f en_GB --theme Magento/backend --area adminhtml
+		  ** php bin/magento setup:static-content:deploy --theme Magento/luma --area frontend --no-javascript --no-misc --no-html-minify --no-html --no-images
+		  ** php bin/magento setup:static-content:deploy -f en_GB --exclude-area adminhtml
+		  ** php bin/magento setup:static-content:deploy -f en_GB --theme Pearl/weltpixel_custom --area frontend --no-css --no-less --no-images --no-fonts --no-html --no-misc --no-html-minify
+	  
+	  9. php bin/magento maintenance:disable
+	  10. purge the varnish cache
+*******************************************
+
+   config 
+   php bin/magento config:set dev/js/minify_files 1
+   php bin/magento setup:store-config:set --base-url="http://trade-technik.de/"
+   php bin/magento setup:store-config:set --base-url-secure="http://trade-technik.de/"
+
+   ---------------------------------
+   select scope,scope_id, path, value from core_config_data where path like '%merge%';
+   select scope,scope_id, path, value from core_config_data where path like '%dev/js/minify_files%';
+   select scope,scope_id, path, value from core_config_data where path like '%dev/js/merge_files%';
+   select scope,scope_id, path, value from core_config_data where path like '%dev/css/merge_css_files%';
+   select scope,scope_id, path, value from core_config_data where path like '%dev/css/use_css_critical_path%';
+   update core_config_data set value=0 where path = 'dev/js/merge_files';
+   update core_config_data set value=0 where path = 'dev/js/minify_files';
+   update core_config_data set value=0 where path = 'dev/css/merge_css_files';
+   update core_config_data set value=0 where path = 'dev/css/minify_files';
+   update core_config_data set value=0 where path = 'dev/template/minify_html';
+   update core_config_data set value=0 where path = 'dev/css/use_css_critical_path';
+   
+   update core_config_data set value='http://www.dev2.evape.com:8080/' where path = 'web/unsecure/base_url';
+   
+   update value='http://www.dev2.evape.com:8080/' where path = 'web/unsecure/base_link_url';
+   update core_config_data set value='https://www.dev2.evape.com/' where path = 'web/unsecure/base_link_url';
+
+   ---------------------------------
+   
+*********** less ref****************
+http://lesscss.org/features/#mixins-feature
+https://www.tutorialspoint.com/less/import_options_inline.htm
+**************************************
+------------------PWA-------------------
+https://devdocs.magento.com/guides/v2.4/pwa/
+----------------------------------------
+------------- CRON JOB ---------------
+	
+bin/magento cron:install [--force]
+
+magento cron:install does not rewrite an existing crontab inside #~ MAGENTO START and #~ MAGENTO END comments in your crontab.
+magento cron:install --force has no effect on any cron jobs outside the Magento comments.
+
+0 4 * * * find /home/530035.cloudwaysapps.com/cxphyzmnfd/public_html/var/session/ -type f -mtime +30 -delete   > /dev/null 2>&1
+
+-mtime +30 = match files modified 31 or more days ago
+use the -delete to delete all matched files
+--------------------------------------
+
+-------------------- redis setup--------------
+https://devdocs.magento.com/guides/v2.4/config-guide/redis/redis-pg-cache.html
+
+php bin/magento setup:config:set --cache-backend=redis --cache-backend-redis-server=127.0.0.1 --cache-backend-redis-port=6379 --cache-backend-redis-db=0
+bin/magento setup:config:set --page-cache=redis --page-cache-redis-server=127.0.0.1 --page-cache-redis-db=1
+bin/magento setup:config:set --session-save=redis --session-save-redis-host=127.0.0.1 --session-save-redis-log-level=4 --session-save-redis-db=2
+
+------------------- varnish generator --------------------
+we should check the varnish documetation version prior to start generating config from magento admin panel like this:
+   **************************
+	service varnish status
+    varnish.service - Varnish HTTP accelerator
+       Loaded: loaded (/lib/systemd/system/varnish.service; enabled; vendor preset: enabled)
+       Active: active (running) since Tue 2020-12-01 03:42:29 UTC; 4s ago
+       Docs: https://www.varnish-cache.org/docs/6.1/
+             man:varnishd
+    Main PID: 81294 (varnishd)
+
+*****************   
+
+bin/magento varnish:vcl:generate --access-list localhost --backend-host localhost --backend-port 8080 --export-version 6 --output-file var/default.vcl 
+
+----------------------------------------------------------
+----------------- frontend learning way-----------------
+https://sherocommerce.com/magento-2-frontend-developer/
+-----------------------add sample data to fresh magento 2---------------------
+     php bin/magento sampledata:deploy [to update composer.json]
+	 php bin/magento setup:upgrade
+------------------------------------------------------------------------------
+ reindex
+ php bin/magento indexer:reindex
+ https://devdocs.magento.com/guides/v2.4/config-guide/cli/config-cli-subcommands-index.html
+-----------------------------------------------
+--------------------- php setting for magento 2 --------------
+ user.ini
+ .htaccess 
+ memory_limit
+ post_max_size
+ realpath_cache_size=10M
+ realpath_cache_ttl=7200
+ Enable opcache.save_comments
+ 
+ upload_max_filesize:1000M
+max_execution_time:18000
+memory_limit:2048M
+max_input_time:18000
+max_input_vars:3000
+post_max_size:1000M
+
+ ---------------------- mysql setting for magento 2----------------
+ https://ubuntu.com/server/docs/databases-mysql
+ apt install mysqltuner
+ 
+ ---------------------------------------------------------
+      cache warmer
+composer require creativestyle/magesuite-page-cache-warmer --ignore-platform-reqs
+
+-----------------------------------------------------
+    javascript troubleshooting
+  Overriding resources in Chrome DevTools
+  https://www.afasterweb.com/2018/04/19/using-local-overrides-in-devtools/
+
+  1. Within DevTools, open the Sources panel.
+     Within the Sources, open the Overrides tab.  
+  2. Click on ‘Select folder for overrides.’ Then choose the folder on your local machine where local overrides should be stored (you may want to create a new folder specifically for this purpose). 
+  3. Now you’ll see that ‘Enable Local Overrides’ is checked. You also notice that the Network panel has a warning sign, indicating that some network requests may be overwritten with a local override.
+  4. Now you can make your changes to the files. If you’re in the Elements panel, notice that file name gets a little circle beside it to designate that it’s been edited, and is now a local override.
+	
+	------------------------------------------------
+	              CORS ORIGIN Error
+	 https://ionicframework.com/docs/troubleshooting/cors#:~:text=What%20is%20CORS%3F&text=CORS%20errors%20are%20common%20in,present%20on%20the%20requested%20resource.
+	https://web.dev/cross-origin-resource-sharing/	
+   a. If a web app needs a complex HTTP request, the browser adds a preflight request to the front of the request chain.
+   b. The CORS specification defines a complex request as
+		A request that uses methods other than GET, POST, or HEAD
+		A request that includes headers other than Accept, Accept-Language or Content-Language
+		A request that has a Content-Type header other than application/x-www-form-urlencoded, multipart/form-data, or text/plain
+  1. Browsers create a preflight request if it is needed. It's an OPTIONS request like below and is sent before the actual request message.
+     OPTIONS /data HTTP/1.1
+	Origin: https://example.com
+	Access-Control-Request-Method: DELETE  
+  2. On the server side, an application needs to respond to the preflight request with information about the methods the application accepts from this origin.	
+     HTTP/1.1 200 OK
+Access-Control-Allow-Origin: https://example.com
+Access-Control-Allow-Methods: GET, DELETE, HEAD, OPTIONS
+
+
+----------------------------------------------
+   External API
+ Creating an integration with an external API
+  https://devdocs.magento.com/guides/v2.4/ext-best-practices/tutorials/create-integration-with-api.html
+  
+------------------------------------
+   custom crontab
+https://devdocs.magento.com/guides/v2.4/config-guide/cron/custom-cron-tut.html?itm_source=devdocs&itm_medium=search_page&itm_campaign=federated_search&itm_term=crontab   
+
+----------------------------------------
+  get customer collection
+  https://www.mageplaza.com/devdocs/get-customer-collection-magento-2.html
+  
+  add customer
+  https://magento.stackexchange.com/questions/78164/how-to-add-a-customer-programmatically-in-magento-2
+-----------------------------------------  
+less compile
+https://devdocs.magento.com/guides/v2.4/frontend-dev-guide/css-topics/css_debug.html
+
+grunt install
+A. Node Install
+	1. curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+	2. apt-get install -y nodejs
+	3. apt-get install -y build-essential
+	4. node --version
+B. Grunt Install
+	1. npm install -g grunt-cli
+	From the <Magento_root> directory, copy and paste the contents of the following files:
+
+	package.json.sample to package.json
+	Gruntfile.js.sample to Gruntfile.js
+	grunt-config.json.sample into grunt-config.json
+	Install (or refresh) the node.js project dependency, including Grunt, for your Magento instance. To do this, run the following commands in a command prompt:
+
+	cd <your_Magento_instance_directory>
+	npm install
+	npm update
+C, Test
+   1	rm -rf pub/static/frontend/ && rm -rf var/view_processed/source
+   2    php bin/magetno cache:clean
+D. Enable LiveReload extension in Chrome   
+E. Copy the contents of themes.js into local-themes.js in the dev/tools/grunt/configs/ directory.
+F. Guard-livereload install [This is not necessary because [grunt watch] listens 35279 as livereload server]
+   http://livereload.com/extensions/
+  https://gist.github.com/gajayana/1238504df57638bfca28
+  -------------------------------------------------------------
+	$ sudo apt-get install ruby-dev
+	$ sudo gem install bundle
+	$ sudo gem install guard
+	$ sudo gem install guard-livereload
+
+	cd to project folder
+	$ bundle init
+ 
+	open .Gemfile, add following:
+	gem 'guard'
+	gem 'guard-livereload'
+
+	back to terminal
+	$ bundle exec guard init livereload
+
+	open .Guardfile, add following:
+	# https://github.com/guard/guard-livereload
+	guard :livereload do
+	  watch(%r{.+.(css|js|html|php)$})
+	end
+
+	back to terminal
+	$ bundle exec guard
+  -------------------------------------------------------------
+  1. For Check max_user_watches
+     cat /proc/sys/fs/inotify/max_user_watches
+  2. Modify max_user_watches to 524288
+     echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p  
+  --------------------------------------------------------------
+  Content-Security-Policy-Report-Only  for allow Websocket
+  
+  https://devdocs.magento.com/guides/v2.4/extension-dev-guide/security/content-security-policies.html
+  
+  https://stackoverflow.com/questions/32986074/content-security-policy-meta-tag-for-allowing-web-socket
+  connect-src 'self' ws:;
+  --------------------------------------------------------------
+  LiveReload Notworking in vagrant
+  https://www.ravisagar.in/blog/how-get-livereload-working-vagrant-and-auto-compile-scss-files-shared-folder
+   1. Edit Guardfile
+        guard :livereload , :host=> '0.0.0.0', :port=> '35729' do
+		   watch(%r{^((?!\.normalize\.).)*\.(css|js)$})
+		end
+   2. Now enable the Port Forwarding in Vagrantfile
+     config.vm.network "forwarded_port", guest: 35729, host: 35729
+   3. Trick is to force the polling
+      bundle exec guard -p -l 10    
+-------------------------
+html clean
+https://codebeautify.org/htmlviewer/
+
+----------------------------------------
+multiple website config for webserver
+1. SetEnv in apache conf
+   <VirtualHost *:80>
+	SetEnv MAGE_RUN_CODE b2bclan
+	SetEnv MAGE_RUN_TYPE website
+	
+    DocumentRoot "e:\PHP\Clan_Michele"
+	...
+2. check
+   E:\PHP\Clan_Michele\vendor\magento\module-store\Model\BaseUrlChecker.php :: isFrontendSecure()
+ official help: https://devdocs.magento.com/guides/v2.4/config-guide/multi-site/ms_over.html  
+--------------------------------------------
+cacheable block
+https://devdocs.magento.com/guides/v2.4/frontend-dev-guide/cache_for_frontdevs.html   
+
+cache problem of EAV in Multiwebsite
+E:\PHP\Clan_Michele\vendor\colinmollenhour\cache-backend-file\File.php
+E:\PHP\Clan_Michele\vendor\magento\zendframework1\library\Zend\Cache\Core.php
+
+   ***** determing website and store code******
+   E:\PHP\Clan_Michele\vendor\magento\module-store\Model\StoreResolver.php
+--------------------------------------
+separate cache dir per website
+
+https://magento.stackexchange.com/questions/49525/how-to-change-magentos-var-directory-to-other-place-in-magento-2
+use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\App\Bootstrap;
+$customDirs = [];
+if(isset($_SERVER['MAGE_RUN_TYPE']) && $_SERVER['MAGE_RUN_TYPE'] == 'website' && $_SERVER['MAGE_RUN_CODE'] != null){
+    $cacheSubDir = 'website_' . $_SERVER['MAGE_RUN_CODE'];
+    $cacheDir = 'var/cache/' . $cacheSubDir;
+    $customDirs = [
+        DirectoryList::CACHE => [DirectoryList::PATH => $cacheDir]
+    ];
+}
+
+$bootstrap = \Magento\Framework\App\Bootstrap::create(BP, [Bootstrap::INIT_PARAM_FILESYSTEM_DIR_PATHS =>  $customDirs] + $_SERVER);
+
+-----------------------------------------------------
+     arguments of type 'init_parameter' in di.xml
+	 <type name="Magento\Store\Model\StoreResolver">
+        <arguments>
+            <argument name="cache" xsi:type="object">Magento\Framework\App\Cache\Type\Config</argument>
+            <argument name="runMode" xsi:type="init_parameter">Magento\Store\Model\StoreManager::PARAM_RUN_TYPE</argument>
+            <argument name="scopeCode" xsi:type="init_parameter">Magento\Store\Model\StoreManager::PARAM_RUN_CODE</argument>
+        </arguments>
+    </type>
+	
+	explanation:
+	For init_parameter, the value provided must be a constant name but the actual value used is the value of $_SERVER[constant value here].
+	**************************************
+	In the method Magento\Framework\ObjectManager\Factory\AbstractFactory::resolveArgument metohod you will find this
+
+    else if ($argument === (array)$argument) {
+        if (isset($argument['argument'])) {
+            if (isset($this->globalArguments[$argument['argument']])) {
+                $argument = $this->globalArguments[$argument['argument']];
+            } else {
+                $argument = $paramDefault;
+            }
+        } else if (!empty($argument)) {
+            $this->parseArray($argument);
+        }
+    }
+	$argument['argument'] looks very similar to what the init parameter interpreter returns.
+	And if there is a value with the key $argument['argument'] in the globalArguments member that one is returned.
+	globalArguments member is populated with the arguments with which the bootstrap class is initialized.
+	So for the web application these arguments are $_SERVER
+	**************************************
+	
+-------------------------------------------------
+		get attribute metadata
+	E:\PHP\Clan_Michele\vendor\magento\module-customer\Model\Metadata\CachedMetadata.php :: getAttributeMetadata
+	E:\PHP\Clan_Michele\vendor\magento\module-customer\Model\Metadata\AttributeMetadataCache.php :: load
+	
+-------------------------------------------------
+		Configurable Product Pricing Render
+E:\PHP\Clan_Michele\vendor\magento\module-catalog\Pricing\Render\FinalPriceBox.php
+E:\PHP\Clan_Michele\vendor\magento\module-configurable-product\view\base\templates\product\price\final_price.phtml
+E:\PHP\Clan_Michele\vendor\magento\module-catalog\view\base\templates\product\price\amount\default.phtml
+
+//////////////////////////////////////
+commands shortcut
+https://magento.stackexchange.com/questions/223371/magento-2-list-of-command-shortcuts
+---------------change search engine--------------------
+php -f bin/magento config:show catalog/search/engine
+php -f bin/magento config:set catalog/search/engine 'mysql'
+
+---------------------------------------------
+leanring language
+	1. create language package
+	https://mage2.pro/t/topic/270
+	bin/magento i18n:collect-phrases -o "<path to Magento>/app/i18n/df/ru_ru/dictionary.csv" -m
+	2. Create a Magento 2 extension for the language package.
+	  
+	<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  
+	 Method #2. Install via command line
+	Install the Arabic language pack via command line.
+
+	Download the language file to your installation root directory. Now run the following command:
+
+	wget https://github.com/mageplaza/magento-2-arabic-language-pack/raw/master/ar_SA.csv
+	php bin/magento i18n:pack -m replace ar_SA.csv ar_SA
+	php bin/magento setup:static-content:deploy ar_SA
+	php bin/magento cache:flush 
+	<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	GraphQL
+	https://devdocs.magento.com/guides/v2.4/graphql/
+	https://magento.stackexchange.com/questions/296483/magento-2-graphql-tutorial-collection
+	<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	
+	
+	-----------------------------------------------
+	    Set Base Currency Per Website
+	1. For multiple store views, the scope of the price must be set in the Catalog configuration.
+	    Stores > Settings > Configuration > Catalog > Catalog > Price in Default Scope
+		Catalog Price Scope	: Global -> Website
+	2. 	Stores > Settings > Configuration > General > Currency Setup
+	     a. switch to a website
+		 b. set the base currency
+		 
+-----------------------------------------
+     admin too many redirects
+1. magento config:show web/secure/use_in_adminhtml
+   magento config:set web/secure/use_in_adminhtml 0
+   magento c:c
+2. My issue was that the cookie domain in config was not set or was different from the base url
+   so when accessing admin area, the domain didn't match the cookie set domain which caused the redirect loop.
+   stores > Configuration > General > Web - Default Cookie Settings
+-----------------------------------------
+  quality image
+  
+https://github.com/magento/magento2/issues/5748
+  Make sure you have the php extension imagick installed on your server
+Go in the Magento backend to Stores => Configuration => Advanced => Developer => Image Processing Settings
+Change PHP GD2 to ImageMagick and Save
+Go to System => Cache Management
+Click the Flush Catalog Images Cache button
+
+https://discuss.circleci.com/t/how-to-install-php-imagick-php-extension/19051/3
+RUN apt-get update && apt-get install -y \
+    libmagickwand-dev --no-install-recommends \
+    && pecl install imagick \
+	&& docker-php-ext-enable imagick
+	
+resize image
+https://docs.magento.com/user-guide/catalog/product-image-resizing.html
+Advanced/System/the Images Upload Configuration section.
+
+-------------------------------------
+   Email System
+  https://magento2tutorial.magestore.com/magento-2-email-configuration/
+--------------------------------------
+   reset admin password
+https://www.mageplaza.com/kb/how-reset-admin-password-magento-2.html
+
+<<<<<<<<<<<<<<<<<<<<<
+Notice: Undefined offset: 2 in E:\PHP\ScandiPWA\vendor\magento\framework\Encryption\Encryptor.php on line 591
+
+UPDATE admin_user SET password = CONCAT(SHA2('xxxxxxxYourNewPassword', 256), ':xxxxxxx:1') WHERE username = 'admin';
+The xxxxxxx character sequence is a cryptographic salt, it is saved in app\etc\env.php file
+
+<?php
+return array (
+  ...
+  'crypt' => 
+  array (
+    'key' => '525701df74e6cba74d5e9a1bb3d935ad', //cryptographic salt
+  ),
+  ...
+<<<<<<<<<<<<<<<<<<<<
+
+---------------------------------------
+https://magento.stackexchange.com/questions/137555/magento-2-how-to-reset-customer-password-from-database
+
+	reset customer password
+
+	SET @email='emailaddress@example.com', @passwd='test@123', @salt=MD5(RAND());
+	
+	UPDATE customer_entity
+    SET password_hash = CONCAT(SHA2(CONCAT(@salt, @passwd), 256), ':', @salt, ':1')
+    WHERE email = @email;
+	
+----------------------------------------------
+magento2 creating a lot of catalogrule_product_temp tables
+
+---------------------------------
+elasticsearch
+https://www.elastic.co/guide/en/elasticsearch/reference/6.4/built-in-users.html
+1.When installing it, please make sure C:\Programs Data\Elastic is empty
+2. elasticsearch-setup-passwords interactive
+3. configure Magento [stores/configuration/catalog/catalog/catalog search engine]
+Enable Elasticsearch HTTP Auth->yes
+Elasticsearch HTTP Username -> elastic
+Elasticsearch HTTP Password -> admin123
+
+4.bin/magento indexer:reindex catalogsearch_fulltext
+
+-----------------------------------
+Download GraphQL PlayGround
+https://www.electronjs.org/apps/graphql-playground
+---------------------------
+get store manager
+
+$storeName = \Magento\Framework\App\ObjectManager::getInstance()
+    ->get(\Magento\Store\Model\StoreManagerInterface::class)
+    ->getStore()
+-------------------------------------
+virtual product problem.
+if the product is set without weight, it's automatically set as virtual product.
+
+-------------------------------------
+You need to configure Two-Factor Authorization in order to proceed
+
+bin/magento module:disable Magento_TwoFactorAuth
+----------------------------------
+SQL LOG
+<!--<preference for="Magento\Framework\DB\LoggerInterface" type="Magento\Framework\DB\Logger\LoggerProxy"/>-->
+    <preference for="Magento\Framework\DB\LoggerInterface" type="Magento\Framework\DB\Logger\File"/>
+<type name="Magento\Framework\DB\Logger\File">
+  <arguments>
+      <argument name="logAllQueries" xsi:type="boolean">true</argument>
+      <argument name="debugFile" xsi:type="string">log/sql.log</argument>
+  </arguments>
+</type>	
+-----------------------------
+How checkout page rendered
+
+https://inviqa.com/blog/technical-guide-magento-2-checkout?language_content_entity=und
+
+-------------------------------------------
+Migration Service
+https://litextension.com/
+https://www.shopping-cart-migration.com/
+
+----------------------------------
+listing site
+
+https://m2epro.com/solution/main-features
+
+https://www.sixbitsoftware.com/
+Something like ebay or amazon or something that connects you with them
+
+Sixbit seems to be a place you add all your products then it connects to sales channels such as amazon, ebay, etc
+
+It is similar to M2E
+M2E connects you with ebay, amazon and others
+It syncs all your magento inventory with sales channels like ebay and amazon
+
+
+-------------------------------------------
+magento cachewarm
+
+SHELL="/bin/bash"
+57 16 * * * /home/jhmbuttcocp/magento_cache_warm_up.sh > /home/jhmbuttcocp/magento_cache_warm_up.log
+
+---------------------------------------------
+set customer token lifetime in GraphQL
+
+https://devdocs.magento.com/guides/v2.4/graphql/authorization-tokens.html
+
+Stores > Settings > Configuration > Services > OAuth > Access Token Expiration > Customer Token Lifetime.
+
+---------------------------------------
+email header logo
+
+https://docs.magento.com/user-guide/marketing/email-template-header.html
+https://devdocs.magento.com/guides/v2.4/frontend-dev-guide/templates/template-email.html
+
+a.
+On the Admin sidebar, go to Content > Design > Configuration.
+
+In the grid, find the store view that you want to configure and click Edit in the Action column.
+
+Scroll down and expand Expansion selector the Transactional Emails section.
+
+Choose the Header Template that is used as the default for email notifications.
+
+When complete, click Save Config.
+
+b.Customize the email logo using a theme
+  x. Add a file named logo_email.png to a Magento_Email/web directory in your custom theme.
+  y. Copy the <Magento_Email_module_dir>/view/frontend/email/header.html file into a Magento_Email/email directory in your theme.
+
+------------------------------
+https://devdocs.magento.com/guides/v2.4/install-gde/prereq/install-rabbitmq.html
+
+queue_message_status: https://inviqa.com/blog/magento-2-tutorial-message-queues
+
+https://devdocs.magento.com/guides/v2.4/config-guide/mq/rabbitmq-overview.html
+bulk actions
+
+https://devdocs.magento.com/guides/v2.4/config-guide/mq/manage-message-queues.html
+remove table magento_bulk
+https://devdocs.magento.com/guides/v2.4/config-guide/mq/manage-message-queues.html
+
+bin/magento queue:consumers:list
+bin/magento queue:consumers:start <consumer_name>
+
+
+bin/magento queue:consumers:start <consumer_name> &
+& means run it in background task
+
+explanation
+magento_operation <=>foreign_key<=> magento_bulk
+queue: id , name
+queue_message:  sort of task => id, topic_name, body[this is json data]
+              topic_name = consumer_name, forexample,product_action_attribute.update
+queue_message_status:  4:success, 6: fail   => https://inviqa.com/blog/magento-2-tutorial-message-queues
+           => queue_id, message_id, status
+		   
+queue.xml
+	<broker topic="product_action_attribute.update" exchange="magento-db" type="db">
+        <queue name="product_action_attribute.update" consumer="product_action_attribute.update" consumerInstance="Magento\Framework\MessageQueue\Consumer" handler="Magento\Catalog\Model\Attribute\Backend\Consumer::process"/>
+    </broker>
+queue_consumer.xml
+	<consumer name="product_action_attribute.update" queue="product_action_attribute.update" connection="db" maxMessages="5000" consumerInstance="Magento\Framework\MessageQueue\Consumer" handler="Magento\Catalog\Model\Attribute\Backend\Consumer::process" />
+queue_publisher.xml
+	<publisher topic="product_action_attribute.update">
+        <connection name="db" exchange="magento-db" />
+    </publisher>
+queue_topology.xml
+	<exchange name="magento-db" type="topic" connection="db">
+        <binding id="updateBinding" topic="product_action_attribute.update" destinationType="queue" destination="product_action_attribute.update"/>
+        <binding id="updateBindingWebsite" topic="product_action_attribute.website.update" destinationType="queue" destination="product_action_attribute.website.update"/>
+    </exchange>
+communication.xml
+	<topic name="product_action_attribute.update" request="Magento\AsynchronousOperations\Api\Data\OperationInterface">
+        <handler name="product_action_attribute.update" type="Magento\Catalog\Model\Attribute\Backend\Consumer" method="process" />
+    </topic>
+
+--------------------
+magento setup:store-config:set --base-url="http://157.175.95.222/"
+magento setup:store-config:set --base-url-secure="http://157.175.95.222/"	
+--------------------
+check token list
+
+SELECT * FROM oauth_token WHERE token='6gopgtu4g242ajq68h9m4tjke1wmv5n9';
+
+--------------------
+check wishlist
+SELECT entity_id FROM customer_entity WHERE email='yanaivashkoweb@gmail.com' = 1688
+SELECT wishlist_id FROM wishlist WHERE customer_id=1688                      = 1
+SELECT * FROM wishlist_item WHERE wishlist_id=1;
+
+--------------------
+export sales table
+with quote
+mysqldump --single-transaction -p -u cxphyzmnfd cxphyzmnfd  sales_bestsellers_aggregated_daily sales_bestsellers_aggregated_monthly sales_bestsellers_aggregated_yearly sales_creditmemo sales_creditmemo_comment sales_creditmemo_grid sales_creditmemo_item sales_invoice sales_invoiced_aggregated sales_invoiced_aggregated_order sales_invoice_comment sales_invoice_grid sales_invoice_item sales_order sales_order_address sales_order_aggregated_created sales_order_aggregated_updated sales_order_grid sales_order_item sales_order_payment sales_order_status_history sales_order_tax sales_order_tax_item sales_payment_transaction sales_refunded_aggregated sales_refunded_aggregated_order sales_shipment sales_shipment_comment sales_shipment_grid sales_shipment_item sales_shipment_track sales_shipping_aggregated sales_shipping_aggregated_order quote quote_address quote_address_item quote_id_mask quote_item quote_item_option quote_payment quote_shipping_rate sequence_invoice_1 sequence_order_1 sequence_shipment_1 sequence_creditmemo_1 > db_sales.sql
+without quote
+mysqldump --single-transaction -p -u cxphyzmnfd cxphyzmnfd  sales_bestsellers_aggregated_daily sales_bestsellers_aggregated_monthly sales_bestsellers_aggregated_yearly sales_creditmemo sales_creditmemo_comment sales_creditmemo_grid sales_creditmemo_item sales_invoice sales_invoiced_aggregated sales_invoiced_aggregated_order sales_invoice_comment sales_invoice_grid sales_invoice_item sales_order sales_order_address sales_order_aggregated_created sales_order_aggregated_updated sales_order_grid sales_order_item sales_order_payment sales_order_status_history sales_order_tax sales_order_tax_item sales_payment_transaction sales_refunded_aggregated sales_refunded_aggregated_order sales_shipment sales_shipment_comment sales_shipment_grid sales_shipment_item sales_shipment_track sales_shipping_aggregated sales_shipping_aggregated_order sequence_invoice_1 sequence_order_1 sequence_shipment_1 sequence_creditmemo_1 > db_sales.sql
+
+-----------------------
+check risk
+
+https://webscan.foregenix.com/
+
+---------------------------
+remove quote
+
+set foreign_key_checks=0;
+truncate inventory_pickup_location_quote_address;
+TRUNCATE quote_shipping_rate;
+TRUNCATE quote_item_option;
+TRUNCATE quote_address_item;
+TRUNCATE quote_address;
+TRUNCATE quote_item;
+TRUNCATE quote_payment;
+TRUNCATE quote;
+set foreign_key_checks=1;
+
+---------------------------------
+Auto Assign Customer Group based on VAT
+
+1. Enable Automatic Assignment to Customer Group in backend
+E:\PHP\Clan\web\vendor\magento\module-customer\Model\Vat.php :: 134
+
+>>>>
+
+vendor/magento/module-customer/Observer/AfterAddressSaveObserver.php:                $newGroupId = $this->_customerVat->getCustomerGroupIdBasedOnVatNumber(
+vendor/magento/module-quote/Observer/Frontend/Quote/Address/CollectTotalsObserver.php:            $groupId = $this->customerVat->getCustomerGroupIdBasedOnVatNumber(
+
+----------------------------------
+GraphQL CORS ISSUE
+
+https://github.com/graycoreio/magento2-cors
+
+composer require graycore/magento2-cors
+magento module:enable Graycore_Cors
+--------------------------------
+ replace file uploader in 1.x
+ https://www.mavenecommerce.com/2016/10/18/magento-html5-uploader/
+
+ --------------------------------------
+Disable	Bulk Update Action in Product
+
+store/configuration/catalog/inventory/Admin Bulk Operations
+Run asynchronously -> No
+
+It's tested by me
+-----------------------------------------
+	Setup Oman currency based on AED in Multiple store
+1. General / Currency Setup /  in Scope of "Default Config"
+   Base Currency => United Arab Emirates Dirham
+2. General / Currency Setup /  in Scope of "Jordan Config"
+	Base Currency => United Arab Emirates Dirham
+    Default Display Currency => Omai Rial
+	Allowed Currencies => Omani Rial
+3. Stores/Currency rates
+   AED = 1 , OMR = 0.1052
+4. Shipping rate
+   set it based on AED
+   38.02
+   

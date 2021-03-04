@@ -1,0 +1,7 @@
+https://www.primaseller.com/blog/difference-between-upc-isbn-asin-ean/
+
+Syncrhonization Policy
+	https://docs.m2epro.com/help/m2/amazon-integration/configurations/policies/synchronization-policies/list-rules
+Adding Productg List
+	https://docs.m2epro.com/help/m2/amazon-integration/m2e-pro-listings/adding-magento-products/adding-products-from-list
+https://www.primaseller.com/knowledge-base/inventory-management-guide/

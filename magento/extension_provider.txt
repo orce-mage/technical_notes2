@@ -1,0 +1,19 @@
+https://store.ibnab.com/magento-2-order-items-image-clickable-admin.html
+free:      https://marketplace.magento.com/fooman-printorderpdf-m2.html
+amasty:    https://amasty.com/pdf-customizer-for-magento-2.html
+mazeplaza: https://www.mageplaza.com/magento-2-pdf-invoice-extension/
+fooman   : https://store.fooman.co.nz/magento-extension-pdf-customiser-m2.html
+xento      https://www.xtento.com/magento-extensions/magento-pdf-customizer-extension.html?gclid=EAIaIQobChMI27-k4b2J7gIVBTcYCh173AynEAAYAiAAEgI2g_D_BwE
+webkul     https://magento-demo.webkul.com/magento-woocommerce-connector/?demo=Webkul_InvoicePdfTemplate
+https://meetanshi.com/magento-2-extensions.html
+
+
+1. Magento 2 Delete Orders
+https://www.mageplaza.com/magento-2-delete-orders/
+license: DELETEORDER-MDMG3KW70GWQ8J01UTXHLN74963DV98E46AURDR6
+
+2. SMS Order Notification
+https://docs.mageplaza.com/sms-notification/index.html?_ga=2.50886825.1437312716.1613379185-503291980.1610904839
+https://dashboard.mageplaza.com/sales/order/history/
+
+license_key: SMSNOTIFICATION-1S6X0SGYZCUSKJ5JD5IJHX6RLXTGBDEWSI230HDF

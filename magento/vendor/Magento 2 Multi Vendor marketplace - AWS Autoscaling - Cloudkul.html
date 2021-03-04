@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)https://cloudkul.com/blog/magento-2-multi-vendor-marketplace-aws-autoscaling/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link href="https://cloudkul.com/blog/wp-content/themes/blog/images/favicon.ico" rel="shortcut icon">
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta name="keywords" content="cloudkul hosting, AWS hosting, Ecommerce hosting on aws, Optimize Ecommerce performance, Magento hosting on AWS">
+    <link href="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/css" rel="stylesheet">
+
+    <title>Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul</title>
+
+		<link rel="profile" href="https://gmpg.org/xfn/11">
+
+		<link rel="pingback" href="https://cloudkul.com/blog/xmlrpc.php">
+
+
+		
+	<!-- This site is optimized with the Yoast SEO plugin v15.2 - https://yoast.com/wordpress/plugins/seo/ -->
+	<meta name="description" content="Magento 2 Multi Vendor marketplace - AWS Autoscaling These high-level server architectures can be deployed for Magento 2 Multi Vendor marketplace as well. Magento 2 being one the fastest growing e-commerce platform, faces the challenges to handle its giant clients base.">
+	<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+	<link rel="canonical" href="https://cloudkul.com/blog/magento-2-multi-vendor-marketplace-aws-autoscaling/">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul">
+	<meta property="og:description" content="Magento 2 Multi Vendor marketplace - AWS Autoscaling These high-level server architectures can be deployed for Magento 2 Multi Vendor marketplace as well. Magento 2 being one the fastest growing e-commerce platform, faces the challenges to handle its giant clients base.">
+	<meta property="og:url" content="https://cloudkul.com/blog/magento-2-multi-vendor-marketplace-aws-autoscaling/">
+	<meta property="og:site_name" content="Cloudkul">
+	<meta property="article:published_time" content="2018-04-23T11:39:36+00:00">
+	<meta property="article:modified_time" content="2018-07-20T06:34:03+00:00">
+	<meta property="og:image" content="https://cloudkul.com/blog/ogimage/?ogid=MzY4MQ%3D%3D">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:image" content="https://cloudkul.com/blog/ogimage/?ogid=MzY4MQ%3D%3D">
+	<script async="" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/analytics.js.download"></script><script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://cloudkul.com/blog/#website","url":"https://cloudkul.com/blog/","name":"Cloudkul","description":"Host your eCommerce Store on AWS with Optimized Performance","potentialAction":[{"@type":"SearchAction","target":"https://cloudkul.com/blog/?s={search_term_string}","query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://cloudkul.com/blog/magento-2-multi-vendor-marketplace-aws-autoscaling/#primaryimage","inLanguage":"en-US","url":"https://cloudkul.com/blog/wp-content/uploads/2018/04/finalarchitecture.png","width":1161,"height":828},{"@type":"WebPage","@id":"https://cloudkul.com/blog/magento-2-multi-vendor-marketplace-aws-autoscaling/#webpage","url":"https://cloudkul.com/blog/magento-2-multi-vendor-marketplace-aws-autoscaling/","name":"Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul","isPartOf":{"@id":"https://cloudkul.com/blog/#website"},"primaryImageOfPage":{"@id":"https://cloudkul.com/blog/magento-2-multi-vendor-marketplace-aws-autoscaling/#primaryimage"},"datePublished":"2018-04-23T11:39:36+00:00","dateModified":"2018-07-20T06:34:03+00:00","author":{"@id":"https://cloudkul.com/blog/#/schema/person/fc06bfd7f18d9a606dd94062d205af16"},"description":"Magento 2 Multi Vendor marketplace - AWS Autoscaling These high-level server architectures can be deployed for Magento 2 Multi Vendor marketplace as well. Magento 2 being one the fastest growing e-commerce platform, faces the challenges to handle its giant clients base.","inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://cloudkul.com/blog/magento-2-multi-vendor-marketplace-aws-autoscaling/"]}]},{"@type":"Person","@id":"https://cloudkul.com/blog/#/schema/person/fc06bfd7f18d9a606dd94062d205af16","name":"Alankrit Srivastava","image":{"@type":"ImageObject","@id":"https://cloudkul.com/blog/#personlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/955c3dda2678272c436c5153832e401f?s=96&d=https%3A%2F%2Fs.gravatar.com%2Favatar%2F6148c37469011bc2f8e491ca8f5de495%3Fs%3D80&r=g","caption":"Alankrit Srivastava"},"description":"DevOps Manager at Webkul Software Privated Limited","sameAs":["http://cloudkul.com"]}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel="dns-prefetch" href="https://maxcdn.bootstrapcdn.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Cloudkul » Feed" href="https://cloudkul.com/blog/feed/">
+<link rel="alternate" type="application/rss+xml" title="Cloudkul » Comments Feed" href="https://cloudkul.com/blog/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Cloudkul » Magento 2 Multi Vendor marketplace – AWS Autoscaling Comments Feed" href="https://cloudkul.com/blog/magento-2-multi-vendor-marketplace-aws-autoscaling/feed/">
+<!-- This site uses the Google Analytics by MonsterInsights plugin v7.12.3 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+    (window.gaDevIds=window.gaDevIds||[]).push("dZGIzZG");
+	var mi_version         = '7.12.3';
+	var mi_track_user      = true;
+	var mi_no_track_reason = '';
+	
+	var disableStr = 'ga-disable-UA-71185504-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+
+	if ( 'undefined' === typeof gaOptout ) {
+		function gaOptout() {
+			__gaTrackerOptout();
+		}
+	}
+	
+	if ( mi_track_user ) {
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+		__gaTracker('create', 'UA-71185504-1', 'auto');
+		__gaTracker('set', 'forceSSL', true);
+		__gaTracker('send','pageview');
+	} else {
+		console.log( "" );
+		(function() {
+			/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
+			var noopfn = function() {
+				return null;
+			};
+			var noopnullfn = function() {
+				return null;
+			};
+			var Tracker = function() {
+				return null;
+			};
+			var p = Tracker.prototype;
+			p.get = noopfn;
+			p.set = noopfn;
+			p.send = noopfn;
+			var __gaTracker = function() {
+				var len = arguments.length;
+				if ( len === 0 ) {
+					return;
+				}
+				var f = arguments[len-1];
+				if ( typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function' ) {
+					console.log( 'Not running function __gaTracker(' + arguments[0] + " ....) because you are not being tracked. " + mi_no_track_reason );
+					return;
+				}
+				try {
+					f.hitCallback();
+				} catch (ex) {
+
+				}
+			};
+			__gaTracker.create = function() {
+				return new Tracker();
+			};
+			__gaTracker.getByName = noopnullfn;
+			__gaTracker.getAll = function() {
+				return [];
+			};
+			__gaTracker.remove = noopfn;
+			window['__gaTracker'] = __gaTracker;
+					})();
+		}
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/cloudkul.com\/blog\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.5.3"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="crayon-css" href="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/crayon.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-font-monaco-css" href="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/monaco.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wk-commentcss-css" href="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/wk-comments.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="zoomerman-css-css" href="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/zoomerman.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="cloudkulBlog-bootsrap-css-css" href="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="cloudkulBlog-style-css" href="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/style.css" type="text/css" media="all">
+<script type="text/javascript" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/jquery.js.download" id="jquery-core-js"></script>
+<script type="text/javascript" id="monsterinsights-frontend-script-js-extra">
+/* <![CDATA[ */
+var monsterinsights_frontend = {"js_events_tracking":"true","download_extensions":"doc,pdf,ppt,zip,xls,docx,pptx,xlsx","inbound_paths":"[]","home_url":"https:\/\/cloudkul.com\/blog","hash_tracking":"false"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/frontend.min.js.download" id="monsterinsights-frontend-script-js"></script>
+<script type="text/javascript" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/wk-comment-script.min.js.download" id="wk-commentjs-js"></script>
+<script type="text/javascript" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/zoomerman.min.js.download" id="zoomerman-js-js"></script>
+<link rel="https://api.w.org/" href="https://cloudkul.com/blog/wp-json/"><link rel="alternate" type="application/json" href="https://cloudkul.com/blog/wp-json/wp/v2/posts/3681"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://cloudkul.com/blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://cloudkul.com/blog/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.5.3">
+<link rel="shortlink" href="https://cloudkul.com/blog/?p=3681">
+<link rel="alternate" type="application/json+oembed" href="https://cloudkul.com/blog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcloudkul.com%2Fblog%2Fmagento-2-multi-vendor-marketplace-aws-autoscaling%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://cloudkul.com/blog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcloudkul.com%2Fblog%2Fmagento-2-multi-vendor-marketplace-aws-autoscaling%2F&amp;format=xml">
+			<meta property="fb:pages" content="1754830011405515">
+			<link rel="amphtml" href="https://cloudkul.com/blog/magento-2-multi-vendor-marketplace-aws-autoscaling/amp/">
+
+		</head>
+<body>
+
+<!-- <a style="background-image: url('https://cloudkul.com/blog/wp-content/themes/blog/images/award-ribbon.png'); background-repeat: no-repeat; width:92px; height: 56px; display: block; position: fixed; right: -1px; top: 120px; z-index: 999999;" href="https://www.webkul.com/deloitte-award-winner-2017" rel="noopener" target="_blank" class="deloitte-rank"></a> -->
+
+<header>
+  <div class="header">
+    <div class="container">
+    <div class="row">
+      <!--Logo-->
+        <div class="col-md-2 col-xs-8">
+          <a href="https://cloudkul.com/blog" class="cloudkul-logo"></a>
+        </div>
+      <!--Logo-->
+
+      <!--Navigation-->
+        <div class="col-md-10 col-xs-4">
+          <div class="ck-toggle-menu">
+           <span class="control">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </span>
+          </div>
+          <div class="ck-navigation">
+             
+            <div class="menu-cloudkul_menu-container"><ul id="menu-cloudkul_menu" class="cloudkul-menu navbar-right"><li id="menu-item-339" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-339"><a href="https://cloudkul.com/">Home</a></li>
+<li id="menu-item-3853" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3853"><a href="https://cloudkul.com/gcp-hosting/">GCP Hosting</a>
+<ul class="sub-menu">
+	<li id="menu-item-3855" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3855"><a href="https://cloudkul.com/gcp-hosting/magento-gcp-hosting">Magento GCP Hosting</a></li>
+	<li id="menu-item-3856" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3856"><a href="https://cloudkul.com/gcp-hosting/magento2-gcp-hosting/">Magento2 GCP Hosting</a></li>
+	<li id="menu-item-3857" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3857"><a href="https://cloudkul.com/gcp-hosting/odoo-gcp-hosting/">Odoo GCP Hosting</a></li>
+	<li id="menu-item-3858" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3858"><a href="https://cloudkul.com/gcp-hosting/prestashop-gcp-hosting/">Prestashop GCP Hosting</a></li>
+</ul>
+</li>
+<li id="menu-item-340" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-340"><a href="https://cloudkul.com/aws-hosting">Aws Hosting</a>
+<ul class="sub-menu">
+	<li id="menu-item-582" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-582"><a href="https://cloudkul.com/aws-hosting/magento-aws-hosting/">Magento AWS Hosting</a></li>
+	<li id="menu-item-2499" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2499"><a href="https://cloudkul.com/aws-hosting/magento2-aws-hosting/">Magento2 Aws Hosting</a></li>
+	<li id="menu-item-583" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-583"><a href="https://cloudkul.com/aws-hosting/joomla-aws-hosting/">Joomla AWS Hosting</a></li>
+	<li id="menu-item-584" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-584"><a href="https://cloudkul.com/aws-hosting/prestashop-aws-hosting/">Prestashop AWS Hosting</a></li>
+	<li id="menu-item-851" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-851"><a href="https://cloudkul.com/aws-hosting/cs-cart-aws-hosting/">CS-Cart AWS Hosting</a></li>
+	<li id="menu-item-852" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-852"><a href="https://cloudkul.com/aws-hosting/opencart-aws-hosting/">Opencart AWS Hosting</a></li>
+	<li id="menu-item-853" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-853"><a href="https://cloudkul.com/aws-hosting/wordpress-aws-hosting/">WordPress AWS Hosting</a></li>
+	<li id="menu-item-2512" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2512"><a href="https://cloudkul.com/odoo-aws-hosting/">Odoo Aws Hosting</a></li>
+	<li id="menu-item-3870" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3870"><a href="https://cloudkul.com/aws-hosting/qloapps-aws-hosting/">Qloapps AWS Hosting</a></li>
+</ul>
+</li>
+<li id="menu-item-343" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-343"><a href="https://cloudkul.com/speed-optimization/magento-speed-optimization/">Speed Optimization</a>
+<ul class="sub-menu">
+	<li id="menu-item-1619" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1619"><a href="https://cloudkul.com/speed-optimization/magento-speed-optimization/">Magento Speed &amp; Security</a></li>
+	<li id="menu-item-2510" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2510"><a href="https://cloudkul.com/speed-optimization/magento2-speed-optimization/">Magento2 Speed &amp; Security</a></li>
+	<li id="menu-item-1618" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1618"><a href="https://cloudkul.com/speed-optimization/oencart-speed-optimization/">Opencart Speed &amp; Security</a></li>
+	<li id="menu-item-1620" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1620"><a href="https://cloudkul.com/speed-optimization/wordpress-speed-optimization/">WordPress Speed &amp; Security</a></li>
+	<li id="menu-item-1623" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1623"><a href="https://cloudkul.com/speed-optimization/cs-cart-speed-optimization/">Cs Cart Speed &amp; Security</a></li>
+	<li id="menu-item-1622" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1622"><a href="https://cloudkul.com/speed-optimization/prestashop-speed-optimization/">Prestashop Speed &amp; Security</a></li>
+	<li id="menu-item-1621" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1621"><a href="https://cloudkul.com/speed-optimization/joomla-speed-optimization/">Joomla Speed &amp; Security</a></li>
+</ul>
+</li>
+<li id="menu-item-2628" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2628"><a href="https://cloudkul.com/migration">Migration</a></li>
+<li id="menu-item-586" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-586"><a href="https://cloudkul.com/pricing/aws-setup-pricing">Pricing</a>
+<ul class="sub-menu">
+	<li id="menu-item-3868" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3868"><a href="https://cloudkul.com/pricing/aws-pricing/">AWS Pricing</a></li>
+	<li id="menu-item-3859" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3859"><a href="https://cloudkul.com/gcp-pricing/">GCP Pricing</a></li>
+	<li id="menu-item-3869" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3869"><a href="https://cloudkul.com/pricing/speed-security-pricing/">Speed Security Pricing</a></li>
+</ul>
+</li>
+<li id="menu-item-345" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-345"><a href="https://cloudkul.com/clients">Clients</a></li>
+<li id="menu-item-346" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-346"><a href="https://cloudkul.com/blog">Blog</a></li>
+<li id="menu-item-347" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-347"><a href="https://cloudkul.com/contact">Contact</a></li>
+</ul></div>
+          </div>
+
+        </div>
+      <!--//Navigation-->
+    </div>
+    </div>
+  </div>
+</header>
+<!--//Header-->
+	<section class="blog-navigation-section">
+		<div class="container">
+			<div class="blog-nav-grid">
+				<span class="reading-list-count no-after" data-count="0">
+					<a class="icon-action-reading-list" href="https://cloudkul.com/blog/reading-list"></a>
+				</span>
+				<div class="blog-search-wrap">
+						<!--Form-->
+
+							<form action="https://cloudkul.com/blog/" id="advanced-searchform" role="search" method="get">
+
+							<!--Search-->
+
+							<div class="wk-search">
+
+
+								<!--Input-->
+ 
+
+							   	<input type="text" placeholder="eg. Blog" value="" name="s" required="">
+
+								 
+
+								<button type="submit" class="search-btn" value="submit"><i class="glyphicon glyphicon-search"></i></button>
+ 
+
+								<!--/Button-->
+
+							</div>
+
+							<!--/Search-->
+
+							</form>
+
+							<!--/Form-->				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="wk-blog-hero-section">
+		<div class="wk-grid-md null">
+			<div class="wk-blog-heading-wrap">
+				<div class="wk-story-author">
+					<a href="https://cloudkul.com/blog/author/alankrit-srivastava256/"><img src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/6148c37469011bc2f8e491ca8f5de495.png"></a>
+					<div class="wk-story-author-block">
+						<a href="https://cloudkul.com/blog/author/alankrit-srivastava256/">
+							<author-name>Alankrit Srivastava</author-name>
+						</a>
+						<span>23 April 2018</span>
+					</div>
+				</div>
+
+				<div class="wk-blog-title">
+					<h1 data-view="3K Views">Magento 2 Multi Vendor marketplace – AWS Autoscaling</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="wk-blog-tools">
+		<div class="wk-grid-md">
+			<div class="wk-social-share">
+
+				<!-- ===> Index Panel and Social Share -->
+				<div class="wk-bar-share no-index">
+										<span class="wk-bar-icon wk-bar-icon-save">Save</span>
+	
+					<a href="javascript:void(0)" onclick="window.open(&#39;https://twitter.com/share?url=https%3A%2F%2Fcloudkul.com%2Fblog%2Fmagento-2-multi-vendor-marketplace-aws-autoscaling%2F&amp;related=Webkul&amp;text=Magento%202%20Multi%20Vendor%20marketplace%20%26%238211%3B%20AWS%20Autoscaling by ALANKRIT SRIVASTAVA&amp;via=webkul&#39;, &#39;sharer&#39;, &#39;toolbar=0,status=0,width=620,height=500&#39;)" class="wk-bar-icon wk-bar-share-icon-facebook">Tweet</a>
+	
+					<a href="javascript:void(0)" onclick="window.open(&#39;http://www.facebook.com/sharer/sharer.php?t=Magento%202%20Multi%20Vendor%20marketplace%20%26%238211%3B%20AWS%20Autoscaling&amp;u=https%3A%2F%2Fcloudkul.com%2Fblog%2Fmagento-2-multi-vendor-marketplace-aws-autoscaling%2F&#39;, &#39;sharer&#39;, &#39;toolbar=0,status=0,width=620,height=500&#39;);" class="wk-bar-icon wk-bar-share-icon-twitter">Share    </a>
+	
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="shadow-hidder"></div>
+
+	<div class="wk-grid-md">
+		<article>
+			<div class="wk-editor">
+				
+<p><span style="font-weight: 400;">&nbsp;When it comes to high availability server architectures, couple of things that come in mind are giant servers with </span><b>huge RAM and multi-core CPUs, Load Balancer, an Auto scaling manager, a shared file system</b><span style="font-weight: 400;">, &nbsp;</span><b>Cache mechanism</b><span style="font-weight: 400;"> etc. For deploying this architecture we can either build all of its components from scratch or we can lookup to someone who can provide these features with flexibility and ease so that we can focus on our application.</span></p>
+<p><span style="font-weight: 400;"><strong>These high-level server architectures can be deployed for Magento 2 Multi Vendor marketplace as well</strong>. Magento 2 being one the fastest growing e-commerce platform, faces the challenges to handle its giant clients’ base. For any vendor, store high availability and data consistency is primal concern. So we need to build our Magento store to face any considerable amount of traffic.</span></p>
+<p><span style="font-weight: 400;">Best way to ensure this is to keep redundancies and ability to scale it up and down as per need. AWS Autoscaling provides features to scale your AWS resources as per pre-defined scaling policies. Also, a lot of other AWS services are needed to be integrated as well in order to set up a full fledged Auto scaling Architecture.</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><strong>What is Magento 2 Multi-Vendor Marketplace</strong></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Magento 2 Multi Vendor Marketplace&nbsp;Extension converts your Magento 2 Store into a complete online marketplace shop. Using Magento2 Marketplace Module, the seller can manage the inventory, shipment, Seller Profile page, and the Seller Collection page and much more.The seller can add multiple products like Simple, Configurable, Virtual &amp; Downloadable.</p>
+<p>For more detailed information, please visit&nbsp;<a href="https://webkul.com/blog/magento2-multi-vendor-marketplace/">https://webkul.com/blog/magento2-multi-vendor-marketplace/</a> .</p>
+<h2></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><b>A Brief to AWS Auto Scaling</b></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-weight: 400;">Amazon Web Services provides Auto Scaling that monitors your applications and automatically adjusts capacity to maintain steady, predictable performance at the lowest possible cost. It ensures that your auto scaling group retains predefined minimum instance counts when scaling in occurs and stops the launching of further instances during scaling out process when maximum instance limit is achieved.</span></p>
+<p>&nbsp;</p>
+<h3><b>Benefits of Auto Scaling:</b></h3>
+<p>&nbsp;</p>
+<ul><li>Better fault tolerance</li>
+<li>High availability</li>
+<li>Better cost management</li>
+</ul><p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><b>AWS Auto Scaling with Magento 2 Multi Vendor Marketplace</b></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>In this blog, we will discuss the architecture layout for building a highly available Magento 2 Multi Vendor Marketplace store.</p>
+<p><span style="font-weight: 400;">Standalone AWS autoscaling service would not be enough due to the need of other AWS service as well to complete architecture setup. Since scope of the architecture shouldn’t be for one time setup only, we have to devise a way so that our application faces zero or minimum downtime during an update, be it code or server dependencies.&nbsp;</span></p>
+<p>In addition to this, code build (or update) process should be automated to an extent that concerning developers could focus on their application, not bothering about underlying architecture.</p>
+<p>&nbsp;</p>
+<h3><b>Architecture Components:</b></h3>
+<p>&nbsp;</p>
+<ul><li style="font-weight: 400;"><span style="font-weight: 400;">Source Code Management System (GIT)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Elastic Load Balancer</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Elastic File System&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Auto Scaling Group</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Cloudwatch</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">AWS SDK for python (BOTO)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Magento 2 Multi-Vendor Marketplace Staging Server</span></li>
+</ul><p>&nbsp;</p>
+<p><span style="font-weight: 400;">Our Application code (Magento 2 Multi Vendor Marketplace files) would be managed by a Source Code Management System like </span><b>GitLab</b><span style="font-weight: 400;"> or Github. A webhook will be configured that will trigger when development branch is merged with Master. We will discuss about webhook integration later in this blog.</span></p>
+<p><span style="font-weight: 400;">As to ensure load balancing among various identical servers, we would be using </span><b>Elastic Load Balancer</b><span style="font-weight: 400;"> to distribute incoming traffic evenly among all the instances. Here we are using Classic Load Balancer.</span></p>
+<p><span style="font-weight: 400;">Since, we would be having multiple EC instances, there should be a centralised files system where we could put our media files. For ensuring this, we would be using AWS </span><b>Elastic File System</b><span style="font-weight: 400;">. Magento 2 pub/media folder will reside in this and it would be mounted on all the instances.</span></p>
+<p><span style="font-weight: 400;">We would be using </span><b>Auto scaling </b><span style="font-weight: 400;">to launch and terminate instances as per scaling policies. These instances would be added under elastic load balancer by themselves and would fetch media files from EFS.</span></p>
+<p><span style="font-weight: 400;">We would need to setup </span><b>Cloudwatch Alarms</b><span style="font-weight: 400;"> to trigger Scaling policies. Here we are using alarms for CPU utilisation monitoring.</span></p>
+<p><b>AWS SDK for python (BOTO)</b><span style="font-weight: 400;"> would be needed to automate the process of updating ec2 AMI, Load balancer, Autoscaling group etc whenever a webhook is triggered from GitLab.</span></p>
+<p><span style="font-weight: 400;">And Ofcourse we would need an </span><b>Staging server of Magento 2</b><span style="font-weight: 400;"> for initial server setup before automating the whole build process.&nbsp;</span></p>
+<p>&nbsp;</p>
+<p><span style="font-weight: 400;">An illustration for proposed architecture is shown below:</span></p>
+<p>&nbsp;</p>
+<p><a href="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/finalarchitecture.png"><img loading="lazy" class="aligncenter size-full wp-image-3682 zm-zoomer zm-zoomer-in wk-lazify-loaded" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/finalarchitecture.png" alt="" width="1161" height="828" data-src="https://cloudkul.com/blog/wp-content/uploads/2018/04/finalarchitecture.png" data-alt=""></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><b>Initial Server Setup</b></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>So we have drawn the layout of our architecture, next step would be setting it up and connecting all the components of architecture.</p>
+<p>&nbsp;</p>
+<h3><b>(a) GITLAB Setup:</b></h3>
+<p>&nbsp;</p>
+<ul><li style="font-weight: 400;"><span style="font-weight: 400;">Set up a GitLab server on an EC2 Instance.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Create users and grant them proper privileges.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Create a Project from Magento 2. (let us say: </span><b>Magento2-Marketplace</b><span style="font-weight: 400;">) </span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Add your ssh public keys on GitLab.</span></li>
+</ul><p>&nbsp;</p>
+<h3><b>(b) Magento 2 Staging Server Setup:</b></h3>
+<p>&nbsp;</p>
+<ul><li style="font-weight: 400;"><span style="font-weight: 400;">Install LAMP and other server dependencies for Magento 2 on a freshly launched EC2 Instance.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Create a user and its public ssh keys on GitLab.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Download and install required version of <strong>Magento 2 with Multi Vendor Marketplace module</strong>.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Hit your Domain name and check if Magento 2 is running okay and note all the server credentials.</span></li>
+</ul><p>&nbsp;</p>
+<h3><b>(c)</b> <b>Linking Magento 2 with GITLAB:</b></h3>
+<p>&nbsp;</p>
+<ul><li style="font-weight: 400;"><span style="font-weight: 400;">Login to GitLab server via ssh and Copy ssh id to Magento 2 staging server. (</span><b>ssh-copy-id user@ip_address</b><span style="font-weight: 400;">)</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Upload Magento 2 Marketplace files on GitLab project.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Create a Development branch from Master branch. Later we will configure webhooks for development to master branch merge requests. </span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Create a user (let’s say: </span><b>deploy_use</b><span style="font-weight: 400;">r) and share its ssh id as well on Magento staging (</span><b>This step will be explained later</b><span style="font-weight: 400;">).</span></li>
+</ul><p>&nbsp;</p>
+<h3><b>(d) Setup AWS EFS to store media Files:</b></h3>
+<p>&nbsp;</p>
+<ul><li style="font-weight: 400;"><span style="font-weight: 400;">Create an AWS Elastic File System in the same VPC as your Magento 2 staging Instance with required availability zones.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Manage security groups to allow traffic from EC2 instance to EFS and vice-versa.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Login to your Magento 2 staging server and Install NFS client.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Mount Magento 2 media directory: </span><b>pub/media</b><span style="font-weight: 400;"> on EFS.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Create entry in either </span><b>/etc/fstab </b><span style="font-weight: 400;">or </span><b>/etc/rc.local</b><span style="font-weight: 400;"> to remount media directory at boot time.</span></li>
+</ul><p>&nbsp;</p>
+<h3><b>(e) Setup AWS Elastic Load Balancer:</b></h3>
+<p>&nbsp;</p>
+<ul><li style="font-weight: 400;"><span style="font-weight: 400;">Create an Internet facing Classic Load Balancer (let’s say: </span><b>magento-elb</b><span style="font-weight: 400;">) for all the availability zones within the region.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Configure ports, health checks, and assign security group same as that of Magento 2 staging server.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Add Magento 2 staging server instance in the load balancer.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Create a CNAME (or A) entry for load balancer DNS name mapped with your domain name in your DNS panel.</span></li>
+</ul><p>&nbsp;</p>
+<h3><b>(f) Create EC2 Instance AMI and configure Launch Configuration:</b></h3>
+<p>&nbsp;</p>
+<ul><li style="font-weight: 400;"><span style="font-weight: 400;">Create AMI of Magento 2 Staging Server and note AMI id (let’s say: </span><b>ami-staging</b><span style="font-weight: 400;">).</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Using this AMI (ami-staging), setup a launch configuration by defining its name, EC2 instance type, storage, security groups (same as that of magento 2 staging server), ssh key etc.</span></li>
+</ul><p>&nbsp;</p>
+<h3><b>(g) Setup Auto Scaling Group and Cloudwatch Alarms:</b></h3>
+<p>&nbsp;</p>
+<ul><li style="font-weight: 400;"><span style="font-weight: 400;">Create Cloudwatch alarms for High CPU and low CPU monitoring. (</span><b>Let’s say an Alarm for high CPU will trigger when CPU load average will be above 5 and an Alarm from low CPU will trigger when CPU load average will be below 5</b><span style="font-weight: 400;">).</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Set up an Auto scaling group (let’s say: </span><b>magento-asg</b><span style="font-weight: 400;">) with group size of desired number of instances and link this autoscaling group with your elastic load balancer (</span><b>magento-elb</b><span style="font-weight: 400;">).</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Define Scaling Policies. Create simple scaling policies by using cloudwatch alarms as scale up Auto scaling group by launching one instance whenever High CPU load alarm is triggered and scale down &nbsp;Auto scaling group by terminating one instance whenever Low CPU load alarm is triggered.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Depending upon the group size, minimum instance value, maximum instance value and desired value set in auto scaling group, autoscaling group (</span><b>magento-asg</b><span style="font-weight: 400;">) will launch an EC2 instance using AMI (</span><b>ami-staging</b><span style="font-weight: 400;">) from the launch configuration and will add it under Elastic load balancer (</span><b>magento-elb</b><span style="font-weight: 400;">).</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">As soon as Instance within Autoscaling group comes inservice under Elastic load balancer, we can detach our Magento 2 staging server and stop (optional) it.</span></li>
+</ul><p>&nbsp;</p>
+<h3><b>(h) Setup Python SDK scripts for EC2 AMI update:</b></h3>
+<p>&nbsp;</p>
+<ul><li style="font-weight: 400;"><span style="font-weight: 400;">Set up an environment to run AWS SDK tool for python which is Boto. We can either setup new server or we can install these tools on the same server where our GitLab has been installed. GitLab will run on port 80 and a apache2 server will be installed where these tools will be triggered on port other than 80. Install python and boto packages.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">To use AWS SDK tool from command line, create an IAM user and grant it Full EC2 Access. Download</span><b> Access key Id</b><span style="font-weight: 400;"> and </span><b>Secret Access key</b><span style="font-weight: 400;">. Using these credentials Client will communicate with AWS servers to deploy scripts.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Create a .boto file and store IAM credentials in it. Then place this file in the root of the ssh user</span><b> (deploy_user)</b><span style="font-weight: 400;"> which will run python scripts. Before running these scripts, store the name of AMI ( </span><b>ami-staging, </b><span style="font-weight: 400;">which is stored in launch configuration) in file or database. This image id will be retrieved by Python scripts for processing.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Create a file, say trigger.php which will be hit whenever a webhook is triggered from GitLab. This file will check if it has headers for open merge request or merged and will run the python sdk scripts for merged request.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Go to your GitLab panel and configure webhooks in </span><b>Settings &gt; Integration</b><span style="font-weight: 400;"> Section. Webhook will be triggered whenever a merge request is opened or merged. Mention the URL in the webhook and test it (let’s say url is </span><b>X.X.X.X:8020/merge.php</b><span style="font-weight: 400;">).</span></li>
+</ul><p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><b>EC2 AMI Update Workflow</b></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-weight: 400;">So far, all the servers have been set and our Magento 2 server is running as a Staging server with Marketplace module. Next step is to deploy our server as a production environment.</span></p>
+<p><span style="font-weight: 400;">Pull the development branch from the repository and make some changes in files.</span></p>
+<p>Push the code back to the development branch in repository and create a merge request. When development branch is merged to Master branch, webhook will get triggered. This webhook in return will trigger python sdk scripts.</p>
+<p><span style="font-weight: 400;">On triggering Webhook for a request merged, scripts will do the following jobs:-</span></p>
+<p>&nbsp;</p>
+<ul><li style="font-weight: 400;"><span style="font-weight: 400;">Gets current AMI id from file or database and launches an Intermediate Instance.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Pulls the updated code from GitLab in the instance and compile it, deploy it and set it in production mode. Creates a new AMI of this instance (</span><b>ami-prod</b><span style="font-weight: 400;">).</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Creates a new Launch Configuration using new AMI (</span><b>ami-prod</b><span style="font-weight: 400;">), adds it to Autoscaling group &nbsp;(</span><b>magento-asg</b><span style="font-weight: 400;">) and deletes the old one.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Adds the intermediate instance to the load balancer (</span><b>magento-elb</b><span style="font-weight: 400;">) and removes &amp; terminates the old instances.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Removes &amp; terminates Instances from Autoscaling group (</span><b>magento-asg</b><span style="font-weight: 400;">) and waits for the instances get launched from Launch Configuration having new AMI (</span><b>ami-prod</b><span style="font-weight: 400;">).</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">As soon as Instances get launched from new AMI (</span><b>ami-prod</b><span style="font-weight: 400;">) and get Inservice under Elastic load balancer (</span><b>magento-elb</b><span style="font-weight: 400;">), it removes the intermediate instance from the load balancer and terminates it.</span></li>
+<li style="font-weight: 400;"><span style="font-weight: 400;">Updates AMI id (</span><b>ami-prod</b><span style="font-weight: 400;">) in the file or database to be fetched next time the webhook is triggered.</span></li>
+</ul><p>&nbsp;</p>
+<p><span style="font-weight: 400;">However if there’s is any requirements to install server dependencies and other packages, login to existing Magent 2&nbsp; server, do the needful and create AMI of the instance. </span></p>
+<p><span style="font-weight: 400;">Then updates AMI id in the file or database to be fetched next time the webhook is triggered.</span></p>
+<p><span style="font-weight: 400;">The complete flowchart for the whole workflow:</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/workflow_flowchart.png"><img loading="lazy" class="size-full wp-image-3683 alignnone zm-zoomer zm-zoomer-in wk-lazify-loaded" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/workflow_flowchart.png" alt="" width="1170" height="947" data-src="https://cloudkul.com/blog/wp-content/uploads/2018/04/workflow_flowchart.png" data-alt=""></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><b>Testing Auto Scaling and Elastic Load Balancing</b></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-weight: 400;">To check if auto scaling is working or not, we can use siege tool for benchmarking. Siege tool will generate huge amount of requests within a short period of time which in turn will raise CPU load average.</span></p>
+<p>&nbsp;<br>
+</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+<link rel="stylesheet" type="text/css" href="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/familiar.css">
+
+		<div id="crayon-5faf872a3e478634304778" class="crayon-syntax crayon-theme-familiar crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 14px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 14px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5faf872a3e478634304778-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 14px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5faf872a3e478634304778-1"><span class="crayon-v">siege</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-i">c</span><span class="crayon-h"> </span><span class="crayon-cn">500</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-i">t</span><span class="crayon-h"> </span><span class="crayon-cn">30s</span><span class="crayon-h"> </span><span class="crayon-v">https</span><span class="crayon-o">:</span><span class="crayon-c">//yourdomainname.com/</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0001 seconds] -->
+<p><br>
+&nbsp;</p>
+<p><span style="font-weight: 400;">Then as CPU load average will go beyond 5, it triggers high CPU Cloudwatch alarm which in turn notify autoscaling group to launch an EC2 instance and add it in load balancer.</span></p>
+<p><span style="font-weight: 400;">As soon as load average will come below 5, it triggers Low CPU cloudwatch alarm, and autoscaling group will terminate one instance and will retain Auto scaling group size.</span></p>
+<p>Try configuring Cloudwatch alarms as for request counts, bandwidth, instance counts etc and benchmark with siege and other tools as well to ensure your application has high availability. Also please ensure that theload balancer is maintaining redundancy, distributing the traffic among instances under the load balancer.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+					<div class="wk-tags">
+						<span>Tag(s)</span>
+													<a href="https://cloudkul.com/blog/tag/amazon/">Amazon</a>
+														<a href="https://cloudkul.com/blog/tag/autoscaling/">autoscaling</a>
+														<a href="https://cloudkul.com/blog/tag/aws/">AWS</a>
+														<a href="https://cloudkul.com/blog/tag/aws-hosting/">aws hosting</a>
+														<a href="https://cloudkul.com/blog/tag/aws-server/">aws server</a>
+														<a href="https://cloudkul.com/blog/tag/cdn/">cdn</a>
+														<a href="https://cloudkul.com/blog/tag/cloud/">cloud</a>
+														<a href="https://cloudkul.com/blog/tag/cloudwatch/">cloudwatch</a>
+														<a href="https://cloudkul.com/blog/tag/ecommerce/">ecommerce</a>
+														<a href="https://cloudkul.com/blog/tag/ecommerce-store/">ecommerce store</a>
+														<a href="https://cloudkul.com/blog/tag/loadbalancer/">loadbalancer</a>
+														<a href="https://cloudkul.com/blog/tag/php7/">php7</a>
+												</div>
+									<div class="wk-tags">
+						<span>Category(s)</span>
+													<a href="https://cloudkul.com/blog/category/aws/">aws</a>
+														<a href="https://cloudkul.com/blog/category/cloud/">cloud</a>
+														<a href="https://cloudkul.com/blog/category/cloudwatch/">cloudwatch</a>
+														<a href="https://cloudkul.com/blog/category/linux/">linux</a>
+														<a href="https://cloudkul.com/blog/category/magento/">magento</a>
+														<a href="https://cloudkul.com/blog/category/php/">php</a>
+														<a href="https://cloudkul.com/blog/category/saas/">SaaS</a>
+														<a href="https://cloudkul.com/blog/category/uncategorized/">Uncategorized</a>
+							
+					</div>
+				
+			</div>
+		</article>
+
+		<!-- Seperator-->
+		<div class="wk-sep">.&nbsp;.&nbsp;.</div>
+		
+		<div class="wk-comments-wrapper">
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Comments (2) <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://cloudkul.com/blog/magento-2-multi-vendor-marketplace-aws-autoscaling/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://cloudkul.com/blog/wp-comments-post.php" method="post" id="commentform" class="wk-comment-form" novalidate=""><p class="light-txt">Add Your Comment</p><div class="current-commenter-avatar"><img alt="" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/6148c37469011bc2f8e491ca8f5de495(1).png" srcset="https://secure.gravatar.com/avatar/?s=100&amp;d=https%3A%2F%2Fs.gravatar.com%2Favatar%2F6148c37469011bc2f8e491ca8f5de495%3Fs%3D80&amp;r=g 2x" class="avatar avatar-50 photo avatar-default" height="50" width="50" title="" loading="lazy"></div><div class="comment-area shift-right-offset"><label for="comment"><textarea required="required" id="comment" placeholder="Comment" name="comment" aria-required="true"></textarea></label></div><div class="author-section shift-right-offset"><p class="comment-form-author"><label for="author"><input id="author" name="author" type="text" value="" placeholder="Name" size="30" maxlength="245" aria-required="true" required="required"></label></p>
+<p class="comment-form-email"><label for="email"><input id="email" name="email" type="email" value="" size="30" maxlength="100" placeholder="Email" aria-required="true" required="required"></label></p>
+
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"><label for="wp-comment-cookies-consent">Save my name email and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="wk-submit-btn" value="Comment"> <input type="hidden" name="comment_post_ID" value="3681" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p></div></form>	</div><!-- #respond -->
+			<div class="wk-comment-response-wrapper">
+				<li class="comment even thread-even depth-1" id="comment-2095">
+		<div id="div-comment-2095" class="comment-body">
+		<div class="comment-author vcard">
+
+		<div class="current-commenter-avatar">
+			<img alt="" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/c19e09c5f9c47e7bfad5059949e5bf7c" srcset="https://secure.gravatar.com/avatar/c19e09c5f9c47e7bfad5059949e5bf7c?s=100&amp;d=https%3A%2F%2Fcloudkul.com%2Fblog%2Fwp-content%2Fplugins%2Fwebkul-comment-system%2Fassets%2Fimages%2Favatar.png&amp;r=g 2x" class="avatar avatar-50 photo" height="50" width="50" title="" loading="lazy">		</div>
+
+		<div class="author-comment-data shift-right-offset">
+			<span class="commenter-name fn">Bipin Tiwari</span>							<span class="comment-meta commentmetadata light-txt"><em>August 23, 2019 at 1:24 pm</em>				</span>
+				<div class="comment-text">Hello,<p></p>
+<p>Can you confirm here your EFS file system are given best performance? </p>
+<p>I have used it in Auto Scaling and Elastic Load Balancing environment but  it’s very slow, As per my current server architecture I think NFS server is better then EFS you can share your var pub media folder through NFS,</p></div>
+<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://cloudkul.com/blog/magento-2-multi-vendor-marketplace-aws-autoscaling/#comment-2095" data-commentid="2095" data-postid="3681" data-belowelement="div-comment-2095" data-respondelement="respond" data-replyto="Reply to Bipin Tiwari" aria-label="Reply to Bipin Tiwari">Reply</a></div>		</div>
+	</div>
+
+			</div>
+		</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1690">
+		<div id="div-comment-1690" class="comment-body">
+		<div class="comment-author vcard">
+
+		<div class="current-commenter-avatar">
+			<img alt="" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/be45c5dfd43a0e3878ff80246a761d80" srcset="https://secure.gravatar.com/avatar/be45c5dfd43a0e3878ff80246a761d80?s=100&amp;d=https%3A%2F%2Fcloudkul.com%2Fblog%2Fwp-content%2Fplugins%2Fwebkul-comment-system%2Fassets%2Fimages%2Favatar.png&amp;r=g 2x" class="avatar avatar-50 photo" height="50" width="50" title="" loading="lazy">		</div>
+
+		<div class="author-comment-data shift-right-offset">
+			<span class="commenter-name fn">don</span>							<span class="comment-meta commentmetadata light-txt"><em>May 9, 2019 at 6:24 am</em>				</span>
+				<div class="comment-text">problem would be how to share var/ folders and generate DI compile on new launched instance</div>
+<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://cloudkul.com/blog/magento-2-multi-vendor-marketplace-aws-autoscaling/#comment-1690" data-commentid="1690" data-postid="3681" data-belowelement="div-comment-1690" data-respondelement="respond" data-replyto="Reply to don" aria-label="Reply to don">Reply</a></div>		</div>
+	</div>
+
+			</div>
+		</li><!-- #comment-## -->
+		</div>
+		</div>
+	</div>
+	 
+<footer class="mega-footer">
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-md-4">
+
+        <div class="cloudkul-footer-inner">
+
+				 <h4>Products</h4>
+
+				 
+				<div class="menu-cloudkul-products-container"><ul id="menu-cloudkul-products" class="menu"><li id="menu-item-3862" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3862"><a href="https://cloudkul.com/aws-hosting/">Aws Hosting</a></li>
+<li id="menu-item-3863" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3863"><a href="https://cloudkul.com/migration/">Magento 2 Migration</a></li>
+<li id="menu-item-2502" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2502"><a href="https://cloudkul.com/performance-audit">Performance Audit</a></li>
+<li id="menu-item-3865" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3865"><a href="https://store.webkul.com/Magento2-DevOps-CICD-Docker-Jenkins.html">Magento2 DevOps</a></li>
+<li id="menu-item-3866" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3866"><a href="https://cloudkul.com/speed-optimization/">Speed Optimization</a></li>
+<li id="menu-item-3867" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3867"><a href="https://qloapps.com/cloud-hosting/">Qloapps Cloud Hosting</a></li>
+<li id="menu-item-3860" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3860"><a href="https://cloudkul.com/gcp-hosting/">Cloudkul GCP Hosting</a></li>
+<li id="menu-item-4024" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4024"><a title="EFK Setup for Odoo" rel="noopener" href="https://store.webkul.com/EFK-setup-for-Odoo.html">EFK Setup for Odoo</a></li>
+</ul></div>
+       </div>
+
+			</div>
+
+			<div class="col-md-4">
+
+        <div class="cloudkul-footer-inner">
+
+				 <h4>Quick Links</h4>
+
+				 
+				<div class="menu-quick-links-container"><ul id="menu-quick-links" class="menu"><li id="menu-item-2503" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2503"><a href="https://cloudkul.com/knowledgebase">Knowledgebase</a></li>
+<li id="menu-item-2504" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2504"><a href="https://cloudkul.com/license">License</a></li>
+<li id="menu-item-2505" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2505"><a href="https://cloudkul.com/privacy-policy">Privacy Policy</a></li>
+<li id="menu-item-2506" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2506"><a href="https://cloudkul.com/terms-and-conditions">Terms &amp; Conditions</a></li>
+</ul></div>
+       </div>
+
+			</div>
+
+
+			<div class="col-md-4">
+
+        <div class="cloudkul-footer-inner">
+
+				 <h4>Be in Touch</h4>
+
+				 <p>On The Social Web</p>
+
+				 <ul class="be-in-touch">
+
+					 <li>
+
+						<a href="https://facebook.com/CloudWebkul" target="_blank" class="social-icon-facebook" rel="nofollow"></a>
+
+					 </li>
+
+					 <li>
+
+						<a href="mailto:support@webkul.com?subject=Cloudkul%20-%20Get%20My%20Store%20Fast" class="social-icon-mail"></a>
+
+					</li>
+
+				</ul>
+
+       </div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<!--Footer-->
+
+<!--Copyright-->
+
+ <!---Footer Section-->
+
+<section class="footer">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <p class="text-center">© Copyright 2010-2020 <a href="https://webkul.com/" title="Webkul Software Pvt Ltd"> Webkul Software</a>, All rights reserved.
+                  <img src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/security-logo-2.png"></p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+ <img alt="css.php" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/css.php" width="1" height="1"><script type="text/javascript" id="crayon_js-js-extra">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/cloudkul.com\/blog\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/crayon.min.js.download" id="crayon_js-js"></script>
+<script type="text/javascript" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/comment-reply.min.js.download" id="comment-reply-js"></script>
+<script type="text/javascript" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/cloudkulBlog.min.js.download" id="cloudkulBlog-main-script-js"></script>
+<script type="text/javascript" src="./Magento 2 Multi Vendor marketplace - AWS Autoscaling - Cloudkul_files/wp-embed.min.js.download" id="wp-embed-js"></script>
+
+
+
+
+</body></html>

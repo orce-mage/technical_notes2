@@ -1,0 +1,27 @@
+1. m2_payment-on-credit
+   httpsdevdocs.magento.comguidesv2.4b2bcompany-credit.html
+2. m2_ref-architecture-2.3.png
+	https://devdocs.magento.com/guides/v2.4/performance-best-practices/reference-architecture.html
+3. https://devdocs.magento.com/compliance/privacy/pi-data-reference-m2.html
+4. https://cedcommerce.com/blog/magento-2-0-request-flow/
+   https://www.dckap.com/blog/request-flow-in-magento-2/
+   https://magento.stackexchange.com/questions/82123/how-magento-2-routing-works
+5.https://cedcommerce.com/blog/magento-2-0-architecture/
+6. m2_order_status.png
+   https://www.mag-manager.com/product-information/magento-order-management/magento-2-order-status-flow/
+   https://www.mageplaza.com/kb/order-status-workflow-magento-2.html
+7. base-asset-fallback.png
+   The base folder is an area to share for front-end representation logic (less, js, images, layout etc.), the resource which is for both admin and front-end, you can keep those files in the base folder.
+
+	For Example:
+
+	view/base/web/js/library.js which you are using in both for admin and front-end in this case you have should keep that library file on the base folder.
+
+	find the flowchart for fallback mechanism:
+   https://magento.stackexchange.com/questions/160939/how-the-base-folder-will-help-on-magento-2-modules-or-themes-fallback-mechanism
+8. vue_magento.png 
+   https://www.brihaspatitech.com/blog/integrating-vuejs-with-headless-magento-2/
+9. database_diagram.png
+   https://anna.voelkl.at/magento-ce-2-1-3-database-diagram/
+10. PWA
+   https://magento.github.io/pwa-studio/pagebuilder/

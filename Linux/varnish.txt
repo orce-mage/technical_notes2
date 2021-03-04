@@ -1,0 +1,37 @@
+
+
+What is the purpose of the X-Varnish HTTP header? The X-Varnish HTTP header allows you to find the correct log-entries for the transaction. 
+For a cache hit, X-Varnish will contain both the ID of the current request and the ID of the request that populated the cache. It makes debugging Varnish a lot easier.
+
+The age is in seconds. If it is 0 then it means it is not cached. 
+Also X-Varnish: if it is cached and working then there should be 2 sets of numbers. 
+One is the request and the other is the response.
+
+-----------------------------------
+The x-cache header is were we store the information, using two terms that cover slightly different aspect of the content,
+
+The first word can be:
+
+hit: we are delivering an object from the cache
+miss: the object comes from the backend after failing to find it in the cache.
+pass: the object comes from the backend because the request bypassed the cache.
+synth: we created a synthetic object on-the-fly to satisfy the request.
+The second word will be:
+
+cached: the object will be reused.
+uncacheable: the object comes from the backend but will not be reused.
+synth: synthetic object.
+
+	>>>>>>>>
+	HTTP/1.1 200 OK
+	Date: Tue, 24 Jul 2018 18:43:16 GMT
+	Server: Varnish
+	Content-Type: text/html; charset=utf-8
+	X-Varnish: 32773
+	Age: 0
+	Via: 1.1 varnish
+	connection: close
+	x-cache: miss cached
+	Content-Length: 282
+	>>>>>>>>>
+------------------------------------

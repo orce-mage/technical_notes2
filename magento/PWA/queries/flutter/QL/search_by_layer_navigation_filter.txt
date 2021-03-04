@@ -1,0 +1,31 @@
+query {
+    products(
+		filter: {
+			customer_group_id: {eq: "1"},
+			price:{
+				from: "0",
+				to: "100"
+			}
+		}, 
+		search: "baby"
+	) {
+        sort_fields {
+            options {
+                value,
+                label
+            }
+        },
+        filters: aggregations {
+            name: label,
+            request_var: attribute_code,
+            filter_items: options {
+                label,
+                value_string: value,
+                swatch_data {
+                    type,
+                    value
+                }
+            }
+        }
+    }
+}

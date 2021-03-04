@@ -1,0 +1,5 @@
+1 String replace
+
+  String.replace(): Replace All Appearances
+  A regular expression instead of a string will replace all appearances
+  string.replace(/-/g, '')

@@ -1,0 +1,11 @@
+1. Redux Dev Tools
+https://github.com/zalmoxisus/redux-devtools-extension
+
+2. React 16.8.6 life cycle
+
+https://medium.com/javascript-in-plain-english/understanding-react-16-8-life-cycles-hooks-context-api-lazy-and-suspense-d80760f1b8f2
+
+https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+#named parametres
+

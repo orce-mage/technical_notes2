@@ -1,0 +1,29 @@
+composer install
+
+Check for composer.lock file
+If not, auto generate composer.lock file (Using composer update)
+Install the specified versions recorded in the composer.lock file
+composer update
+
+Go through the composer.json file
+Check availability of newer (latest) versions, based on the version criteria mentioned (e.g. 1.12.*)
+Install the latest possible (according to above) versions
+Update composer.lock file with installed versions
+So in a simple check list.
+
+If you want to keep all co-workers in the same versions as you...
+
+Commit your composer.lock to GIT (or vcs you have)
+Ask others to get the that version of composer.lock file
+Always use composer install to get the correct dependencies
+If you want to Upgrade the system dependencies to new versions
+
+Check the composer.json file for version specs.
+Do a composer update
+This will change the composer.lock file with newest versions
+Commit it to the GIT (or vcs)
+Ask others to get it and composer install
+Following will be a very good reading
+https://blog.engineyard.com/2014/composer-its-all-about-the-lock-file
+
+Enjoy the power of composer.lock file!

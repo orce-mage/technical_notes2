@@ -1,0 +1,42 @@
+1. E:\PHP\ScandiPWA\vendor\scandipwa\persisted-query\src\Plugin\PersistedQuery.php :: aroundDispatch
+    PersistedQuery.php:186, ScandiPWA\PersistedQuery\Plugin\PersistedQuery->aroundDispatch()
+	Interceptor.php:135, Magento\GraphQl\Controller\GraphQl\Interceptor->Magento\Framework\Interception\{closure:E:\PHP\ScandiPWA\vendor\magento\framework\Interception\Interceptor.php:104-151}()
+	BuiltinPlugin.php:71, Magento\PageCache\Model\App\FrontController\BuiltinPlugin->aroundDispatch()
+	Interceptor.php:135, Magento\GraphQl\Controller\GraphQl\Interceptor->Magento\Framework\Interception\{closure:E:\PHP\ScandiPWA\vendor\magento\framework\Interception\Interceptor.php:104-151}()
+	Interceptor.php:153, Magento\GraphQl\Controller\GraphQl\Interceptor->___callPlugins()
+	Interceptor.php:23, Magento\GraphQl\Controller\GraphQl\Interceptor->dispatch()
+	Http.php:116, Magento\Framework\App\Http\Interceptor->launch()
+	Interceptor.php:23, Magento\Framework\App\Http\Interceptor->launch()
+	Bootstrap.php:263, Magento\Framework\App\Bootstrap->run()
+	index.php:40, {main}()
+	
+2. E:\PHP\ScandiPWA\vendor\scandipwa\persisted-query\src\Plugin\PersistedQuery.php :: processRequest
+3. E:\PHP\ScandiPWA\vendor\scandipwa\persisted-query\src\RedisClient.php :: validateConfiguration
+
+4. graphql url for menu
+   http://dev.store.calvocover.com/graphql?hash=600508575&identifier_1=%22new-main-menu%22&_currency=%22%22
+	
+6. Menu Organiser
+   SELECT `scandiweb_menumanager_menu`.*, `menu_store`.`store_id` FROM `scandiweb_menumanager_menu`
+ INNER JOIN `scandiweb_menumanager_menu_store` AS `menu_store` ON scandiweb_menumanager_menu.menu_id = menu_store.menu_id WHERE (`scandiweb_menumanager_menu`.`identifier`='new-main-menu') AND (menu_store.store_id in (1, 0) ) AND (is_active = 1) ORDER BY `store_id` DESC
+
+
+ ----------------------------------
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\scandipwa\persisted-query\src\Plugin\PersistedQuery.php :: public function processRequest ::199
+Send the Put request query
+Send the Get request query
+Process the request query
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\scandipwa\persisted-query\src\Query\QueryProcessor.php :: public function process
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\webonyx\graphql-php\src\GraphQL.php :: public static function executeQuery
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\webonyx\graphql-php\src\Executor\ReferenceExecutor.php :: public function doExecute()
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\webonyx\graphql-php\src\Executor\ReferenceExecutor.php :: private function executeOperation
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\framework\GraphQl\Schema\Type\Output\ElementMapper\Formatter\Fields.php :: private function getFieldConfig :: 165 [final entry!!!]
+
+  >>>>>> catalog product
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-graph-ql\Model\Resolver\Products.php :: public function resolve
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\scandipwa\catalog-graphql\src\Model\Resolver\Products\Query\Search.php :: public function getResult
+
+---------------------------------------
+Query breakpoint in Frontend , ScandiPWA
+E:\PHP\Rashed\calvo_docker\DevPWA\vendor\scandipwa\source\src\app\util\Query\PrepareDocument.js :: export const prepareRequest :: 85
+E:\PHP\Rashed\calvo_docker\DevPWA\vendor\scandipwa\source\src\app\util\Request\Request.js :: export const executeGet :: 175

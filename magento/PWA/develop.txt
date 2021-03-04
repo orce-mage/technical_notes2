@@ -1,0 +1,44 @@
+https://docs.scandipwa.com/react-and-pwa-for-dummies/setting-up-environment-and-talking-theory#setting-up-the-environment
+https://docs.scandipwa.com/how-to-tutorials-introductory/theme-build-and-configuration
+
+npx create-scandipwa-app <your-app-name>
+
+
+2. debug
+https://www.andreasreiterer.at/set-up-vscode-debugger-react/
+
+npm run pm2-watch
+npm run extract-translations
+
+mage2gen.com
+
+scandipwa/performance
+github.com/scandipwa/performance
+
+3. Issue with Product Listing
+  For attribute, 'Use in Product Listing' should be set to Yes. 
+  
+4. Scandipwa tools for VSCode
+ a. git clone master branch from https://github.com/scandipwa/scandipwa-development-toolkit.git
+ b. npm i -g vsce
+ c. vsce package
+ If you'd rather update your extensions manually, you can disable auto-update with the Disable Auto Updating Extensions command 
+   that sets the extensions.autoUpdate setting to false. 
+ If you don't want VS Code to even check for updates, you can set the extensions.autoCheckUpdates setting to false
+ scandipwa-development-toolkit-0.0.1.vsix
+ d. sftp
+ https://marketplace.visualstudio.com/items?itemName=liximomo.sftp
+ https://umutcanbolat.com/visual-studio-code-sftp/
+ 
+  e. disable auto update extension
+    ctrl+p and type extensions.autoUpdate setting to false
+    or File/Preferences and search audo update and set it to false
+  f. delete folders
+    %USER%\\.vscode\extensions
+    %UserFolder%\AppData\Roaming\Code
+
+5. Graph QL playground
+https://www.apollographql.com/docs/apollo-server/testing/graphql-playground/
+https://studio.apollographql.com/org/yanaivashkowebs-team/graphs 
+
+https://marketplace.scandipwa.com/create-and-sell.html

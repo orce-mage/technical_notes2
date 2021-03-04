@@ -1,0 +1,53 @@
+Module 'Magento_CmsGraphQl':
+Module 'Magento_Downloadable':
+Module 'Magento_CmsUrlRewrite':
+Module 'Magento_CmsUrlRewriteGraphQl':
+Module 'Magento_ComposerRootUpdatePlugin':
+Running data recurring...Reading E:\PHP\magento236/composer.json
+Loading config file E:\PHP\magento236/composer.json
+Failed to initialize global composer: Composer could not find the config file: E:/PHP/magento236/var/composer_home/composer.json
+To initialize a project, please create a composer.json file as described in the https://getcomposer.org/ "Getting Started" section
+Reading E:\PHP\magento236/vendor/composer/installed.json
+Reading E:\PHP\magento236/composer.lock
+Checking for "magento/composer-root-update-plugin: 1.0.0" for the Web Setup Wizard...
+Installing "magento/composer-root-update-plugin: 1.0.0" for the Web Setup Wizard
+Reading E:\PHP\magento236\var\com99A2.tmp/composer.json
+Loading config file E:\PHP\magento236\var\com99A2.tmp/composer.json
+Executing command (E:\PHP\magento236\var\com99A2.tmp): git branch --no-color --no-abbrev -v
+Executing command (E:\PHP\magento236\var\com99A2.tmp): git describe --exact-match --tags
+Executing command (E:\PHP\magento236\var\com99A2.tmp): git log --pretty="%H" -n1 HEAD
+Executing command (E:\PHP\magento236\var\com99A2.tmp): hg branch
+Executing command (E:\PHP\magento236\var\com99A2.tmp): fossil branch list
+Executing command (E:\PHP\magento236\var\com99A2.tmp): fossil tag list
+Executing command (E:\PHP\magento236\var\com99A2.tmp): svn info --xml
+Failed to initialize global composer: Composer could not find the config file: E:/PHP/magento236/var/composer_home/composer.json
+To initialize a project, please create a composer.json file as described in the https://getcomposer.org/ "Getting Started" section
+Loading composer repositories with package information
+Downloading https://repo.magento.com/packages.json
+<warning>Warning from repo.magento.com: You haven't provided your Magento authentication keys. For instructions, visit https://devdocs.magento.com/guides/v2.3/install-gde/prereq/connect-auth
+.html</warning>
+    Authentication required (repo.magento.com):
+Downloading https://repo.magento.com/packages.json
+<warning>Warning from repo.magento.com: You haven't provided your Magento authentication keys. For instructions, visit https://devdocs.magento.com/guides/v2.3/install-gde/prereq/connect-auth
+.html</warning>
+    Authentication required (repo.magento.com):
+Downloading https://repo.magento.com/packages.json
+<warning>Warning from repo.magento.com: You haven't provided your Magento authentication keys. For instructions, visit https://devdocs.magento.com/guides/v2.3/install-gde/prereq/connect-auth
+.html</warning>
+    Authentication required (repo.magento.com):
+Web Setup Wizard installation of "magento/composer-root-update-plugin: 1.0.0" failed.
+The helper "question" is not defined.
+
+Module 'Magento_User':
+Module 'Magento_ConfigurableProduct':
+Module 'Magento_UrlRewrite':
+Module 'Magento_QuoteGraphQl':
+Module 'Magento_ConfigurableProductSales':
+Module 'Magento_GroupedProduct':
+Module 'Magento_Contact':
+Module 'Magento_Cookie':
+Module 'Magento_Cron':
+Module 'Magento_Csp':
+Module 'Magento_CurrencySymbol':
+Module 'Magento_Captcha':
+Module 'Magento_Integration':

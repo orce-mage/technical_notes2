@@ -1,0 +1,25 @@
+mutation($guestCartId_1: String) {
+    placeOrder: s_placeOrder(guestCartId: $guestCartId_1) {
+        order {
+            order_id
+        }
+    }
+}
+
+------------------------------------------
+{
+  "guestCartId_1": "715xj33vfogh2onGLaMtVTwZBXB95HUD"
+}
+
+-------------------------------------------
+response
+
+{
+    "data": {
+        "placeOrder": {
+            "order": {
+                "order_id": "4000033729"
+            }
+        }
+    }
+}

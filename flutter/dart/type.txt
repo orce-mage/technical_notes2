@@ -1,0 +1,94 @@
+  var someList = [1, 2, 3]; // you can instantiate an empty list by using [] syntax
+
+  print(someList[1]); // prints(2)
+
+  var anotherList = [4, 5];
+  anotherList.add(6);
+  
+  print(someList + anotherList); // prints [1, 2, 3, 4, 5, 6]
+  
+  
+  #filed length list
+  var someList = List(3);
+
+  print(someList); // prints [null, null, null]
+
+  someList[1] = 2;
+  print(someList); // prints [null, 2, null]
+
+  someList.add(1); // exception as it is a fixed length list
+ 
+#Map
+  Map simpleMap = {"key1": "value", "key2": 2};
+  simpleMap["someKey"] = "c"; 
+
+  print(simpleMap); // prints {key1: value, key2: 2, someKey: c}
+
+#String
+  String a = 'This is a String\n'; // single quotes
+  String b = "This is also a String\n"; // double quotes
+  
+  String c = """
+      This is also
+      a String\n
+      """; // triple quotes to easy multiline
+
+  String d = "This" +
+      ' is also a ' +
+      " String\n"; // You can concatenate strings by using the + symbol
+  
+  String e =
+      "This" ' is also a ' " String\n"; // Or without it, just by putting adjacents
+  
+  // other string operators
+
+  print(a*2); // prints: This is a String
+              //         This is a String
+          
+  print(a[0]); // prints 
+
+
+  #String Intropolation
+  String someString = "This is a String";
+
+  print("The string value is: $someString "); // prints The string value is: This is a String
+  print("The length of the string is: ${someString.length} "); // The length of the string is: 16
+ 
+#runes
+  String dollarSymbol = '\u0024'; 
+
+  print(dollarSymbol); // prints the dollar($) symbol
+
+  print(dollarSymbol.codeUnits); // prints 36, the 16-bit code unit(0x0024) in decimal representation
+
+  print(dollarSymbol.runes); // prints 36, the 32-bit code unit(0x0024) in decimal representation
+
+  String astonishedFace = '\u{1f632}'; 
+
+  print(astonishedFace); // prints the 😲 face
+
+  print(astonishedFace.codeUnits); // prints [55357, 56882], the 16-bit code units of the astonished face emoticon
+
+  print(astonishedFace.runes); // prints (128562), the single 32-bit code unit of the astonished face emoticon
+  
+#symbols
+import 'dart:mirrors';
+
+/**
+ * Symbols
+ */
+main() {
+  int someInt = 1;
+  print(reflect(someInt).type.reflectedType.toString()); // prints: int
+}
+
+#dynamic string
+  var a; // here we didn’t initialized var so its type is the special dynamic
+  a = 1; // now a is a int
+  a = "a"; // and now a String
+  print(a is int); // prints false
+  print(a is String); // prints true
+  print(a is dynamic); // prints true
+  print(a.runtimeType); // prints String
+  
+

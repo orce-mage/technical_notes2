@@ -1,0 +1,8 @@
+cd /var/www/html
+1. apt install composer
+2. composer --version
+3. which composer
+4. php composer-setup.php --install-dir=/usr/bin --filename=composer --version=1.10.6
+5. composer require magento/composer-root-update-plugin=~1.0 --no-update 
+   this does something like this: composer.json <- require <- magento/composer-root-update-plugin=~1.0
+5. composer update

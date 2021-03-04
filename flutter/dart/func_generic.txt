@@ -1,0 +1,31 @@
+sayHello(String name, {String additionalMessage}) => "Hello $name. $additionalMessage";
+
+void main() {
+  print(sayHello('my friend')); // it stills optional, prints: Hello my friend. null
+  print(sayHello('my friend', additionalMessage: "How are you?")); // prints: Hello my friend. How are you?
+}
+
+# required named parametres
+sayHello(String name, {@required String additionalMessage}) =>
+    "Hello $name. $additionalMessage";
+
+void main() {
+  var hello = sayHello('my friend',
+      additionalMessage:
+          "How are you?"); // not specifying the parameter name will result in
+// a hint on the editor, or by running dartanalyzer
+// manually on console
+  print(hello);
+}
+
+# generic literals
+main() {
+  var avengerNames = <String>["Hulk", "Captain America"];
+  var avengerQuotes = <String, String>{
+    "Captain America": "I can do this all day!",
+    "Spider Man": "Am I an Avenger?",
+    "Hulk": "Smaaaaaash!"
+  };
+
+  var emptyStringArray = <String>[];
+}

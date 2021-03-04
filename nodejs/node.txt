@@ -1,0 +1,57 @@
+1. fake platform
+   https://openbase.com/js/pretend-platform/documentation
+   
+   npm install pretend-platform
+   
+   >>>>>>
+   const pretendPlatform = require('pretend-platform');
+
+	process.platform; //=> 'linux'
+
+	pretendPlatform('freebsd');
+	process.platform; //=> 'freebsd'
+
+	pretendPlatform.restore();
+	process.platform; //=> 'linux'
+   >>>>>>>
+2. check platform
+	console.log(Object.getOwnPropertyDescriptor(process, "platform"));
+	
+3. Extend module
+
+const sysPath = require('path');
+
+const path = {
+    resolve: function () {
+        var result = sysPath.resolve(...arguments);
+
+        result = result.replace( /\\/g, "\/" );
+        return result;
+    },
+};
+
+let cloned = Object.assign({}, sysPath);
+module.exports = Object.assign(cloned, path);
+
+4. webpack for windows
+  A. Add E:\Ionic\DevPWA\app\design\frontend\Scandiweb\pwa\src\config\path.js
+  
+  B. E:\Ionic\DevPWA\app\design\frontend\Scandiweb\pwa\node_modules\webpack\lib\validateSchema.js :: 38 :: validateObject
+	>>>
+		//const valid = validate(options);
+		const valid = true;
+	>>>
+  C. E:\Ionic\DevPWA\app\design\frontend\Scandiweb\pwa\src\config\Extensibility\plugins\FallbackPlugin\index.js :: 47
+	>>>
+		resolver.getHook('resolve').tapAsync('FallbackPlugin', (request, resolveContext, callback) => {
+            request.path = request.path.replace( /\\/g, "\/" );
+            request.request = request.request.replace( /\\/g, "\/" );
+	>>>
+	
+  D. For every files in pwa/src/config, replace "require('path')" with "require('./path')" or "require('../../path')" or "require('../../../path')"
+  E. E:\Ionic\DevPWA\app\design\frontend\Scandiweb\pwa\src\app\util\Request\Request.js :: 23
+  
+5. NVM
+https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows
+nvm install 14.15.1 or latest
+nvm use 14.15.1

@@ -1,0 +1,28 @@
+query {
+    products(
+		filter: {
+			category_id: {eq: "39"},
+			customer_group_id: {eq: "1"},
+			price: {}
+		}
+	) {
+        sort_fields {
+            options {
+                value,
+                label
+            }
+        },
+        filters: aggregations {
+            name: label,
+            request_var: attribute_code,
+            filter_items: options {
+                label,
+                value_string: value,
+                swatch_data {
+                    type,
+                    value
+                }
+            }
+        }
+    }
+}

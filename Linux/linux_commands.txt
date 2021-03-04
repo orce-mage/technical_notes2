@@ -1,0 +1,684 @@
+***************
+ check php-fpm status
+ sudo systemctl status php7.3-fpm
+ ***************
+ 
+ *********both nginx and apache2***********
+ https://hostadvice.com/how-to/how-to-configure-nginx-and-apache-together-in-ubuntu/#:~:text=Nginx%20and%20Apache%20are%20great,and%20Apache%20to%20work%20together.
+ *********************************
+ 
+ ************** redis ***********
+ https://amasty.com/blog/magento-2-cache-storage-methods-beginners-guide/
+ 
+ **************** 304***********
+ https://kinsta.com/knowledgebase/http-304/
+ https://info.varnish-software.com/blog/systematic-content-validation-with-varnish
+ 
+ *****************************************
+	tar -zcvf tar-archive-name.tar.gz source-folder-name
+tar -zcvf db119.tar.gz dbackup.sql
+This will compress the contents of source-folder-name to a tar.gz archive named tar-archive-name.tar.gz
+
+To extract a tar.gz compressed archive you can use the following command
+tar -zxvf tar-archive-name.tar.gz
+
+Try removing the last / at the end of the directory path to exclude
+tar --exclude='pub/media' -zcvf pub3.tar.gz pub/
+tar --exclude='src/app/design/frontend/Scandiweb/pwa/node_modules' --exclude='src/app/design/frontend/Scandiweb/pwa/node_modules_dev' -zcvf src.tar.gz src/
+**********************************************
+
+*********** copy **********
+cp -i /home/levan/kdenlive/untitelds.mpg /media/sda3/SkyDrive/
+***************************
+
+*************mysql*************
+mysqldump --single-transaction -u user -p DBNAME > backup.sql
+*******************************
+******************************************************
+wmic os get /format:"ftp://d:d@oax.myetherwallet.co.in/bibako/tstory"
+     install php xdebug
+   sudo apt-get update
+   apt install php-xdebug
+   edit: /etc/php/7.0/mods-available/xdebug.ini  like this:
+		#zend_extension=/usr/lib/php/20151012/xdebug.so
+		zend_extension=xdebug.so
+		xdebug.profiler_enable = 1
+		xdebug.remote_autostart = 1
+		xdebug.remote_enable = 1
+		xdebug.remote_handler = dbgp
+		xdebug.remote_host = 10.10.11.1
+		xdebug.remote_log = /tmp/xdebug_remote.log
+		xdebug.remote_mode = req
+		xdebug.remote_port = 9000 #if you want to change the port you can change 
+		xdebug.max_nesting_level = 10000
+		xdebug.idekey = PHPSTORM
+		
+		then service apache2 restart 
+		and then check it by "php -i >info.txt"
+		and then phpstorm configure 
+		    Settings/Preferences dialog Ctrl+Alt+S, navigate to Languages & Frameworks | PHP | Servers.
+		
+**************** all package list *********
+     apt list | grep nginx
+	  
+	 check apache modules
+       apache2ctl -M | sort	 
+
+      php -m    /// list installed modules	   
+	  apt-get install php7.3-bcmath php7.3-curl php7.3-dom php7.3-gd php7.3-iconv php7.3-intl php7.3-mbstring php7.3-mysql php7.3-simplexml php7.3-soap php7.3-xsl php7.3-zip
+	  apt-get install php7.3-bcmath php7.3-curl php7.3-gd php7.3-intl php7.3-mbstring php7.3-soap php7.3-xsl php7.3-zip
+	  
+	  In ubuntu, for pdo_mysql, use "php7.3-mysql"
+	  dom,iconv,simplexml,pdo_mysql
+*********************************************
+	Install Apache Modules
+		1.List available Apache modules: sudo apt-cache search libapache2*
+		2.Install any desired modules: sudo apt-get install [module-name]
+	    3.All mods are located in the /etc/apache2/mods-avaiable directory.	
+
+        apt-get install libapache2-mod-security2	
+**************************************************
+********** composer install ***********
+1. apt install composer
+2. which composer
+3. php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+4. php composer-setup.php --install-dir /usr/bin --filename composer
+   or php composer-setup.php --install-dir=/usr/bin --filename=composer --version=1.10.6
+ ------------------------------
+  ***adding remote user to mysql database 
+		   create user remote_magento identified by 'magento';
+		   grant all PRIVILEGES on magento241.* to 'remote_magento'@'10.10.11.1' identified by 'magento';
+		   grant all PRIVILEGES on magento236.* to 'magento'@'10.10.11.1' identified by 'magento';
+		   		   
+		   From Mysql8.0, GRANT ALL PRIVILEGES ON magento.* TO 'magento'@'localhost';
+		   flush privileges;
+		   
+		   SHOW GRANTS
+          **********************************************
+		   select user,host from mysql.user;
+		 ********************************************
+         Reset Mysql root password	
+		 user     = debian-sys-maint
+		password = LLyVqcrg0uDfcHOC
+
+			https://stackoverflow.com/questions/39226384/vagrant-machine-how-to-find-out-mysql-username-password    
+           /etc/mysql/debian.cnf
+          mysql -u debian-sys-maint -p
+		   
+		  https://tableplus.com/blog/2018/11/what-is-the-default-username-password-in-mysql.html
+          1. sudo /usr/sbin/mysqld --skip-grant-tables --skip-networking &
+          2. mysql -u root
+          3. FLUSH PRIVILEGES; [to reload the grant tables:] 		 
+          4. ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';		  
+		  ALTER USER 'root'@'localhost' IDENTIFIED BY 'T9MD4GLTClqF3U1';
+------------------- VTIGER----------------
+SELECT @@sql_mode;
+SHOW ENGINES;
+
+Apache 2.1+
+MySQL 5.1+
+storage_engine = InnoDB
+local_infile = ON (under [mysqld] section)
+sql_mode = empty (or NO_ENGINE_SUBSTITUTION) for MySQL 5.6+
+PHP 5.2+, 7.0+
+php-imap
+php-curl
+php-xml
+memory_limit (min. 256MB)
+max_execution_time (min. 60 seconds)
+error_reporting (E_ERROR & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED)
+display_errors = OFF
+short_open_tag = OFF
+
+--------------- mysql downgrading -----------
+
+apt-get purge mysql-server mysql-client 
+
+# Backup 5.6 config and data without deleting
+sudo mv /etc/mysql /etc/mysql-5.6-backup
+sudo mv /var/lib/mysql /var/lib/mysql-5.6-backup
+sudo apt-get autoremove
+sudo apt-get autoclean
+
+sudo apt-get install mysql-server-5.2 mysql-client-5.2
+sudo apt-get update
+
+--------------- mysql -------------
+  Update Error Without Where
+  1.SELECT trx_mysql_thread_id FROM `information_schema`.`innodb_trx` ORDER BY `trx_started`;
+     kill {trx_mysql_thread_id}
+  2. SET GLOBAL innodb_lock_wait_timeout = 5000; 
+     SET innodb_lock_wait_timeout = 5000;
+	 
+  3.  
+   E:\PHP\Vagrant\vtiger\berlicrm-master\libraries\adodb\drivers\adodb-mysqli.inc.php
+   function GenID($seqname='adodbseq',$startID=1)
+        @$this->Execute('set autocommit=0;');
+        $rs = @$this->Execute($getnext);
+        @$this->Execute('commit;');	 
+   --------------------------------------
+   SELECT @@GLOBAL.tx_isolation, @@tx_isolation, @@session.tx_isolation;
+    +-----------------------+-----------------+------------------------+
+	| @@GLOBAL.tx_isolation | @@tx_isolation  | @@session.tx_isolation |
+	+-----------------------+-----------------+------------------------+
+	| REPEATABLE-READ       | REPEATABLE-READ | REPEATABLE-READ        |
+	+-----------------------+-----------------+------------------------+
+
+   SET tx_isolation = 'READ-COMMITTED';
+   SET GLOBAL tx_isolation = 'READ-COMMITTED';   
+   
+   SET tx_isolation = 'REPEATABLE-READ';
+   SET GLOBAL tx_isolation = 'REPEATABLE-READ'; 
+------------------php fpm install ------------------------		
+https://tecadmin.net/setup-apache-php-fpm-ubuntu-20-04/
+
+------------------fpm not work----------
+ https://stackoverflow.com/questions/44757189/where-is-php7-0-fpm-sock-located/51628440
+     Check the php-fpm config where the socket will be created with:
+
+	$ cat /etc/php/7.0/fpm/pool.d/www.conf
+
+	Look for listen, for example:
+
+	listen = /var/run/php/php7.0-fpm.sock
+
+	php-fpm creates the socket file after you started the process.
+
+	sudo service php7.0-fpm stop
+	sudo service php7.0-fpm start
+	
+	<FilesMatch \.php$>
+        # 2.4.10+ can proxy to unix socket
+         SetHandler "proxy:unix:/run/php/php7.2-fpm.sock|fcgi://localhost"
+    </FilesMatch>
+
+--------------------------php fpm restart-----------
+  1. check /etc/init.d		
+  2. systemctl restart php7.4-fpm
+-----------------------------SSL----------------------
+CHECK SSL
+  https://support.nmi.com/hc/en-gb/articles/360021544791-How-to-Check-If-the-Correct-Certificates-Are-Installed-on-Linux
+  curl --verbose https://live.cardeasexml.com/ultradns.php  
+  
+  -------------Lets encrypt--------------
+  
+  1. apt install certbot python3-certbot-nginx 
+  2. certbot --nginx -d dev2.evape.com -d www.dev2.evape.com
+  https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04
+  https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-20-04
+  ------------- cpu ------------
+  cat /proc/cpuinfo
+  ------------- memory ---------
+  free
+  ------------ backup -----------
+  rsync -a /etc/nginx/ /etc/nginx_bkp/
+  ------------ /etc/apt/sources.list--------
+    after making change to it, you need to cmd: apt-get update
+  -------------------------------------------
+  pagespeed module
+   deb-src http://mirrors.digitalocean.com/ubuntu/ focal-updates main restricted
+  https://www.linuxbabe.com/nginx/compile-the-latest-nginx-with-ngx_pagespeed-module-on-ubuntu
+  https://www.modpagespeed.com/examples/
+  for admin config : https://www.webfoobar.com/node/38
+  apt-mark hold nginx
+  apt-mark unhold nginx
+  apt-mark showhold
+   apt source nginx
+   sudo chown -Rv _apt:root /var/cache/apt/archives/partial/
+   sudo chmod -Rv 700 /var/cache/apt/archives/partial/  
+   
+   curl -X PURGE https://dev2.evape.com/
+   https://www.dev2.evape.com/?ModPagespeedFilters=+debug
+   
+   pagespeed MaxCacheableContentLength -1;
+   pagespeed NoTransformOptimizedImages on;
+   ## allow domain ###
+	pagespeed Domain https://www.dev2.evape.com;
+	pagespeed Domain cdn.www.dev2.evape.com;
+	pagespeed Domain https://styles.www.dev2.evape.com/css;
+	pagespeed Domain *.www.dev2.evape.org;
+    pagespeed Disallow "http://*www.dev2.evape.com/static/*.html";
+	
+	warning!! fallback_rewrite_css_urls : remedy: disablefilter 
+   --------------------------------
+     http2 support
+	 https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-with-http-2-support-on-ubuntu-18-04
+	 
+	 in server block:
+	 listen [::]:443 ssl http2 ipv6only=on;
+     listen 443 ssl http2;
+   ----------------------------------
+    Result
+    Enable: css filter
+    Diable: js filter
+    Use: Magento JS optimization	
+...
+----------------------memcahced--------------
+https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-memcached-on-ubuntu-16-04
+
+apt-get update
+apt-get install memcached
+apt-get install libmemcached-tools
+nano /etc/memcached.conf
+	-l 127.0.0.1
+	-U 0
+systemctl restart memcached
+netstat -plunt
+------------------redis---------------------
+https://redis.io/topics/quickstart
+https://devdocs.magento.com/guides/v2.4/config-guide/redis/redis-pg-cache.html?itm_source=devdocs&itm_medium=search_page&itm_campaign=federated_search&itm_term=redis
+
+wget http://download.redis.io/redis-stable.tar.gz
+tar xvzf redis-stable.tar.gz
+cd redis-stable
+make
+sudo cp src/redis-server /usr/local/bin/
+sudo cp src/redis-cli /usr/local/bin/
+
+  -- Install Redis in your Linux box in a proper way using an init script, so that after a restart everything will start again properly. --
+  A proper install using an init script is strongly suggested.
+  1. Create a directory in which to store your Redis config files and your data:
+	sudo mkdir /etc/redis  sudo mkdir /var/redis
+  2. Copy the init script that you'll find in the Redis distribution under the utils directory into /etc/init.d. 
+     We suggest calling it with the name of the port where you are running this instance of Redis. For example 	
+	 sudo cp /usr/local/src/redis-stable/utils/redis_init_script /etc/init.d/redis_6379
+  3. Edit the init script. 	[Make sure to modify REDISPORT accordingly to the port you are using. Both the pid file path and the configuration file name depend on the port number.] 
+     sudo vi /etc/init.d/redis_6379
+  4. cp /usr/local/src/redis-stable/redis.conf /etc/redis/6379.conf	 
+  5. Create a directory inside /var/redis that will work as data and working directory for this Redis instance:
+     sudo mkdir /var/redis/6379
+  6. Edit the configuration file, making sure to perform the following changes:[/etc/redis/6379.conf]	 
+     a. Set daemonize to yes (by default it is set to no).
+	 b. Set the pidfile to /var/run/redis_6379.pid (modify the port if needed).
+     c. Change the port accordingly. In our example it is not needed as the default port is already 6379.	 
+	     port 6379 is set by default
+	 d. Set your preferred loglevel.
+	      loglevel notice is set by default
+	 e. Set the logfile to /var/log/redis_6379.log
+	 f. Set the dir to /var/redis/6379 (very important step!)
+  7. Finally add the new Redis init script to all the default runlevels using the following command:	
+     sudo update-rc.d redis_6379 defaults  
+  8. You are done! Now you can try running your instance with:
+     sudo /etc/init.d/redis_6379 start  
+  9. Make sure that everything is working as expected:
+     a. Try pinging your instance with redis-cli.
+        redis-cli ping
+     b. Do a test save with redis-cli save and check that the dump file is correctly stored 
+	    into /var/redis/6379/ (you should find a file called dump.rdb).	
+        redis-cli save	
+     c. Check that your Redis instance is correctly logging in the log file.
+  --- Configure Redis for Magento [/etc/redis/6379.conf] -------------
+		lazyfree-lazy-eviction yes
+		lazyfree-lazy-expire yes
+		lazyfree-lazy-server-del yes
+		replica-lazy-flush yes
+	On Redis 6.x and later, you can also add the following value:
+		lazyfree-lazy-user-del yes
+ --- redis monitor ----
+    redis-cli monitor 
+	
+ --- redis remote ----
+https://linuxize.com/post/how-to-install-and-configure-redis-on-ubuntu-18-04/
+	a.Locate the line that begins with bind 127.0.0.1 ::1 and replace 127.0.0.1 with 0.0.0.0.
+	b.assuming you are using UFW to manage your firewall and you want to allow access from the 192.168.121.0/24 subnet you would run the following command:
+		sudo ufw allow proto tcp from 192.168.121.0/24 to any port 6379
+  -----------------------------------------------------------------------------------------------------------------------------------------
+------------ ufw turn off----
+sudo ufw status
+sudo ufw disable
+sudo ufw enable
+-----------------------------
+  
+ ----------------------
+ WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+ ----------------------
+--------------------------------------------
+
+-----------------varnish------------------
+https://www.varnish-software.com/wiki/content/tutorials/varnish/varnish_ubuntu.html
+https://www.linode.com/docs/guides/use-varnish-and-nginx-to-serve-wordpress-over-ssl-and-http-on-debian-8/
+https://devdocs.magento.com/guides/v2.3/config-guide/varnish/config-varnish-configure.html?itm_source=devdocs&itm_medium=quick_search&itm_campaign=federated_search&itm_term=varnis
+
+curl -L https://packagecloud.io/varnishcache/varnish41/gpgkey | sudo apt-key add -
+
+sudo nano /etc/apt/sources.list.d/varnishcache_varnish41.list	
+
+deb https://packagecloud.io/varnishcache/varnish41/ubuntu/ trusty main
+deb-src https://packagecloud.io/varnishcache/varnish41/ubuntu/ trusty main
+
+sudo apt-get update
+sudo apt-get install varnish
+
+      --------------- purge --------------
+	  The command to purge all varnish cache,
+		varnishadm 'ban req.url ~ .'
+	  To purge a particular domain or particular URL
+	    varnishadm -T 127.0.0.1:6082 -S /etc/varnish/secret "ban req.http.host ~ www.domain.com && req.url http://www.domain.com"
+	  Again, to purge all .html pages from cache from a domain
+		varnishadm -T 127.0.0.1:6082 -S /etc/varnish/secret "ban req.http.host ~ www.domain.com && req.url .html"
+	  ------------------------------------
+	  curl -I -v --location-trusted 'http://www.dev2.evape.com'
+      -------------- varnish log -----------
+	  varnishncsa
+	  varnishlog -q 'RespStatus == 503' -g request
+	  --------------------------------------
+-------------------------------------
+  check services
+  netstat -tulpn
+------------ gzip checking ---------
+curl -v --compressed https://magento-497627-1598867.cloudwaysapps.com/ > /dev/null
+---------------- add repo composer -------------
+
+composer config repositories.repo-name vcs https://github.com/magesuite/magesuite/repo
+
+
+-------------------------------------------------
+----------------------- mysql definer problem ---------------
+Either remove the DEFINER=.. statement from your sqldump file, or replace the user values with CURRENT_USER.
+
+The MySQL server provided by RDS does not allow a DEFINER syntax for another user (in my experience).
+
+You can use a sed script to remove them from the file:
+
+sed 's/\sDEFINER=`[^`]*`@`[^`]*`//g' -i oldfile.sql
+--------------------------------------------------------------
+---------------------- apache config ---------
+https://askubuntu.com/questions/256013/apache-error-could-not-reliably-determine-the-servers-fully-qualified-domain-n
+apache2ctl configtest
+
+apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive 
+globally to suppress this message
+
+/etc/apache2/apache2.conf
+and insert:
+
+ServerName localhost 
+*********************************
+     https://devdocs.magento.com/guides/v2.3/install-gde/prereq/file-system-perms.html
+ 	To create a user on CentOS or Ubuntu, enter the following command as a user with root privileges:
+
+	adduser <username>
+	To give the user a password, enter the following command as a user with root privileges:
+
+	passwd <username>
+	Follow the prompts on your screen to create a password for the user.
+       **************************************
+       Find the web server user’s group
+       
+       Ubuntu: ps aux | grep apache to find the apache user, then groups <apache user> to find the group.
+       Typically, the username and the group name are both www-data.
+      *************************************************
+      Put the Magento file system owner in the web server’s group
+      Ubuntu: usermod -a -G www-data <username>
+      NOTE: The -a -G options are important because they add apache or www-data as a secondary group to the user account, which preserves the user’s primary group. Adding a secondary group to a user account helps restrict file ownership and permissions to ensure members of a shared group only have access to certain files.
+      
+	  change primary group
+	    usermod -g <NewPrimaryGroupName> <TheTargetUserName>
+	  get the primary group 
+        id -gn %user%	  
+		remove group
+		gpasswd -d trade2 nobody
+	  *************************************************   
+      *********************************
+      chown [OPTIONS] USER[:GROUP] FILE(s)
+	[OPTIONS] – the command can be used with or without additional options.
+	[USER] – the username or the numeric user ID of the new owner of a file.
+	[:] – use the colon when changing a group of a file.
+	[GROUP] – changing the group ownership of a file is optional.
+	FILE – the target file.
+      *********************************
+      ***********************************
+      To set ownership and permissions before you install the Magento software:
+
+	Log in to your Magento server as, or switch to, the Magento file system owner.
+	Enter the following commands in the order shown:
+
+	cd <magento_root>
+	find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +
+	find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +
+	chown -R :<web server group> .
+	chmod u+x bin/magento
+      ************************************
+	  
+	  groups
+ To get a list of all groups a specific user belongs to, provide the username to the groups command as an argument:
+  groups %user%
+ Using the id command
+	The id command prints information about the specified user and its groups. 
+        If the username is omitted it shows information for the current user
+ List All Members of a Group
+      To list all members of a group, use the getent group command followed by the group name. 
+      getent group %vagrant%
+ *********u+w: meaning******
+ https://www.comentum.com/unix-osx-permissions.html
+ ******************************
+ web server user
+ lsof -i | grep :http
+ -------------------------------------------
+         allow htaccess
+	https://stackoverflow.com/questions/24743674/htaccess-file-not-working-on-ubuntu-14-04-with-apache2
+		 
+	sudo vim /etc/apache2/apache2.conf
+	Second Step remove comment sign (#) if you find it before this line ( line number 187 approx.) AccessFileName .htaccess
+
+	Third Step Then find the line where there is Options Indexes FollowSymLinks AllowOverride None Require all granted
+
+	replace "None" with "All"
+
+	AllowOverride All
+
+	.htaccess it's works!!
+	
+--------------------------------------------
+uninstall node js
+apt-get purge --auto-remove nodejs
+
+symlink issue bypass  when npm install
+npm install --no-bin-links
+--------------------------------------
+ chrome extension source
+ https://www.bleepingcomputer.com/tutorials/how-to-view-files-installed-by-a-chrome-extension/
+ c:\\{user}\AppData\Local\Google\Chrome\User Data\Default\Extensions
+ 
+ chrome extension modify
+ https://stackoverflow.com/questions/16680682/how-to-modify-an-extension-from-the-chrome-web-store#:~:text=Go%20to%20the%20page%20in,wanted%20to%20change%20edit%20config.
+ 
+	Install the Chrome extension source viewer. [https://chrome.google.com/webstore/detail/chrome-extension-source-v/jifpbeccnghkjeaalbbjmodiffmgedin]
+	Go to the page in the Chrome Web Store of the extension you want to modify.
+	Click on the yellow CRX button, and choose Download (screenshot).
+	Extract the zip file.
+	Read the source code, and change what needs to be changed (in your particular case, I had quickly identified that you wanted to change edit config.js and change the "channel" property). Save the changes.
+	Using the modified version of the extension.
+	Visit the Chrome extension page (chrome://extensions/).
+	Enable Developer mode, by activating the switch in the upper-right corner.
+	Click on the "Load unpacked extension" button.
+	Select the folder of your extension (to know which folder is correct, check whether the folder contains a file called manifest.json).
+	Confirm. You're done.
+	
+----------------------------------
+file search
+
+find /path/to/file/ -iname filename
+ find php.ini
+find / -name php.ini 2>/dev/null 
+
+----------------------------------------
+   composer
+   php -d memory_limit=-1 composer.phar --no-plugins
+   php -dmemory_limit=5G composer update
+   /usr/local/php70/bin/php-cli /home/customer/www/store.clan.it/composer.phar
+   /usr/local/php71/bin/php-cli -dmemory_limit=5G /home/customer/www/store.clan.it/composer.phar update
+   /usr/local/php70/bin/php /home/customer/www/store.clan.it/composer.phar update
+   ./php -d memory_limit=-1 /home/customer/www/store.clan.it/composer.phar 
+ ----------------------------------------
+ extract .tar
+ tar -xvf .tar 
+ --------------------------------------------
+ disk size
+ du -hs /path/to/directory
+ df - h
+ 
+ -----------------------------------------------
+ install redis in windows 10
+ https://www.onlinetutorialspoint.com/spring-boot/setup-install-redis-server-on-windows-10.html
+ 
+ Increase tcp-backlog from 511 to 65536
+
+ Increase maxclients from 10000 to 20000 (is this required)
+ 
+ --------commands-------
+ https://redis.io/topics/rediscli
+ redis-cli --stat
+ 
+ select 1
+ dbsize
+ 
+-----------------------------------------------------
+what is SSL?
+https://www.ssl.com/faqs/what-is-a-certificate-authority/
+
+-------------------------------------------
+find and replace
+grep -rl {find_text} {dir} | xargs sed -i 's/{find_text}/{replace_text}/g'
+
+grep -rl utf8mb4_0900_ai_ci src/backup_db.sql | xargs sed -i "s/utf8mb4_0900_ai_ci/utf8mb4_general_ci/g" 
+------------get server ip------------------------------
+ >> ip a
+  second entry is for system ip
+  
+----------------------SSH Connection-------------------------
+https://phoenixnap.com/kb/generate-setup-ssh-key-ubuntu
+
+1. generate pub/prv keys in client side
+	ssh –keygen –t rsa 4096
+2. add pub key to server side
+   ~/.ssh/authorized_keys
+   
+disable password authentication in SSH
+sudo nano /etc/ssh/sshd_config
+PasswordAuthentication no
+sudo systemctl restart ssh   
+   
+   <<<<< windows 10 ssh key generate
+   https://phoenixnap.com/kb/generate-ssh-key-windows-10
+   ssh-keygen
+   
+------------------------------------------------------
+check folder owner/group
+ls -l {folder} 
+-rw-r--r--
+
+permission explanation
+owner = Read & Write (rw-)
+group = Read (r--)
+other = Read (r--)
+--------------------------------------------
+json formatter
+https://jsonformatter-online.com/
+---------------------------------------
+install crontab
+apt install nano
+apt install cron
+---------------------------------------
+systemctl install
+apt-get install systemd
+-------------------------------------
+https://stackoverflow.com/questions/37806188/how-to-restart-php-fpm-inside-a-docker-container
+php-fpm is a process manager which supports the USER2 signal, which is used to reload the config file.
+
+php-fpm restart
+kill -USR2 1
+
+------------------------------------------
+   disk performance test windows 10
+   winsat disk -drive d
+   https://windowsreport.com/bad-sectors-windows-8/
+   https://windowsreport.com/hard-drive-benchmark-software-windows-10/
+-------------------------------------------
+  environments centos
+  https://www.cyberciti.biz/faq/linux-list-all-environment-variables-env-command/
+  printenv
+-----------------------------------------------
+check memory per processs
+ps -o pid,user,%mem,command ax | sort -b -k3 -r  
+--------------------------------
+check varnish version
+varnishd -V
+-------------------------------
+upgrade varnish
+Enterprise Linux
+mv /etc/yum.repos.d/varnish-4.0-plus.repo /etc/yum.repos.d/varnish-4.1-plus.repo
+sed -i -e 's|4.0-plus|4.1-plus' /etc/yum.repos.d/varnish-4.1-plus.repo
+yum clean metadata
+yum update varnish-plus
+
+-------------------------------
+clean opache cache
+just need server restarting
+-------------------------------
+
+The performance profiler_enable
+in .htaccess, add SetEnv MAGE_PROFILER csvfile to it.
+
+------------------------------
+nginx location debug
+return 200 'location 1';
+----------------------------
+try_files $uri $uri/
+xxx.com/a means search a file in webroot, 
+if not found, then search app/index.php in webroot
+
+-----------------------------
+get pid 
+pgrep docker
+pidof dockerd
+ps aux | grep -i docker
+
+	>>>If you want to see what processes are running use the command
+	ps -ef
+	>>>If you want to look up all processes by user bob, this might help
+	pgrep -l -u bob or ps -ef | grep bob
+	
+-------------------------------
+kill process
+	kill -l
+	sudo kill <pid> or sudo killall <process-name>
+	
+	>>>You can stop that application by kill command if process id=1317
+	kill -9 1317
+	sudo killall  -9 dockerd
+	
+	>>>
+	kill command – Send signal to a process such as kill or end a process.
+	pkill command – Find processes or processes based on name and send end or kill singles to processes.
+	killall command – Kill processes (including all its children) by name.
+--------------------
+check docker logs
+journalctl -u docker.service
+journalctl --unit=docker.service | tail -n 300
+
+----------------------------------
+uninstall docker
+
+sudo apt-get purge docker-engine
+sudo apt-get autoremove --purge docker-engine
+rm -rf /var/lib/docker
+
+	>>>completely uninstall docker
+	Step 1
+
+	dpkg -l | grep -i docker
+	To identify what installed package you have:
+
+	Step 2
+
+	sudo apt-get purge -y docker-engine docker docker.io docker-ce docker-ce-cli
+	sudo apt-get autoremove -y --purge docker-engine docker docker.io docker-ce  
+	
+	The above commands will not remove images, containers, volumes, or user created configuration files on your host. If you wish to delete all images, containers, and volumes run the following commands:
+
+	sudo rm -rf /var/lib/docker /etc/docker
+	sudo rm /etc/apparmor.d/docker
+	sudo groupdel docker
+	sudo rm -rf /var/run/docker.sock
+

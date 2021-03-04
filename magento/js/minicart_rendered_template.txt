@@ -1,0 +1,229 @@
+<div data-block="minicart" class="minicart-wrapper active">
+    <a class="action showcart active" href="http://www.magento236.com/checkout/cart/" data-bind="scope: 'minicart_content'">
+        <span class="text">My Cart</span>
+        <span class="counter qty" data-bind="css: { empty: !!getCartParam('summary_count') == false &amp;&amp; !isLoading() }, blockLoader: isLoading">
+            <span class="counter-number"><!-- ko text: getCartParam('summary_count') -->1<!-- /ko --></span>
+            <span class="counter-label">
+            <!-- ko if: getCartParam('summary_count') -->
+                <!-- ko text: getCartParam('summary_count') -->1<!-- /ko -->
+                <!-- ko i18n: 'items' --><span>items</span><!-- /ko -->
+            <!-- /ko -->
+            </span>
+        </span>
+    </a>
+            
+        <script>
+        window.checkout = {"shoppingCartUrl":"http:\/\/www.magento236.com\/checkout\/cart\/","checkoutUrl":"http:\/\/www.magento236.com\/checkout\/","updateItemQtyUrl":"http:\/\/www.magento236.com\/checkout\/sidebar\/updateItemQty\/","removeItemUrl":"http:\/\/www.magento236.com\/checkout\/sidebar\/removeItem\/","imageTemplate":"Magento_Catalog\/product\/image_with_borders","baseUrl":"http:\/\/www.magento236.com\/","minicartMaxItemsVisible":5,"websiteId":"1","maxItemsToDisplay":10,"storeId":"1","storeGroupId":"1","customerLoginUrl":"http:\/\/www.magento236.com\/customer\/account\/login\/referer\/aHR0cDovL3d3dy5tYWdlbnRvMjM2LmNvbS9hcmd1cy1hbGwtd2VhdGhlci10YW5rLmh0bWw%2C\/","isRedirectRequired":false,"autocomplete":"off","captcha":{"user_login":{"isCaseSensitive":false,"imageHeight":50,"imageSrc":"","refreshUrl":"http:\/\/www.magento236.com\/captcha\/refresh\/","isRequired":false,"timestamp":1606196706}}};
+    </script>
+    
+<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front mage-dropdown-dialog" tabindex="-1" role="dialog" aria-describedby="ui-id-1" style="display: block;"><div class="block block-minicart ui-dialog-content ui-widget-content" data-role="dropdownDialog" id="ui-id-1" style="display: block;">
+            <div id="minicart-content-wrapper" data-bind="scope: 'minicart_content'">
+                <!-- ko template: getTemplate() -->
+<div class="block-title">
+    <strong>
+        <span class="text" data-bind="i18n: 'My Cart'">My Cart</span>
+        <span class="qty" data-bind="css: { empty: !!getCartParam('summary_count') == false },
+                       attr: { title: $t('Items in Cart') }, text: getCartParam('summary_count')" title="Items in Cart">1</span>
+    </strong>
+</div>
+
+<div class="block-content">
+    <button type="button" id="btn-minicart-close" class="action close" data-action="close" data-bind="attr: { title: $t('Close') }" title="Close">
+        <span data-bind="i18n: 'Close'">Close</span>
+    </button>
+
+    <!-- ko if: getCartParam('summary_count') -->
+        <div class="items-total">
+            <!-- ko if: maxItemsToDisplay < getCartLineItemsCount() --><!-- /ko -->
+            <!-- ko if: maxItemsToDisplay < getCartLineItemsCount() --><!-- /ko -->
+            <span class="count" data-bind="text: getCartParam('summary_count')">1</span>
+                <!-- ko if: (getCartLineItemsCount() === 1) -->
+                    <span data-bind="i18n: 'Item in Cart'">Item in Cart</span>
+                <!--/ko-->
+                <!-- ko if: (getCartLineItemsCount() > 1) --><!--/ko-->
+        </div>
+
+        <!-- ko foreach: getRegion('subtotalContainer') --><!-- ko template: getTemplate() -->
+<!-- ko foreach: {data: elems, as: 'element'} -->
+    <!-- ko if: hasTemplate() --><!-- ko template: getTemplate() -->
+<div class="subtotal">
+    <span class="label">
+        <!-- ko i18n: 'Cart Subtotal' --><span>Cart Subtotal</span><!-- /ko -->
+    </span>
+
+    <!-- ko foreach: elems -->
+        <!-- ko template: getTemplate() -->
+
+<div class="amount price-container">
+    <!-- ko if: displaySubtotal() -->
+        <!-- ko if: display_cart_subtotal_excl_tax -->
+            <span class="price-wrapper" data-bind="html: cart().subtotal_excl_tax"><span class="price">$22.00</span></span>
+        <!-- /ko -->
+
+        <!-- ko if: !display_cart_subtotal_excl_tax && display_cart_subtotal_incl_tax --><!-- /ko -->
+
+        <!-- ko if: !display_cart_subtotal_excl_tax && !display_cart_subtotal_incl_tax --><!-- /ko -->
+    <!-- /ko -->
+    <!-- ko ifnot: displaySubtotal() --><!-- /ko -->
+</div>
+<!-- /ko -->
+    <!-- /ko -->
+</div>
+<!-- /ko --><!-- /ko -->
+<!-- /ko -->
+<!-- /ko --><!-- /ko -->
+        <!-- ko foreach: getRegion('extraInfo') --><!-- ko template: getTemplate() -->
+<!-- ko foreach: {data: elems, as: 'element'} --><!-- /ko -->
+<!-- /ko --><!-- /ko -->
+
+        <!-- ko if: getCartParam('possible_onepage_checkout') --><div class="actions">
+            <div class="primary">
+                <button id="top-cart-btn-checkout" type="button" class="action primary checkout" data-action="close" data-bind="
+                            attr: {
+                                title: $t('Proceed to Checkout')
+                            },
+                            click: closeMinicart()
+                        , i18n: 'Proceed to Checkout'" title="Proceed to Checkout">Proceed to Checkout</button>
+                <div data-bind="html: getCartParam('extra_actions')"></div>
+            </div>
+        </div><!-- /ko -->
+    <!-- /ko -->
+
+    <!-- ko if: getCartParam('summary_count') -->
+        <strong class="subtitle" data-bind="i18n: 'Recently added item(s)'">Recently added item(s)</strong>
+        <div data-action="scroll" class="minicart-items-wrapper" style="height: 138px;">
+            <ol id="mini-cart" class="minicart-items" data-bind="foreach: { data: getCartItems(), as: 'item' }">
+                <!-- ko foreach: $parent.getRegion($parent.getItemRenderer(item.product_type)) --><!-- ko template: {name: getTemplate(), data: item, afterRender: function() {$parents[1].initSidebar()}} -->
+<li class="item product product-item odd last" data-role="product-item" data-collapsible="true">
+    <div class="product">
+        <!-- ko if: product_has_url -->
+        <a data-bind="attr: {href: product_url, title: product_name}" tabindex="-1" class="product-item-photo" href="http://www.magento236.com/argus-all-weather-tank.html" title="Argus All-Weather Tank">
+            <!-- ko foreach: $parent.getRegion('itemImage') -->
+                <!-- ko template: {name: getTemplate(), data: item.product_image} -->
+<span class="product-image-container" data-bind="style: {width: width + 'px'}" style="width: 75px;">
+    <span class="product-image-wrapper" data-bind="style: {'padding-bottom': height/width*100 + '%'}" style="padding-bottom: 100%;">
+        <img class="product-image-photo" data-bind="attr: {src: src, alt: alt}, style: {width: 'auto', height: 'auto'}" src="http://www.magento236.com/pub/media/catalog/product\cache\7b5d8f87b0b7f16c99c5aed484d436c9\/m/t/mt07-gray_main.jpg" alt="Argus All-Weather Tank" style="width: auto; height: auto;">
+    </span>
+</span>
+<!-- /ko -->
+            <!-- /ko -->
+        </a>
+        <!-- /ko -->
+        <!-- ko ifnot: product_has_url --><!-- /ko -->
+
+        <div class="product-item-details">
+            <strong class="product-item-name">
+                <!-- ko if: product_has_url -->
+                <a data-bind="attr: {href: product_url}, html: product_name" href="http://www.magento236.com/argus-all-weather-tank.html">Argus All-Weather Tank</a>
+                <!-- /ko -->
+                <!-- ko ifnot: product_has_url --><!-- /ko -->
+            </strong>
+
+            <!-- ko if: options.length -->
+            <div class="product options" role="tablist" data-collapsible="true">
+                <span data-role="title" class="toggle" role="tab" aria-selected="false" aria-expanded="false" tabindex="0"><!-- ko i18n: 'See Details' --><span>See Details</span><!-- /ko --></span>
+
+                <div data-role="content" class="content" role="tabpanel" aria-hidden="true" style="display: none;">
+                    <strong class="subtitle"><!-- ko i18n: 'Options Details' --><span>Options Details</span><!-- /ko --></strong>
+                    <dl class="product options list">
+                        <!-- ko foreach: { data: options, as: 'option' } -->
+                        <dt class="label"><!-- ko text: option.label -->Size<!-- /ko --></dt>
+                        <dd class="values">
+                            <!-- ko if: Array.isArray(option.value) --><!-- /ko -->
+                            <!-- ko if: (!Array.isArray(option.value) && ['file', 'html'].includes(option.option_type)) --><!-- /ko -->
+                            <!-- ko if: (!Array.isArray(option.value) && !['file', 'html'].includes(option.option_type)) -->
+                            <span data-bind="text: option.value">S</span>
+                            <!-- /ko -->
+                        </dd>
+                        
+                        <dt class="label"><!-- ko text: option.label -->Color<!-- /ko --></dt>
+                        <dd class="values">
+                            <!-- ko if: Array.isArray(option.value) --><!-- /ko -->
+                            <!-- ko if: (!Array.isArray(option.value) && ['file', 'html'].includes(option.option_type)) --><!-- /ko -->
+                            <!-- ko if: (!Array.isArray(option.value) && !['file', 'html'].includes(option.option_type)) -->
+                            <span data-bind="text: option.value">Gray</span>
+                            <!-- /ko -->
+                        </dd>
+                        <!-- /ko -->
+                    </dl>
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <div class="product-item-pricing">
+                <!-- ko if: canApplyMsrp --><!-- /ko -->
+                <!-- ko ifnot: canApplyMsrp -->
+                <!-- ko foreach: $parent.getRegion('priceSidebar') -->
+                    <!-- ko template: {name: getTemplate(), data: item.product_price, as: 'price'} -->
+<div class="price-container">
+  <span class="price-wrapper" data-bind="html: price">
+
+    <span class="price-excluding-tax" data-label="Excl. Tax">
+            <span class="minicart-price">
+            <span class="price">$22.00</span>        </span>
+
+        </span>
+</span>
+</div>
+<!-- /ko -->
+                <!-- /ko -->
+                <!-- /ko -->
+
+                <div class="details-qty qty">
+                    <label class="label" data-bind="i18n: 'Qty', attr: {
+                           for: 'cart-item-'+item_id+'-qty'}" for="cart-item-7-qty">Qty</label>
+                    <input data-bind="attr: {
+                           id: 'cart-item-'+item_id+'-qty',
+                           'data-cart-item': item_id,
+                           'data-item-qty': qty,
+                           'data-cart-item-id': product_sku
+                           }, value: qty" type="number" size="4" class="item-qty cart-item-qty" id="cart-item-7-qty" data-cart-item="7" data-item-qty="1" data-cart-item-id="MT07-S-Gray">
+                    <button data-bind="attr: {
+                           id: 'update-cart-item-'+item_id,
+                           'data-cart-item': item_id,
+                           title: $t('Update')
+                           }" class="update-cart-item" style="display: none" id="update-cart-item-7" data-cart-item="7" title="Update">
+                        <span data-bind="i18n: 'Update'">Update</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="product actions">
+                <!-- ko if: is_visible_in_site_visibility -->
+                <div class="primary">
+                    <a data-bind="attr: {href: configure_url, title: $t('Edit item')}" class="action edit" href="http://www.magento236.com/checkout/cart/configure/id/7/product_id/700/" title="Edit item">
+                        <span data-bind="i18n: 'Edit'">Edit</span>
+                    </a>
+                </div>
+                <!-- /ko -->
+                <div class="secondary">
+                    <a href="#" data-bind="attr: {'data-cart-item': item_id, title: $t('Remove item')}" class="action delete" data-cart-item="7" title="Remove item">
+                        <span data-bind="i18n: 'Remove'">Remove</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ko if: $data.message --><!-- /ko -->
+</li>
+<!-- /ko --><!-- /ko -->
+            </ol>
+        </div>
+    <!-- /ko -->
+
+    <!-- ko ifnot: getCartParam('summary_count') --><!-- /ko -->
+
+    <!-- ko if: getCartParam('summary_count') --><div class="actions">
+        <div class="secondary">
+            <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}" href="http://www.magento236.com/checkout/cart/">
+                <span data-bind="i18n: 'View and Edit Cart'">View and Edit Cart</span>
+            </a>
+        </div>
+    </div><!-- /ko -->
+
+    <!-- ko if: getRegion('promotion').length --><!-- /ko -->
+</div>
+<!-- ko foreach: getRegion('sign-in-popup') --><!-- /ko -->
+<!-- /ko -->
+            </div>
+                    </div></div></div>

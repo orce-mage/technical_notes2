@@ -1,0 +1,340 @@
+****************login********************
+  vendor/magento/framework/Encryption/Encryptor: isValidHash
+  
+****************minify*************
+ framework/view/asset/minification
+ framework\Code\Minifier\Adapter\Js\JShrink.php 
+ 
+ vendor\magento\framework\View\Asset\Source.php :: preProcess
+ here: write minifed content into E:/PHP/magento236/var/view_preprocessed/pub/static/
+ 
+ framework\View\Asset\PreProcessor\Minify.php
+ vendor\magento\module-translation\Model\Js\PreProcessor.php
+ 
+ vendor\magento\module-deploy\Service\DeployStaticContent.php
+ E:\PHP\magento236\vendor\magento\module-deploy\Service\DeployStaticFile.php
+ E:\PHP\magento236\vendor\magento\module-deploy\Service\DeployPackage.php
+ 
+vendor/magento/module-require-js/Model/FileManager.php::ensureMinResolverFile
+
+************** less *************
+  E:\PHP\magento236\vendor\magento\module-deploy\Package\Processor\PreProcessor\Less.php
+  E:\PHP\magento236\vendor\magento\module-deploy\Process\Queue.php
+  E:\PHP\magento236\vendor\magento\module-deploy\Strategy\QuickDeploy.php
+  E:\PHP\magento236\vendor\magento\module-deploy\Service\DeployPackage.php :: deployEmulated
+  E:\PHP\magento236\vendor\magento\module-deploy\Service\DeployStaticFile.php :: deployFile
+ 
+ E:\PHP\magento236\vendor\magento\module-developer\Model\View\Asset\PreProcessor\PreprocessorStrategy.php
+ E:\PHP\magento236\vendor\magento\framework\View\Asset\PreProcessor\AlternativeSource.php :: processContent
+ E:\PHP\magento236\vendor\magento\framework\Css\PreProcessor\Adapter\Less\Processor.php :: processContent
+ E:\PHP\magento236\vendor\magento\framework\Css\PreProcessor\FileGenerator\RelatedGenerator.php
+ E:\PHP\magento236\vendor\wikimedia\less.php\lib\Less\Parser.php :: parseFile, getCss
+ E:\PHP\magento236\vendor\wikimedia\less.php\lib\Less\Tree\Ruleset.php
+ E:\PHP\magento236\vendor\magento\framework\Css\PreProcessor\Instruction\Import.php :: process (get related less files)
+   pattern: #@import[\s]*(?P<start>[\(\),\w\s]*?['\"][\s]*)(?P<path>[^\)'\"]*?)(?P<end>[\s]*['\"][\s\w]*[\)]?)[\s]*;#
+ 
+ 
+ view_preprocessed/pub/static/frontend/Magento/luma/en_US/css/source/_reset.less
+ E:/PHP/magento236/var/view_preprocessed/pub/static/frontend/Magento/luma/en_US/css/styles-m.less
+ 
+ *****************get trace**************
+ $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
+$logger = new \Zend\Log\Logger();
+$logger->addWriter($writer);
+$logger->info('Your text message');
+
+if($filename == "requirejs-min-resolver.js"){
+            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/p.log');
+		$logger = new \Zend\Log\Logger();
+		$logger->addWriter($writer);
+		$logger->info('start');
+                if($this->isEnabledForArea($filename)){
+		    $logger->info('1');
+                }
+                if(!$this->isExcluded($filename)){
+		    $logger->info('2');
+                }
+		if(!$this->isMinifiedFilename($filename)){
+		    $logger->info('3');
+                }
+        }
+
+		
+ public function generateCallTrace()
+    {
+        $e = new \Exception();
+        $trace = explode("\n", $e->getTraceAsString());
+        // reverse array to make steps line up chronologically
+        $trace = array_reverse($trace);
+        array_shift($trace); // remove {main}
+        array_pop($trace); // remove call to this method
+        $length = count($trace);
+        $result = array();
+
+        for ($i = 0; $i < $length; $i++)
+        {
+            $result[] = ($i + 1)  . ')' . substr($trace[$i], strpos($trace[$i], ' ')); // replace '#someNum' with '$i)', set the right ordering
+        }
+
+        return "\t" . implode("\n\t", $result);
+    }
+	****************
+	
+**************** set root to pub ************
+	The following node needs to be appended to the env.php file.
+
+	'directories' => [
+		'document_root_is_pub' => true
+	]
+	
+----------------------------------------
+   encrypted cart id -> quote id in db
+   SELECT `quote_id_mask`.* FROM `quote_id_mask` WHERE (`quote_id_mask`.`masked_id`='ETqTj8xGmDUGguWCJ2bSS3CJSC6nbdcw')
+--------------------------------------------
+    quote cleanred after order creation
+	https://magento.stackexchange.com/questions/316093/checkout-session-reset-after-creating-order-this-quotemanagement-submitquo
+	
+	 The issue occurs due to {{block}} used in customized email template. 
+	 Using a block in email template destroys the customer session when the new order email is sent 
+	 and that's the reason it's redirecting to cart page.
+	 
+	 E:\PHP\Thomas\vendor\magento\module-quote\Model\QuoteRepository.php
+
+	E:\PHP\Thomas\vendor\magento\module-quote\Model\PaymentMethodManagement.php :: set --52
+
+	E:\PHP\Thomas\vendor\magento\module-checkout\Model\Session.php :: ublic function getQuote() 235 getQuoteId() ->_getQuoteIdKey() [quote_id_1]
+
+	E:\PHP\Thomas\vendor\magento\module-persistent\Observer\SetCheckoutSessionPersistentDataObserver.php
+
+	E:\PHP\Thomas\vendor\magento\framework\Session\SessionManager.php :: getData(quote_id_1)
+
+	E:\PHP\Thomas\vendor\magento\module-webapi\Controller\Rest\SynchronousRequestProcessor.php :: process
+----------------------------
+   add query param to url
+ echo Mage::getUrl('',
+    array(
+        '_direct' => Mage::getModel('core/url_rewrite')->loadByIdPath('category/1')->getRequestPath(),
+        '_query' => array('param1' => 'myparam1','param2' => 'myparam2')
+    )
+);   
+
+--------------------------------------------------
+        rest api
+	http://xxx/rest/en/V1/guest-carts/2343242/set-payment-information
+	xml for config: vendr/magento/module-checkout/etc/webapi.xml
+	        vendor\magento\module-checkout\etc\di.xml
+	     <route url="/V1/guest-carts/:cartId/set-payment-information" method="POST">
+			<service class="Magento\Checkout\Api\GuestPaymentInformationManagementInterface" method="savePaymentInformation"/>
+			<resources>
+				<resource ref="anonymous" />
+			</resources>
+		</route>
+	
+     vendor\magento\module-checkout\Model\GuestPaymentInformationManagement.php	:: savePaymentInformation
+------------------------------------------
+    get objectManager via global scope
+
+  \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Checkout\Model\Cart')->getQuote()	
+------------------------------------------
+Magento\Framework\App\RouterList
+b:10  Magento\Backend\App\Router
+b:100 Magento\Framework\App\Router\DefaultRouter
+f:10  Magento\Robots\Controller\Router
+f:10  Magento\Securitytxt\Controller\Router
+f:20  Magento\UrlRewrite\Controller\Router
+f:30  Magento\Framework\App\Router\Base
+f:60  Magento\Cms\Controller\Router
+f:100 Magento\Framework\App\Router\DefaultRouter
+
+-------------------------------
+Magento\Framework\App\AreaList
+
+vendor\magento\framework\App\Http.php => GET AREA LIST
+
+<argument name="areas" xsi:type="array">
+
+                <item name="adminhtml" xsi:type="array">
+                    <item name="frontNameResolver" xsi:type="string">Magento\Backend\App\Area\FrontNameResolver</item>
+                    <item name="router" xsi:type="string">admin</item>
+                </item>
+		<item name="crontab" xsi:type="null" />
+                <item name="graphql" xsi:type="array">
+                    <item name="frontName" xsi:type="string">graphql</item>
+                </item>
+                <item name="frontend" xsi:type="array">
+                    <item name="frontName" xsi:type="null" />
+                    <item name="router" xsi:type="string">standard</item>
+                </item>
+                <item name="webapi_rest" xsi:type="array">
+                    <item name="frontName" xsi:type="string">rest</item>
+                </item>
+                <item name="webapi_soap" xsi:type="array">
+                    <item name="frontName" xsi:type="string">soap</item>
+                </item>
+
+---------------------------------
+MAGE_RUN_TYPE, Multiple website
+\\Magento\\Framework\\App\\Request\\Http :: getServerValue
+magento\framework\HTTP\PhpEnvironment\Request.php
+
+---------------------------------
+config
+breakpoint: src/vendor/magento/framework/App/ObjectManager/ConfigLoader.php :: public function load($area)
+                list(
+                    $this->_arguments,
+                    $this->_nonShared,
+                    $this->_preferences,
+                    $this->_virtualTypes,
+                    $this->_mergedArguments
+                ) = $cached;
+----------------------------------
+Magento Product Save
+
+...
+Category Save
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\framework\EntityManager\Operation\Update.php
+
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog\Model\CategoryLinkRepository.php
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog\Model\ResourceModel\Category.php
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\framework\EntityManager\EntityManager.php   ::$entity = $operation->execute($entity, $arguments) ::96
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\framework\EntityManager\Operation\Update.php :: 110
+	$this->eventManager->dispatchEntityEvent($entityType, 'save_after', ['entity' => $entity]);
+	E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\framework\Event\Manager.php :: dispatch :: with key 'legacy_category_save_after'[Magento\Framework\EntityManager\Observer\AfterEntitySave]
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\framework\EntityManager\Observer\AfterEntitySave.php :: execute :26line
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog\Model\ResourceModel\Category.php ::_afterSave[325]
+																										  :: _saveCategoryProducts [394] 
+							DELETE FROM `catalog_category_product` WHERE (product_id IN(1940)) AND (category_id='42')
+                            category : setChangedProductIds (ex, 1940)
+							           setIsChangedProductList : true
+							dispatch with 'catalog_category_change_products'			, ['category' => $category, 'product_ids' => $productIds]
+								category_product_indexer [Magento\Catalog\Observer\CategoryProductIndexer]
+								category_product_elasticsearch_indexer [Magento\Elasticsearch\Observer\CategoryProductIndexer]
+
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog\Observer\CategoryProductIndexer.php    empty_exec
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-elasticsearch\Observer\CategoryProductIndexer.php empty_exec
+
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\framework\Model\AbstractModel.php :: afterSave [824]
+    dispatch with 'model_save_after'   and category             empty_exec
+	dispatch with 'catalog_category_save_after' and category
+	   process_url_rewrite_saving                 [Magento\CatalogUrlRewrite\Observer\CategoryProcessUrlRewriteSavingObserver]
+	   media_content_catalog_category_save_after  [Magento\MediaContentCatalog\Observer\Category]
+	   googleoptimizer_observer	                  [Magento\GoogleOptimizer\Observer\Category\SaveGoogleExperimentScriptObserver]
+	   amasty_rolepermissions                     [Amasty\Rolepermissions\Observer\Admin\Category\SaveAfterObserver] 
+	   update_menu                                [ScandiPWA\MenuOrganizer\Observer\UpdateCategoryItem]
+	   
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-url-rewrite\Observer\CategoryProcessUrlRewriteSavingObserver.php
+	a. checking  (bool)$this->scopeConfig->getValue('catalog/seo/generate_category_product_rewrites');
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-url-rewrite\Observer\UrlRewriteHandler.php :: updateProductUrlRewritesForChangedProduct [183]	
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-url-rewrite\Observer\UrlRewriteHandler.php :: generateChangedProductUrls [301]
+	check E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-url-rewrite\Model\ProductScopeRewriteGenerator.php :: isGlobalScope [125]
+	              if storeId == null or default store id, then true
+	foreach [$category->getStoreIds();]
+			  SELECT DISTINCT  `e`.*, `at_amrolepermissions_owner`.`value` AS `amrolepermissions_owner` FROM `catalog_product_entity` AS `e`
+		 LEFT JOIN `catalog_product_entity_int` AS `at_amrolepermissions_owner` ON (`at_amrolepermissions_owner`.`entity_id` = `e`.`entity_id`) AND (`at_amrolepermissions_owner`.`attribute_id` = '139') AND (`at_amrolepermissions_owner`.`store_id` = 0) WHERE (`e`.`entity_id` IN(1940))
+		 
+		 E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-url-rewrite\Model\ProductUrlRewriteGenerator.php :: generate[128] [prod 1940, cat42]
+		 E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-url-rewrite\Model\ProductUrlRewriteGenerator.php :: generateForSpecificStoreView[187]
+		 
+						
+		 params:	 (2 $storeId, $productCategories, 1940 $product, 42$rootCategoryId)
+		     productCategories:    SELECT `e`.*, `at_product_id`.`product_id` FROM `catalog_category_entity` AS `e`
+			                       INNER JOIN `catalog_category_product` AS `at_product_id` ON (at_product_id.`category_id`=e.entity_id) WHERE (at_product_id.product_id = '1940')
+								 25, 30 ,37, 57   
+		 E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-url-rewrite\Model\ProductScopeRewriteGenerator.php :: generateForSpecificStoreView
+		 
+		   1) check if any urlkey of cat is overriden in the specific store and if then , add it to categroes array :: 25,30,37,57 all have url_key overriden in '2' store.
+		    a. get the attribute id of url_key of category : it's 119
+			   $attribute = $this->eavConfig->getAttribute($entityType, $attributeName);
+		    SELECT `e_attr`.`store_id` FROM `catalog_category_entity` AS `e`
+			INNER JOIN `catalog_category_entity_varchar` AS `e_attr` ON e.entity_id = e_attr.entity_id WHERE (e_attr.attribute_id = '119') AND (e.entity_id = '25')
+			in_array($storeId, $this->connection->fetchCol($select));
+		   2) E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-url-rewrite\Model\Product\CanonicalUrlRewriteGenerator.php :: generate
+		       params: store, product : 2, 1940
+			   generate url_rewrite with '1940'product and '2' store
+                  E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-url-rewrite\Model\ProductUrlPathGenerator.php :: getUrlPathWithSuffix	
+                      $this->getUrlPath($product, $category) . $this->getProductUrlSuffix($storeId)
+                      E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-url-rewrite\Model\ProductUrlPathGenerator.php:: getUrlPath [77] 		
+               and merge it to $this->data[]
+			      params: urlRewritsArray
+                  E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-url-rewrite\Model\MergeDataProvider.php :: merge[33]		
+					    $key = $urlRewrite->getRequestPath() . self::SEPARATOR . $urlRewrite->getStoreId();[comforter-isabella-cotton-double-face-double-size-7pcs.html_2]
+						$this->data[$key] = $urlRewrite;
+			   and generate category rewrites and add it to merge buffer($this->data)
+			      params: $storeId, $product, $productCategories) [2, 1940, [25,30,37,57] ]
+			   and generate currentUrlRewrite
+			       params: (2 $storeId, $productCategories, 1940 $product, 42$rootCategoryId)
+				   E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-url-rewrite\Model\Product\CurrentUrlRewritesRegenerator.php :: generate[112]
+				   empty_exec
+			   and generate anchor Url Rewrite and add it to merge buffer
+				   params: 2 $storeId, 1940 $product, 25 30 37 57 $productCategories
+			       E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-url-rewrite\Model\Product\AnchorUrlRewriteGenerator.php
+			   and generate custom url rewrites for anchor urls and add it to merge buffer
+				   params: 2 $storeId, 1940 $product, 25 30 37 57 $productCategories
+				   E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-url-rewrite\Model\Product\CurrentUrlRewritesRegenerator.php :: generateAnchor
+
+Merge Buffer of Url Rewrites is used to replace old ones
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog-url-rewrite\Model\UrlRewriteBunchReplacer.php :: doBunchReplace[32]
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-url-rewrite\Model\Storage\DbStorage.php :: doReplace [275]
+	:: deleteOldUrls comparing new url rewrites [210]
+	    fetch all pairs of store and product_id from url_rewrites buffer
+		SELECT `url_rewrite`.* FROM `url_rewrite` WHERE (`store_id` = 2 AND `entity_id` IN (1940) AND `entity_type` = 'product') OR (`store_id` = 6 AND `entity_id` IN (1940) AND `entity_type` = 'product') OR (`store_id` = 3 AND `entity_id` IN (1940) AND `entity_type` = 'product') OR (`store_id` = 5 AND `entity_id` IN (1940) AND `entity_type` = 'product') OR (`store_id` = 7 AND `entity_id` IN (1940) AND `entity_type` = 'product') OR (`store_id` = 1 AND `entity_id` IN (1940) AND `entity_type` = 'product') OR (`store_id` = 4 AND `entity_id` IN (1940) AND `entity_type` = 'product') OR (`store_id` = 8 AND `entity_id` IN (1940) AND `entity_type` = 'product')
+		
+		SELECT count(*) FROM `url_rewrite` WHERE (`store_id` = 2 AND `entity_id` IN (1940) AND `entity_type` = 'product') OR (`store_id` = 6 AND `entity_id` IN (1940) AND `entity_type` = 'product') OR (`store_id` = 3 AND `entity_id` IN (1940) AND `entity_type` = 'product') OR (`store_id` = 5 AND `entity_id` IN (1940) AND `entity_type` = 'product') OR (`store_id` = 7 AND `entity_id` IN (1940) AND `entity_type` = 'product') OR (`store_id` = 1 AND `entity_id` IN (1940) AND `entity_type` = 'product') OR (`store_id` = 4 AND `entity_id` IN (1940) AND `entity_type` = 'product') OR (`store_id` = 8 AND `entity_id` IN (1940) AND `entity_type` = 'product')
+		
+		delete from (the above select url)
+			$oldUrlsSelect->deleteFromSelect(
+                    $this->resource->getTableName(self::TABLE_NAME)
+                )
+   insert
+      E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-url-rewrite\Model\Storage\DbStorage.php :: insertMultiple(newUrlRewrits)
+	  E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\framework\DB\Adapter\Pdo\Mysql.php :: insertMultiple[2039]
+	  
+    
+-------------------------------------------------------------
+How to get stores ids of category
+
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog\Model\Category.php :: getStoreIds [534]
+   explode path : 1/2/39/42 
+   SELECT `main_table`.*, `group_table`.`root_category_id` FROM `store` AS `main_table`
+ INNER JOIN `store_group` AS `group_table` ON main_table.group_id = group_table.group_id WHERE (`group_table`.`root_category_id` IN('1', '2', '39', '42'))
+ 
+--------------------------------------------------------------
+get website ids from product
+$product->getWebsiteIds() 
+
+get website id from store
+getStore()->getWebsiteId()
+
+get default store id from website
+$website->getDefaultStore()->getId()
+
+public function __construct(
+        StoreManagerInterface $storeManager,
+        LoggerInterface $logger
+    ) {
+        $this->storeManager = $storeManager;
+        $this->logger = $logger;
+    }
+$storeData = $this->storeManager->getStore($id);
+$storeCode = (string)$storeData->getCode();
+-------------------------------------------------------------
+Attribute
+
+E:\PHP\Clan\web\vendor\magento\module-eav\Model\Config.php :: initSystemAttributes :: 578
+																				   :: 601-608 
+E:\PHP\Clan\web\vendor\magento\framework\Data\Collection\AbstractDb.php :: getData :: 672
+SELECT `main_table`.`attribute_id`, `main_table`.`entity_type_id`, `main_table`.`attribute_code`, `main_table`.`attribute_model`, `main_table`.`backend_model`, `main_table`.`backend_type`, `main_table`.`backend_table`, `main_table`.`frontend_model`, `main_table`.`frontend_input`, `main_table`.`frontend_label`, `main_table`.`frontend_class`, `main_table`.`source_model`, `main_table`.`is_required`, `main_table`.`is_user_defined`, `main_table`.`default_value`, `main_table`.`is_unique`, `main_table`.`note`, `additional_table`.`is_visible`, `additional_table`.`input_filter`, `additional_table`.`multiline_count`, `additional_table`.`validate_rules`, `additional_table`.`is_system`, `additional_table`.`sort_order`, `additional_table`.`data_model`, `additional_table`.`is_used_in_grid`, `additional_table`.`is_visible_in_grid`, `additional_table`.`is_filterable_in_grid`, `additional_table`.`is_searchable_in_grid`, `scope_table`.`website_id` AS `scope_website_id`, `scope_table`.`is_visible` AS `scope_is_visible`, `scope_table`.`is_required` AS `scope_is_required`, `scope_table`.`default_value` AS `scope_default_value`, `scope_table`.`multiline_count` AS `scope_multiline_count` FROM `eav_attribute` AS `main_table`
+ INNER JOIN `customer_eav_attribute` AS `additional_table` ON additional_table.attribute_id = main_table.attribute_id
+ LEFT JOIN `customer_eav_attribute_website` AS `scope_table` ON scope_table.attribute_id = main_table.attribute_id AND scope_table.website_id = :scope_website_id WHERE (main_table.entity_type_id = :mt_entity_type_id) AND (`attribute_code` IN('confirmation', 'created_at', 'created_in', 'default_billing', 'default_shipping', 'disable_auto_group_change', 'dob', 'email', 'failures_num', 'firstname', 'first_failure', 'gender', 'group_id', 'lastname', 'lock_expires', 'middlename', 'password_hash', 'prefix', 'rp_token', 'rp_token_created_at', 'store_id', 'suffix', 'taxvat', 'updated_at', 'website_id'))
+ 
+ validate_rules in 'customer_eav_attributes' is formatted in serialization.
+ 
+ -------------------------------------------------------------
+ Detect Serialized Colume and table
+ E:\PHP\Clan\web\vendor\magento\framework\Serialize\Serializer\Json.php :: unserialize :: 35
+ 
+ -------------------------------
+ customer account creation
+ 
+ E:\PHP\Clan\web\vendor\magento\module-customer\Controller\Account\CreatePost.php :: 368
+ E:\PHP\Clan\web\vendor\magento\module-customer\Model\CustomerExtractor.php  :: public function extract :: 73 line

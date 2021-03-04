@@ -1,0 +1,46 @@
+mutation($input_1: SetGuestEmailOnCartInput) {
+    setGuestEmailOnCart(input: $input_1) {
+        cart {
+            email
+        }
+    }
+}
+
+-----------------------------------
+{
+    "input_1": {
+        "email": "aa@test.com",
+        "cart_id": "Mk9OC0nVTg4Zg7CQxUHly2t5LNpMS7Sj"
+    }
+}
+-----------------------------------
+response
+{
+    "errors": [{
+            "message": "The current user cannot perform operations on cart \"Mk9OC0nVTg4Zg7CQxUHly2t5LNpMS7Sj\"",
+            "extensions": {
+                "category": "graphql-authorization"
+            },
+            "locations": [{
+                    "line": 1,
+                    "column": 45
+                }
+            ],
+            "path": ["setGuestEmailOnCart"]
+        }
+    ],
+    "data": {
+        "setGuestEmailOnCart": null
+    }
+}
+------------------------------------
+{
+    "data": {
+        "setGuestEmailOnCart": {
+            "cart": {
+                "email": "xxx2@test.com"
+            }
+        }
+    }
+}
+------------------------------------

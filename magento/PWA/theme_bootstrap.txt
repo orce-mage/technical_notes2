@@ -1,0 +1,5 @@
+1. php bin/magento scandipwa:theme:bootstrap []/[]
+E:\PHP\ScandiPWA\vendor\scandipwa\installer\src\Console\Command\Bootstrap.php ::copy::152 ::copyFiles::249
+Copy files in E:\PHP\ScandiPWA\vendor\scandipwa\source\
+
+

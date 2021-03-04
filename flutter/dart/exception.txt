@@ -1,0 +1,46 @@
+  try {
+    a.doSomething();   // will throw a exception  
+  } on NoSuchMethodError {   // but now it is handled
+    print("'a' variable does not have the doSomething() method ");
+  }
+  
+################
+  try {
+    a.doSomething();   
+  } on NoSuchMethodError catch (e, s) { //  handled catching the reason
+    print("'a' variable does not have the doSomething() method:");
+    print("exception: $e");
+    print("stack trace: $s");
+  }
+################
+
+#### finally
+main() {
+  var a;
+
+  try {
+    a.doSomething();   
+  } on NoSuchMethodError catch (e, s) {
+    print("'a' variable does not have the doSomething() method:");
+  } finally { // after all, we do something, failing or not
+    print("end of the block");
+  }
+}
+
+## rethrow
+main() {
+  var a;
+
+  try {
+    a.doSomething();   
+  } on NoSuchMethodError catch (e, s) {
+    print("'a' variable does not have the doSomething() method:");
+    rethrow; // we give up handling and rethrow
+  }
+}
+
+#throwing exceptions
+  throw Exception("some exception!");
+  throw 'Hello, this message was thrown.'; // we throw our own error
+
+

@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/8432601/wamp-xampp-is-responding-very-slow-over-localhost

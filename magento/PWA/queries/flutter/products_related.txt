@@ -1,0 +1,105 @@
+query{
+    products(
+      filter: {sku: {in: ["so3", "za1"]}}
+    ){
+      items{
+            id
+            name
+            sku
+            short_description{
+                html
+            }
+            url
+            url_key
+            original_price
+            price_range{
+                maximum_price {
+                    discount {
+                        amount_off
+                        percent_off
+                    }
+                    final_price{
+                        currency
+                        value
+                    }
+                    regular_price{
+                        currency
+                        value
+                    }
+                }
+                minimum_price {
+                    discount {
+                        amount_off
+                        percent_off
+                    }
+                    final_price{
+                        currency
+                        value
+                    }
+                    regular_price{
+                        currency
+                        value
+                    }
+                }
+            }
+            price_tiers{
+                discount {
+                    amount_off
+                    percent_off
+                }
+                final_price{
+                    currency
+                    value
+                }
+                quantity
+            }
+            special_price
+            special_from_date
+            special_to_date
+            image{
+                label
+                path
+                url
+            }
+            small_image{
+                label
+                path
+                url
+            }
+            thumbnail {
+                label
+                path
+                url
+            }
+			media_gallery_entries{
+						  id,
+						  file,
+						  label,
+						  position,
+						  disabled,
+						  media_type,
+						  types,
+						  video_content{
+							 media_type,
+							 video_description,
+							 video_metadata,
+							 video_provider,
+							 video_title,
+							 video_url
+						  },
+						  thumbnail{
+							 url
+						  },
+						  base{
+							 url
+						  }
+					   }
+            
+      }
+      page_info{
+            current_page
+            total_pages
+      }
+      total_count
+    }
+}

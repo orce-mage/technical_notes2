@@ -1,0 +1,11 @@
+mutation{createEmptyCart}
+
+
+----------------------------------
+The reponse could be like this:
+
+{
+  "data": {
+    "createEmptyCart": "9h51bfe9mu8zBJkmpJ5Lf8Em1jacRobv"
+  }
+}

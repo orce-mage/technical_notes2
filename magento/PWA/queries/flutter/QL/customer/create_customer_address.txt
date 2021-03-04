@@ -1,0 +1,71 @@
+mutation {
+    createCustomerAddress(input: $input_1) {
+        id,
+        customer_id,
+        country_id,
+        street,
+        telephone,
+        postcode,
+        city,
+        firstname,
+        lastname,
+        middlename,
+        prefix,
+        suffix,
+        default_shipping,
+        default_billing,
+        vat_id,
+        region {
+            region_code,
+            region,
+            region_id
+        }
+    }
+}
+
+------------------------------------------------
+{
+  "input_1": {
+    "firstname": "aaaa",
+    "lastname": "bbbb",
+    "telephone": "12345",
+    "country_id": "AE",
+    "city": "test",
+    "postcode": "12345",
+    "street": [
+      "test",
+      null,
+      null
+    ],
+    "region": {
+      "region": "test"
+    }
+  }
+}
+---------------------------------------------------
+{
+    "data": {
+        "createCustomerAddress": {
+            "id": 14,
+            "customer_id": null,
+            "country_id": "AE",
+            "street": ["test", null, null],
+            "telephone": "12345",
+            "postcode": "12345",
+            "city": "test",
+            "firstname": "aaaa",
+            "lastname": "bbbb",
+            "middlename": null,
+            "prefix": null,
+            "suffix": null,
+            "default_shipping": false,
+            "default_billing": false,
+            "vat_id": null,
+            "region": {
+                "region_code": null,
+                "region": "test",
+                "region_id": null
+            }
+        }
+    }
+}

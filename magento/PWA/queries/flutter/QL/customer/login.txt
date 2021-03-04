@@ -1,0 +1,68 @@
+mutation {
+    generateCustomerToken(
+		email: "a@test.com", 
+		password: "test", 
+		guest_quote_id: "gQc3pgGwWCqZJZg4y4m6SgNIeQnhz0z9"
+	) {
+        token
+    }
+}
+
+
+Explantion:
+
+mutation {
+    generateCustomerToken(
+		email: $email_1, 
+		password: $password_1, 
+		guest_quote_id: $guest_quote_id_1
+	) {
+        token
+    }
+}
+
+$email_1, $password_1, $guest_quote_id_1 should be replaced with the following values
+
+guest_quote_id_1: it should be used if it's generated before he/she try to login
+			      Otherwise, you can leave it out.
+
+{
+    email_1: "yanaivashkoweb@gmail.com"
+	guest_quote_id_1: "gQc3pgGwWCqZJZg4y4m6SgNIeQnhz0z9"
+	password_1: "8UtA4TyqdSwBLt2j"
+}
+
+---------------------------------
+Success Response:
+
+{
+  "data": {
+    "generateCustomerToken": {
+      "token": "0b8840d20n16a1fi2kta9ebqktwvwnls"
+    }
+  }
+}
+
+Failed Response:
+{
+  "errors": [
+    {
+      "message": "The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.",
+      "extensions": {
+        "category": "graphql-authentication"
+      },
+      "locations": [
+        {
+          "line": 2,
+          "column": 3
+        }
+      ],
+      "path": [
+        "generateCustomerToken"
+      ]
+    }
+  ],
+  "data": {
+    "generateCustomerToken": null
+  }
+}

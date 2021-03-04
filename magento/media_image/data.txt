@@ -1,0 +1,6 @@
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\magento\module-catalog\Model\View\Asset\Image.php
+
+media/catalog/product/cache/99fe62989f7f9264d0f4eda3659b74d4/3/_/3_6.jpeg
+
+99fe62989f7f9264d0f4eda3659b74d4: hash
+   gnerated by vendor\magento\module-catalog\Model\View\Asset\Image.php::getMiscPath

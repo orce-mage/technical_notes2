@@ -1,0 +1,68 @@
+mkdir -p opt/cert
+docker run -it --rm --init \
+-e UID=0 \
+-e GID=0 \
+-w="/cert" \
+--mount type=bind,source=/home/ubuntu/Projects/magento-docker/deploy/shared/conf/local-ssl,target=/cert_config/ \
+--mount type=bind,source=/home/ubuntu/Projects/magento-docker/opt/cert,target=/cert \
+--mount type=bind,source=/home/ubuntu/Projects/magento-docker/deploy/create_certificates.sh,target=/usr/local/bin/create_certificates \
+alpine:latest create_certificates
+Unable to find image 'alpine:latest' locally
+latest: Pulling from library/alpine
+801bfaa63ef2: Pull complete
+Digest: sha256:3c7497bf0c7af93428242d6176e8f7905f2201d8fc5861f45be7a346b5f23436
+Status: Downloaded newer image for alpine:latest
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+(1/7) Installing libacl (2.2.53-r0)
+(2/7) Installing libattr (2.4.48-r0)
+(3/7) Installing coreutils (8.32-r0)
+(4/7) Installing ncurses-terminfo-base (6.2_p20200523-r0)
+(5/7) Installing ncurses-libs (6.2_p20200523-r0)
+(6/7) Installing ncurses (6.2_p20200523-r0)
+(7/7) Installing openssl (1.1.1i-r0)
+Executing busybox-1.31.1-r19.trigger
+OK: 8 MiB in 21 packages
+Creating Root key and certificate
+Generating Root CA and key
+Generating a RSA private key
+...................+++++
+..........+++++
+writing new private key to 'scandipwa-ca.key'
+-----
+Created Root key and certificate
+Generating private key for server certificate and CSR
+Generating a RSA private key
+...........................+++++
+...........................+++++
+writing new private key to 'tempkey.pem'
+-----
+Generating server key without passphrase, enter same passphrase as above
+writing RSA key
+Singing server certificate with CA
+Using configuration from /cert_config/ca.conf
+Check that the request matches the signature
+Signature ok
+The Subject's Distinguished Name is as follows
+commonName            :ASN.1 12:'*.dev'
+stateOrProvinceName   :ASN.1 12:'LV'
+countryName           :PRINTABLE:'LV'
+emailAddress          :IA5STRING:'developer@local.scandipwa'
+organizationName      :ASN.1 12:'WorksOnMyLocal'
+organizationalUnitName:ASN.1 12:'Development'
+Certificate is to be certified until Mar 23 05:10:56 2023 GMT (825 days)
+Sign the certificate? [y/n]:
+
+1 out of 1 certificate requests certified, commit? [y/n]Write out database with 1 new entries
+Data Base Updated
+#########################################################################################################################
+# #
+# Certificate generation is complete #
+# Now you need to import scandipwa-ca.pem into your system/browser to make issued certificate valid #
+# #
+# An automated one time password was generated as 0mxZF2IQPvrSfBJubKYDOCZQDxtCp2rm #
+# #
+# Do not commit or share your scandipwa-ca.key, #
+# this can lead to major security hole in your system #
+# #
+###########################################

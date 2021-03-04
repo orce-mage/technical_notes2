@@ -1,0 +1,131 @@
+query {
+    customer {
+        created_at,
+        confirmation_required,
+        group_id,
+        prefix,
+        firstname,
+        middlename,
+        lastname,
+        suffix,
+        email,
+        default_billing,
+        default_shipping,
+        dob,
+        taxvat,
+        id,
+        is_subscribed,
+        addresses {
+            id,
+            customer_id,
+            country_id,
+            street,
+            telephone,
+            postcode,
+            city,
+            firstname,
+            lastname,
+            middlename,
+            prefix,
+            suffix,
+            default_shipping,
+            default_billing,
+            vat_id,
+            region {
+                region_code,
+                region,
+                region_id
+            }
+        }
+    }
+}
+
+---------------------------------------------------------------------
+Response
+
+{
+    "data": {
+        "customer": {
+            "created_at": "2021-01-06 20:10:48",
+            "confirmation_required": false,
+            "group_id": 1,
+            "prefix": null,
+            "firstname": "Yana",
+            "middlename": null,
+            "lastname": "Ivashko",
+            "suffix": null,
+            "email": "yanaivashkoweb@gmail.com",
+            "default_billing": "9",
+            "default_shipping": "9",
+            "dob": null,
+            "taxvat": null,
+            "id": null,
+            "is_subscribed": false,
+            "addresses": [{
+                    "id": 9,
+                    "customer_id": null,
+                    "country_id": "AE",
+                    "street": ["test3"],
+                    "telephone": "12345",
+                    "postcode": "12345",
+                    "city": "test",
+                    "firstname": "Yana",
+                    "lastname": "Ivashko",
+                    "middlename": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "default_shipping": true,
+                    "default_billing": true,
+                    "vat_id": null,
+                    "region": {
+                        "region_code": "test",
+                        "region": "test",
+                        "region_id": 0
+                    }
+                }, {
+                    "id": 12,
+                    "customer_id": null,
+                    "country_id": "RU",
+                    "street": ["AIAKS, D 28 KORP 1"],
+                    "telephone": "12345",
+                    "postcode": "34255",
+                    "city": "DVFU",
+                    "firstname": "Yana",
+                    "lastname": "Ivashko",
+                    "middlename": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "default_shipping": false,
+                    "default_billing": false,
+                    "vat_id": null,
+                    "region": {
+                        "region_code": "Primorskii krai",
+                        "region": "Primorskii krai",
+                        "region_id": 0
+                    }
+                }, {
+                    "id": 13,
+                    "customer_id": null,
+                    "country_id": "AE",
+                    "street": ["TEST5"],
+                    "telephone": "555777",
+                    "postcode": "34567",
+                    "city": "TEST",
+                    "firstname": "Yana",
+                    "lastname": "Ivashko",
+                    "middlename": null,
+                    "prefix": null,
+                    "suffix": null,
+                    "default_shipping": false,
+                    "default_billing": false,
+                    "vat_id": null,
+                    "region": {
+                        "region_code": null,
+                        "region": null,
+                        "region_id": 0
+                    }
+                }
+            ]
+        }
+    }
+}

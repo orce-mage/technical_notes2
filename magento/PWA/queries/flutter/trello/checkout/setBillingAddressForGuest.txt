@@ -1,0 +1,42 @@
+mutation($input_1: S_SetBillingAddressOnCartInput!) {
+    billingAddress: s_setBillingAddressOnCart(input: $input_1) {
+        cart {
+            id
+        }
+    }
+}
+
+-------------------------------
+{
+  "input_1": {
+    "guest_cart_id": "715xj33vfogh2onGLaMtVTwZBXB95HUD",
+    "billing_address": {
+      "address": {
+        "firstname": "A12",
+        "lastname": "B12",
+        "telephone": "12345",
+        "city": "tes",
+        "postcode": "12345",
+        "street": [
+          "test",
+          null,
+          null
+        ],
+        "country_code": "AE",
+        "region": "test"
+      }
+    }
+  }
+}
+
+--------------------------------
+response
+{
+    "data": {
+        "billingAddress": {
+            "cart": {
+                "id": "715xj33vfogh2onGLaMtVTwZBXB95HUD"
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+1. \vendor\magento\framework\Filesystem\Driver\File.php:
+    public function getRealPath($path)
+      {
+         $path = realpath($path);
+            $path = str_replace('\\', '/', $path);
+            return $path;
+  
+3. vendor/magento/module-theme/Model/Theme.php
+    function: _registerThemeRecursively
+    line: 114;
+    code: //$this->_savePreviewImage
+4. vendor/magento/framework/Image/Adapter/Gd2.php
+    function: validateURLScheme
+	if(strlen($url['scheme']) == 1){ // for Windows XAMPP
+            return true;
+        }
+
+
+5. setup:di:compile
+  vendor/magento/framework/interception/PluginListGenerator.php
+-                $cacheId = implode('-', $this->scopePriorityScheme) . "-" . $this->cacheId;
+6. app/etc/di.xml 
+            722line:  MaterializationStrategy\Symlink->Copy

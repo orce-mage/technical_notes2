@@ -1,0 +1,29 @@
+cors issue
+
+Origin : localhost: 3000         Target: calvocover.com
+
+Request: http://157.175.95.222/uae_en/graphql?hash=2529538179&_currency=%22%22
+
+1 Send the request to server that check if cors origin is allowed or not.
+  Request Method: Options
+
+  Request Headers: 
+     Access-Control-Request-Headers: application-model,authorization,content-type
+       >>>Here, application-model, authorization,content-type fields to be included
+            in the Header are allowed or not in CORS.
+      Access-Control-Request-Method: GET
+
+
+
+
+2. send the actual request 
+
+3. Solution.
+
+  A. Install Cors extension
+      https://github.com/graycoreio/magento2-cors
+
+composer require graycore/magento2-cors
+magento module:enable Graycore_Cors
+  B. etc/env.php
+

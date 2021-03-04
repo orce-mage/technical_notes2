@@ -1,0 +1,25 @@
+https://stackoverflow.com/questions/41117715/how-to-edit-etc-hosts-file-in-android-studio-emulator-running-in-nougat
+
+emulator -list-avds
+emulator -avd "Nexus_5X_API_27" -writable-system
+emulator -avd "Nexus_5X_API_27_2" -writable-system
+
+emulator -avd "Nexus_5X_API_29" -writable-system
+
+adb devices
+adb shell
+
+cd system
+
+echo "10.10.11.80 vdev.store.calvocover.com" >> hosts
+
+	-------
+	adb root
+	
+
+-----------------------------------
+ADB root is not working on emulator (cannot run as root in production builds)
+https://stackoverflow.com/questions/43923996/adb-root-is-not-working-on-emulator-cannot-run-as-root-in-production-builds
+
+
+Go to tools -> SDK Manager -> Android SDK -- Now In the first tab (SDK Platforms) first of all "select" show package details at the bottom of the page. Now Select "Google APIs Intel x86 Atom System Image" and unselect "Google Play Intel x86 Atom System Image". This emulator won't show "adbd cannot run as root in production builds". Google API's don't have play store app and it only has play services.

@@ -1,0 +1,961 @@
+mutation($cartItem_1: CartItemInput!, $guestCartId_1: String, $guestCartId_2: String, $pageSize_1: Int, $currentPage_1: Int) {
+    saveCartItem(cartItem: $cartItem_1, guestCartId: $guestCartId_1) {
+        cartData: getCartForCustomer(guestCartId: $guestCartId_2) {
+            subtotal,
+            subtotal_incl_tax,
+            items_qty,
+            tax_amount,
+            grand_total,
+            discount_amount,
+            quote_currency_code,
+            subtotal_with_discount,
+            coupon_code,
+            shipping_amount,
+            shipping_incl_tax,
+            is_virtual,
+            applied_rule_ids,
+            items {
+                qty,
+                sku,
+                price,
+                item_id,
+                row_total,
+                row_total_incl_tax,
+                tax_amount,
+                tax_percent,
+                discount_amount,
+                discount_percent,
+                customizable_options {
+                    id,
+                    label,
+                    is_required,
+                    values {
+                        id,
+                        label,
+                        value,
+                        price {
+                            value,
+                            units,
+                            type
+                        }
+                    },
+                    sort_order
+                },
+                bundle_options {
+                    id,
+                    label,
+                    type,
+                    values {
+                        id,
+                        label,
+                        quantity,
+                        price
+                    }
+                },
+                product {
+                    id,
+                    sku,
+                    name,
+                    type_id,
+                    stock_status,
+                    price_range {
+                        minimum_price {
+                            discount {
+                                amount_off,
+                                percent_off
+                            },
+                            final_price {
+                                currency,
+                                value
+                            },
+                            regular_price {
+                                currency,
+                                value
+                            }
+                        }
+                    },
+                    thumbnail {
+                        path,
+                        url
+                    },
+                    small_image {
+                        path,
+                        url
+                    },
+                    short_description {
+                        html
+                    },
+                    special_from_date,
+                    special_to_date,
+                    price_tiers {
+                        discount {
+                            amount_off,
+                            percent_off
+                        },
+                        final_price {
+                            currency,
+                            value
+                        },
+                        quantity
+                    },
+                    attributes: s_attributes {
+                        attribute_id,
+                        attribute_value,
+                        attribute_code,
+                        attribute_type,
+                        attribute_label,
+                        attribute_options {
+                            label,
+                            value,
+                            swatch_data {
+                                type,
+                                value
+                            }
+                        }
+                    },
+                    url,
+                    review_count,
+                    rating_summary,
+                    ...on ConfigurableProduct {
+                        configurable_options {
+                            attribute_code,
+                            values {
+                                value_index
+                            }
+                        },
+                        variants {
+                            product {
+                                id,
+                                sku,
+                                name,
+                                type_id,
+                                stock_status,
+                                price_range {
+                                    minimum_price {
+                                        discount {
+                                            amount_off,
+                                            percent_off
+                                        },
+                                        final_price {
+                                            currency,
+                                            value
+                                        },
+                                        regular_price {
+                                            currency,
+                                            value
+                                        }
+                                    }
+                                },
+                                thumbnail {
+                                    path,
+                                    url
+                                },
+                                small_image {
+                                    path,
+                                    url
+                                },
+                                short_description {
+                                    html
+                                },
+                                special_from_date,
+                                special_to_date,
+                                price_tiers {
+                                    discount {
+                                        amount_off,
+                                        percent_off
+                                    },
+                                    final_price {
+                                        currency,
+                                        value
+                                    },
+                                    quantity
+                                },
+                                attributes: s_attributes {
+                                    attribute_id,
+                                    attribute_value,
+                                    attribute_code,
+                                    attribute_type,
+                                    attribute_label
+                                },
+                                product_links {
+                                    position,
+                                    link_type,
+                                    linked_product_sku
+                                },
+                                stock_status,
+                                meta_title,
+                                meta_keyword,
+                                canonical_url,
+                                meta_description,
+                                description {
+                                    html
+                                },
+                                media_gallery_entries {
+                                    id,
+                                    file,
+                                    label,
+                                    position,
+                                    disabled,
+                                    media_type,
+                                    types,
+                                    video_content {
+                                        media_type,
+                                        video_description,
+                                        video_metadata,
+                                        video_provider,
+                                        video_title,
+                                        video_url
+                                    },
+                                    thumbnail {
+                                        url
+                                    },
+                                    base {
+                                        url
+                                    }
+                                },
+                                ...on SimpleProduct {
+                                    price_tiers {
+                                        discount {
+                                            amount_off,
+                                            percent_off
+                                        },
+                                        final_price {
+                                            currency,
+                                            value
+                                        },
+                                        quantity
+                                    }
+                                },
+                                product_links {
+                                    position,
+                                    link_type,
+                                    linked_product_sku
+                                },
+                                ...on CustomizableProductInterface {
+                                    options {
+                                        ...on CustomizableDropDownOption {
+                                            dropdownValues: value {
+                                                option_type_id,
+                                                price,
+                                                price_type,
+                                                sku,
+                                                title,
+                                                sort_order
+                                            }
+                                        },
+                                        ...on CustomizableRadioOption {
+                                            dropdownValues: value {
+                                                option_type_id,
+                                                price,
+                                                price_type,
+                                                sku,
+                                                title,
+                                                sort_order
+                                            }
+                                        },
+                                        ...on CustomizableCheckboxOption {
+                                            checkboxValues: value {
+                                                option_type_id,
+                                                price,
+                                                price_type,
+                                                sku,
+                                                title,
+                                                sort_order
+                                            }
+                                        },
+                                        ...on CustomizableMultipleOption {
+                                            checkboxValues: value {
+                                                option_type_id,
+                                                price,
+                                                price_type,
+                                                sku,
+                                                title,
+                                                sort_order
+                                            }
+                                        },
+                                        ...on CustomizableFieldOption {
+                                            fieldValues: value {
+                                                price,
+                                                price_type,
+                                                sku,
+                                                max_characters
+                                            },
+                                            product_sku
+                                        },
+                                        ...on CustomizableAreaOption {
+                                            areaValues: value {
+                                                price,
+                                                price_type,
+                                                sku,
+                                                max_characters
+                                            },
+                                            product_sku
+                                        },
+                                        title,
+                                        required,
+                                        sort_order,
+                                        option_id
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    ...on BundleProduct {
+                        price_view,
+                        dynamic_price,
+                        dynamic_sku,
+                        ship_bundle_items,
+                        dynamic_weight,
+                        items {
+                            option_id,
+                            title,
+                            required,
+                            type,
+                            position,
+                            sku,
+                            options {
+                                id,
+                                label,
+                                quantity,
+                                position,
+                                is_default,
+                                price,
+                                price_type,
+                                can_change_quantity,
+                                product {
+                                    id,
+                                    sku,
+                                    name,
+                                    type_id,
+                                    stock_status,
+                                    price_range {
+                                        minimum_price {
+                                            discount {
+                                                amount_off,
+                                                percent_off
+                                            },
+                                            final_price {
+                                                currency,
+                                                value
+                                            },
+                                            regular_price {
+                                                currency,
+                                                value
+                                            }
+                                        }
+                                    },
+                                    thumbnail {
+                                        path,
+                                        url
+                                    },
+                                    small_image {
+                                        path,
+                                        url
+                                    },
+                                    short_description {
+                                        html
+                                    },
+                                    special_from_date,
+                                    special_to_date,
+                                    price_tiers {
+                                        discount {
+                                            amount_off,
+                                            percent_off
+                                        },
+                                        final_price {
+                                            currency,
+                                            value
+                                        },
+                                        quantity
+                                    },
+                                    attributes: s_attributes {
+                                        attribute_id,
+                                        attribute_value,
+                                        attribute_code,
+                                        attribute_type,
+                                        attribute_label
+                                    },
+                                    product_links {
+                                        position,
+                                        link_type,
+                                        linked_product_sku
+                                    },
+                                    stock_status,
+                                    meta_title,
+                                    meta_keyword,
+                                    canonical_url,
+                                    meta_description,
+                                    description {
+                                        html
+                                    },
+                                    media_gallery_entries {
+                                        id,
+                                        file,
+                                        label,
+                                        position,
+                                        disabled,
+                                        media_type,
+                                        types,
+                                        video_content {
+                                            media_type,
+                                            video_description,
+                                            video_metadata,
+                                            video_provider,
+                                            video_title,
+                                            video_url
+                                        },
+                                        thumbnail {
+                                            url
+                                        },
+                                        base {
+                                            url
+                                        }
+                                    },
+                                    ...on SimpleProduct {
+                                        price_tiers {
+                                            discount {
+                                                amount_off,
+                                                percent_off
+                                            },
+                                            final_price {
+                                                currency,
+                                                value
+                                            },
+                                            quantity
+                                        }
+                                    },
+                                    product_links {
+                                        position,
+                                        link_type,
+                                        linked_product_sku
+                                    },
+                                    ...on CustomizableProductInterface {
+                                        options {
+                                            ...on CustomizableDropDownOption {
+                                                dropdownValues: value {
+                                                    option_type_id,
+                                                    price,
+                                                    price_type,
+                                                    sku,
+                                                    title,
+                                                    sort_order
+                                                }
+                                            },
+                                            ...on CustomizableRadioOption {
+                                                dropdownValues: value {
+                                                    option_type_id,
+                                                    price,
+                                                    price_type,
+                                                    sku,
+                                                    title,
+                                                    sort_order
+                                                }
+                                            },
+                                            ...on CustomizableCheckboxOption {
+                                                checkboxValues: value {
+                                                    option_type_id,
+                                                    price,
+                                                    price_type,
+                                                    sku,
+                                                    title,
+                                                    sort_order
+                                                }
+                                            },
+                                            ...on CustomizableMultipleOption {
+                                                checkboxValues: value {
+                                                    option_type_id,
+                                                    price,
+                                                    price_type,
+                                                    sku,
+                                                    title,
+                                                    sort_order
+                                                }
+                                            },
+                                            ...on CustomizableFieldOption {
+                                                fieldValues: value {
+                                                    price,
+                                                    price_type,
+                                                    sku,
+                                                    max_characters
+                                                },
+                                                product_sku
+                                            },
+                                            ...on CustomizableAreaOption {
+                                                areaValues: value {
+                                                    price,
+                                                    price_type,
+                                                    sku,
+                                                    max_characters
+                                                },
+                                                product_sku
+                                            },
+                                            title,
+                                            required,
+                                            sort_order,
+                                            option_id
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    product_links {
+                        position,
+                        link_type,
+                        linked_product_sku
+                    },
+                    stock_status,
+                    meta_title,
+                    meta_keyword,
+                    canonical_url,
+                    meta_description,
+                    description {
+                        html
+                    },
+                    media_gallery_entries {
+                        id,
+                        file,
+                        label,
+                        position,
+                        disabled,
+                        media_type,
+                        types,
+                        video_content {
+                            media_type,
+                            video_description,
+                            video_metadata,
+                            video_provider,
+                            video_title,
+                            video_url
+                        },
+                        thumbnail {
+                            url
+                        },
+                        base {
+                            url
+                        }
+                    },
+                    ...on SimpleProduct {
+                        price_tiers {
+                            discount {
+                                amount_off,
+                                percent_off
+                            },
+                            final_price {
+                                currency,
+                                value
+                            },
+                            quantity
+                        }
+                    },
+                    product_links {
+                        position,
+                        link_type,
+                        linked_product_sku
+                    },
+                    ...on CustomizableProductInterface {
+                        options {
+                            ...on CustomizableDropDownOption {
+                                dropdownValues: value {
+                                    option_type_id,
+                                    price,
+                                    price_type,
+                                    sku,
+                                    title,
+                                    sort_order
+                                }
+                            },
+                            ...on CustomizableRadioOption {
+                                dropdownValues: value {
+                                    option_type_id,
+                                    price,
+                                    price_type,
+                                    sku,
+                                    title,
+                                    sort_order
+                                }
+                            },
+                            ...on CustomizableCheckboxOption {
+                                checkboxValues: value {
+                                    option_type_id,
+                                    price,
+                                    price_type,
+                                    sku,
+                                    title,
+                                    sort_order
+                                }
+                            },
+                            ...on CustomizableMultipleOption {
+                                checkboxValues: value {
+                                    option_type_id,
+                                    price,
+                                    price_type,
+                                    sku,
+                                    title,
+                                    sort_order
+                                }
+                            },
+                            ...on CustomizableFieldOption {
+                                fieldValues: value {
+                                    price,
+                                    price_type,
+                                    sku,
+                                    max_characters
+                                },
+                                product_sku
+                            },
+                            ...on CustomizableAreaOption {
+                                areaValues: value {
+                                    price,
+                                    price_type,
+                                    sku,
+                                    max_characters
+                                },
+                                product_sku
+                            },
+                            title,
+                            required,
+                            sort_order,
+                            option_id
+                        }
+                    },
+                    categories {
+                        name,
+                        url,
+                        breadcrumbs {
+                            category_name,
+                            category_level,
+                            category_url,
+                            category_is_active
+                        }
+                    },
+                    reviews(pageSize: $pageSize_1, currentPage: $currentPage_1) {
+                        items {
+                            average_rating,
+                            nickname,
+                            title: summary,
+                            detail: text,
+                            created_at,
+                            rating_votes: ratings_breakdown {
+                                rating_code: name,
+                                value
+                            }
+                        }
+                    },
+                    ...on VirtualProduct {
+                        price_tiers {
+                            discount {
+                                amount_off,
+                                percent_off
+                            },
+                            final_price {
+                                currency,
+                                value
+                            },
+                            quantity
+                        }
+                    },
+                    ...on CustomizableProductInterface {
+                        options {
+                            ...on CustomizableDropDownOption {
+                                dropdownValues: value {
+                                    option_type_id,
+                                    price,
+                                    price_type,
+                                    sku,
+                                    title,
+                                    sort_order
+                                }
+                            },
+                            ...on CustomizableRadioOption {
+                                dropdownValues: value {
+                                    option_type_id,
+                                    price,
+                                    price_type,
+                                    sku,
+                                    title,
+                                    sort_order
+                                }
+                            },
+                            ...on CustomizableCheckboxOption {
+                                checkboxValues: value {
+                                    option_type_id,
+                                    price,
+                                    price_type,
+                                    sku,
+                                    title,
+                                    sort_order
+                                }
+                            },
+                            ...on CustomizableMultipleOption {
+                                checkboxValues: value {
+                                    option_type_id,
+                                    price,
+                                    price_type,
+                                    sku,
+                                    title,
+                                    sort_order
+                                }
+                            },
+                            ...on CustomizableFieldOption {
+                                fieldValues: value {
+                                    price,
+                                    price_type,
+                                    sku,
+                                    max_characters
+                                },
+                                product_sku
+                            },
+                            ...on CustomizableAreaOption {
+                                areaValues: value {
+                                    price,
+                                    price_type,
+                                    sku,
+                                    max_characters
+                                },
+                                product_sku
+                            },
+                            title,
+                            required,
+                            sort_order,
+                            option_id
+                        }
+                    }
+                }
+            },
+            cart_display_config {
+                display_tax_in_price,
+                display_tax_in_subtotal,
+                display_tax_in_shipping_amount,
+                include_tax_in_order_total,
+                display_full_tax_summary,
+                display_zero_tax_subtotal
+            },
+            applied_taxes {
+                rates {
+                    percent,
+                    title
+                }
+            }
+        }
+    }
+}
+
+--------------------------------
+variables:
+
+{
+  "cartItem_1": {
+    "sku": "t85",
+    "item_id": 13,
+    "quantity": 2
+  },
+  "guestCartId_1": "2uBFQYyx16SiXhKgDzyUy0VyAos9M8yM",
+  "guestCartId_2": "2uBFQYyx16SiXhKgDzyUy0VyAos9M8yM",
+  "pageSize_1": 20,
+  "currentPage_1": 1
+}
+
+--------------------------------------
+
+response:
+
+{
+    "data": {
+        "saveCartItem": {
+            "cartData": {
+                "subtotal": 498,
+                "subtotal_incl_tax": 498,
+                "items_qty": 2,
+                "tax_amount": 0,
+                "grand_total": 498,
+                "discount_amount": 0,
+                "quote_currency_code": "AED",
+                "subtotal_with_discount": 498,
+                "coupon_code": null,
+                "shipping_amount": null,
+                "shipping_incl_tax": null,
+                "is_virtual": false,
+                "applied_rule_ids": null,
+                "items": [{
+                        "qty": 2,
+                        "sku": "t85",
+                        "price": 249,
+                        "item_id": 13,
+                        "row_total": 498,
+                        "row_total_incl_tax": 498,
+                        "tax_amount": 0,
+                        "tax_percent": 0,
+                        "discount_amount": 0,
+                        "discount_percent": 0,
+                        "customizable_options": [],
+                        "bundle_options": [],
+                        "product": {
+                            "id": 2694,
+                            "sku": "t85",
+                            "name": "\u062a\u0644\u0628\u064a\u0633 \u0643\u064a\u0633 \u0644\u062d\u0627\u0641 \u0644\u0634\u062e\u0635\u064a\u0646 6 \u0642\u0637\u0639 \u0642\u0637\u0646 \u0641\u0646\u062f\u0642\u064a \u062a\u064a\u0641\u0627\u0646\u064a 85",
+                            "type_id": "simple",
+                            "stock_status": "IN_STOCK",
+                            "price_range": {
+                                "minimum_price": {
+                                    "discount": {
+                                        "amount_off": 0,
+                                        "percent_off": 0
+                                    },
+                                    "final_price": {
+                                        "currency": "AED",
+                                        "value": 249
+                                    },
+                                    "regular_price": {
+                                        "currency": "AED",
+                                        "value": 249
+                                    }
+                                }
+                            },
+                            "thumbnail": {
+                                "path": "\/w\/h\/whatsapp_image_2021-02-14_at_3.05.02_pm_14_.jpeg",
+                                "url": "https:\/\/store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/w\/h\/whatsapp_image_2021-02-14_at_3.05.02_pm_14_.jpeg"
+                            },
+                            "small_image": {
+                                "path": "\/w\/h\/whatsapp_image_2021-02-14_at_3.05.02_pm_14_.jpeg",
+                                "url": "https:\/\/store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/w\/h\/whatsapp_image_2021-02-14_at_3.05.02_pm_14_.jpeg"
+                            },
+                            "short_description": {
+                                "html": ""
+                            },
+                            "special_from_date": null,
+                            "special_to_date": null,
+                            "price_tiers": [],
+                            "attributes": [{
+                                    "attribute_id": 137,
+                                    "attribute_value": "188",
+                                    "attribute_code": "colors",
+                                    "attribute_type": "select",
+                                    "attribute_label": "colors",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 138,
+                                    "attribute_value": "8",
+                                    "attribute_code": "size",
+                                    "attribute_type": "select",
+                                    "attribute_label": "size",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 97,
+                                    "attribute_value": "1",
+                                    "attribute_code": "status",
+                                    "attribute_type": "select",
+                                    "attribute_label": "Enable Product",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 73,
+                                    "attribute_value": "duvet cover cotton HOTEL 6 pcs TIFFANY 85",
+                                    "attribute_code": "name",
+                                    "attribute_type": "text",
+                                    "attribute_label": "Product Name",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 77,
+                                    "attribute_value": "249.000000",
+                                    "attribute_code": "price",
+                                    "attribute_type": "price",
+                                    "attribute_label": "Price",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 76,
+                                    "attribute_value": "<p>DUVET COVERset 240*260 cm<br \/>fitted sheet 200*200+30 cm<br \/>2pillow sham 50*75 cm<br \/>2pillow case 50*75 cm<\/p>",
+                                    "attribute_code": "short_description",
+                                    "attribute_type": "textarea",
+                                    "attribute_label": "Short Description",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 87,
+                                    "attribute_value": "\/w\/h\/whatsapp_image_2021-02-14_at_3.05.02_pm_14_.jpeg",
+                                    "attribute_code": "image",
+                                    "attribute_type": "media_image",
+                                    "attribute_label": "Base",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 88,
+                                    "attribute_value": "\/w\/h\/whatsapp_image_2021-02-14_at_3.05.02_pm_14_.jpeg",
+                                    "attribute_code": "small_image",
+                                    "attribute_type": "media_image",
+                                    "attribute_label": "Small",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 89,
+                                    "attribute_value": "\/w\/h\/whatsapp_image_2021-02-14_at_3.05.02_pm_14_.jpeg",
+                                    "attribute_code": "thumbnail",
+                                    "attribute_type": "media_image",
+                                    "attribute_label": "Thumbnail",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 135,
+                                    "attribute_value": "\/w\/h\/whatsapp_image_2021-02-14_at_3.05.02_pm_14_.jpeg",
+                                    "attribute_code": "swatch_image",
+                                    "attribute_type": "media_image",
+                                    "attribute_label": "Swatch",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 121,
+                                    "attribute_value": "duvet-cover-cotton-hotel-6-pcs-tiffany-85",
+                                    "attribute_code": "url_key",
+                                    "attribute_type": "text",
+                                    "attribute_label": "URL Key",
+                                    "attribute_options": []
+                                }
+                            ],
+                            "url": "\/uae_ar\/duvet-cover-cotton-hotel-6-pcs-tiffany-85.html",
+                            "review_count": 0,
+                            "rating_summary": 0,
+                            "product_links": [],
+                            "meta_title": null,
+                            "meta_keyword": null,
+                            "canonical_url": null,
+                            "meta_description": null,
+                            "description": {
+                                "html": ""
+                            },
+                            "media_gallery_entries": [],
+                            "options": null,
+                            "categories": [{
+                                    "name": "Brands",
+                                    "url": "\/uae_en\/brands.html",
+                                    "breadcrumbs": null
+                                }, {
+                                    "name": "FEATURE",
+                                    "url": "\/uae_en\/feature.html",
+                                    "breadcrumbs": [{
+                                            "category_name": "Brands",
+                                            "category_level": 2,
+                                            "category_url": "\/uae_en\/brands.html",
+                                            "category_is_active": true
+                                        }
+                                    ]
+                                }, {
+                                    "name": "DUVET COVER",
+                                    "url": "\/uae_en\/duvet-cover.html",
+                                    "breadcrumbs": null
+                                }
+                            ],
+                            "reviews": {
+                                "items": []
+                            }
+                        }
+                    }
+                ],
+                "cart_display_config": {
+                    "display_tax_in_price": "DISPLAY_CART_TAX_IN_PRICE_EXL_TAX",
+                    "display_tax_in_subtotal": "DISPLAY_CART_TAX_IN_SUBTOTAL_EXL_TAX",
+                    "display_tax_in_shipping_amount": "DISPLAY_CART_TAX_IN_SHIPPING_EXL_TAX",
+                    "include_tax_in_order_total": false,
+                    "display_full_tax_summary": false,
+                    "display_zero_tax_subtotal": false
+                },
+                "applied_taxes": []
+            }
+        }
+    }
+}
+
+

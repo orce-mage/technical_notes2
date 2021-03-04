@@ -1,0 +1,6 @@
+SELECT m.entity_id, v.value, r.entity_id FROM catalog_product_entity AS m LEFT JOIN catalog_product_entity_int AS v ON m.entity_id=v.entity_id AND v.attribute_id=99 
+LEFT JOIN url_rewrite AS r ON m.entity_id=r.entity_id AND r.entity_type='product' WHERE r.entity_id IS NULL and v.value != 1;
+
+SELECT * FROM url_rewrite WHERE entity_id=2004
+
+magento ok:urlrewrites:regenerate --entity-type=product --products-range=2004-2111 --no-regen-url-key

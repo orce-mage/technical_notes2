@@ -1,0 +1,5 @@
+vendor\magento\module-customer\Model\AccountManagement.php :: authenticate($username, $password)
+
+vendor\magento\module-customer\Model\Authentication.php :: authenticate($customerId, $password)
+
+vendor\magento\framework\Encryption\Encryptor.php :: validateHash($password, $hash), isValidHash($password, $hash)

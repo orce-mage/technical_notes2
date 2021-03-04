@@ -1,0 +1,10 @@
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+scss
+
+https://css-tricks.com/the-sass-ampersand/
+
+length adjust
+
+-webkit-line-clamp
+-webkit-box-orient

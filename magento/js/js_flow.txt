@@ -1,0 +1,41 @@
+1. UiClass
+   Magento_Ui/js/lib/core/class.js
+
+   --------------------------
+UiClass = function () {
+    var obj = this;
+
+    if (!_.isObject(obj) || Object.getPrototypeOf(obj) !== UiClass.prototype) {
+        obj = Object.create(UiClass.prototype);
+    }
+
+    obj.initialize.apply(obj, arguments);
+
+    return obj;
+};
+
+   --------------------------
+2. ElementClass
+   Magento_Ui/js/lib/core/element/element.js
+
+   it extends UiClass
+
+3. main.js
+    
+
+   ----------------------------------
+   function init(el, config, component) {
+        require([component], function (fn) {
+
+            if (typeof fn === 'object') {
+                fn = fn[component].bind(fn);
+            }
+
+            if (_.isFunction(fn)) {
+                fn(config, el);
+            } else if ($(el)[component]) {
+                $(el)[component](config);
+            }
+        }, xxx
+    } 
+   ---------------------------------------

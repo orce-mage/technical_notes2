@@ -1,0 +1,9 @@
+*************font************
+https://web.dev/font-display/
+***********speed index**********
+https://www.fasterize.com/en/blog/understand-and-improve-the-time-to-interactive/#:~:text=What%20is%20Time%20To%20Interactive,by%20the%20First%20Contentful%20Paint)
+
+********************
+https://developers.google.com/web/tools/chrome-devtools/speed/get-started#main
+**********************
+https://web.dev/tbt/?utm_source=devtools

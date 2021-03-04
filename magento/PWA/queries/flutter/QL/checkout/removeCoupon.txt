@@ -1,0 +1,2372 @@
+mutation {
+    removeCoupon {
+        cartData: getCartForCustomer {
+            subtotal,
+            subtotal_incl_tax,
+            items_qty,
+            tax_amount,
+            grand_total,
+            discount_amount,
+            quote_currency_code,
+            subtotal_with_discount,
+            coupon_code,
+            shipping_amount,
+            shipping_incl_tax,
+            is_virtual,
+            applied_rule_ids,
+            items {
+                qty,
+                sku,
+                price,
+                item_id,
+                row_total,
+                row_total_incl_tax,
+                tax_amount,
+                tax_percent,
+                discount_amount,
+                discount_percent,
+                customizable_options {
+                    id,
+                    label,
+                    is_required,
+                    values {
+                        id,
+                        label,
+                        value,
+                        price {
+                            value,
+                            units,
+                            type
+                        }
+                    },
+                    sort_order
+                },
+                bundle_options {
+                    id,
+                    label,
+                    type,
+                    values {
+                        id,
+                        label,
+                        quantity,
+                        price
+                    }
+                },
+                product {
+                    id,
+                    sku,
+                    name,
+                    type_id,
+                    stock_status,
+                    price_range {
+                        minimum_price {
+                            discount {
+                                amount_off,
+                                percent_off
+                            },
+                            final_price {
+                                currency,
+                                value
+                            },
+                            regular_price {
+                                currency,
+                                value
+                            }
+                        }
+                    },
+                    thumbnail {
+                        path,
+                        url
+                    },
+                    small_image {
+                        path,
+                        url
+                    },
+                    short_description {
+                        html
+                    },
+                    special_from_date,
+                    special_to_date,
+                    price_tiers {
+                        discount {
+                            amount_off,
+                            percent_off
+                        },
+                        final_price {
+                            currency,
+                            value
+                        },
+                        quantity
+                    },
+                    attributes: s_attributes {
+                        attribute_id,
+                        attribute_value,
+                        attribute_code,
+                        attribute_type,
+                        attribute_label,
+                        attribute_options {
+                            label,
+                            value,
+                            swatch_data {
+                                type,
+                                value
+                            }
+                        }
+                    },
+                    url,
+                    review_count,
+                    rating_summary,
+                    ...on ConfigurableProduct {
+                        configurable_options {
+                            attribute_code,
+                            values {
+                                value_index
+                            }
+                        },
+                        variants {
+                            product {
+                                id,
+                                sku,
+                                name,
+                                type_id,
+                                stock_status,
+                                price_range {
+                                    minimum_price {
+                                        discount {
+                                            amount_off,
+                                            percent_off
+                                        },
+                                        final_price {
+                                            currency,
+                                            value
+                                        },
+                                        regular_price {
+                                            currency,
+                                            value
+                                        }
+                                    }
+                                },
+                                thumbnail {
+                                    path,
+                                    url
+                                },
+                                small_image {
+                                    path,
+                                    url
+                                },
+                                short_description {
+                                    html
+                                },
+                                special_from_date,
+                                special_to_date,
+                                price_tiers {
+                                    discount {
+                                        amount_off,
+                                        percent_off
+                                    },
+                                    final_price {
+                                        currency,
+                                        value
+                                    },
+                                    quantity
+                                },
+                                attributes: s_attributes {
+                                    attribute_id,
+                                    attribute_value,
+                                    attribute_code,
+                                    attribute_type,
+                                    attribute_label
+                                },
+                                product_links {
+                                    position,
+                                    link_type,
+                                    linked_product_sku
+                                }
+                            }
+                        }
+                    },
+                    ...on BundleProduct {
+                        price_view,
+                        dynamic_price,
+                        dynamic_sku,
+                        ship_bundle_items,
+                        dynamic_weight,
+                        items {
+                            option_id,
+                            title,
+                            required,
+                            type,
+                            position,
+                            sku,
+                            options {
+                                id,
+                                label,
+                                quantity,
+                                position,
+                                is_default,
+                                price,
+                                price_type,
+                                can_change_quantity,
+                                product {
+                                    id,
+                                    sku,
+                                    name,
+                                    type_id,
+                                    stock_status,
+                                    price_range {
+                                        minimum_price {
+                                            discount {
+                                                amount_off,
+                                                percent_off
+                                            },
+                                            final_price {
+                                                currency,
+                                                value
+                                            },
+                                            regular_price {
+                                                currency,
+                                                value
+                                            }
+                                        }
+                                    },
+                                    thumbnail {
+                                        path,
+                                        url
+                                    },
+                                    small_image {
+                                        path,
+                                        url
+                                    },
+                                    short_description {
+                                        html
+                                    },
+                                    special_from_date,
+                                    special_to_date,
+                                    price_tiers {
+                                        discount {
+                                            amount_off,
+                                            percent_off
+                                        },
+                                        final_price {
+                                            currency,
+                                            value
+                                        },
+                                        quantity
+                                    },
+                                    attributes: s_attributes {
+                                        attribute_id,
+                                        attribute_value,
+                                        attribute_code,
+                                        attribute_type,
+                                        attribute_label
+                                    },
+                                    product_links {
+                                        position,
+                                        link_type,
+                                        linked_product_sku
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    product_links {
+                        position,
+                        link_type,
+                        linked_product_sku
+                    }
+                }
+            },
+            cart_display_config {
+                display_tax_in_price,
+                display_tax_in_subtotal,
+                display_tax_in_shipping_amount,
+                include_tax_in_order_total,
+                display_full_tax_summary,
+                display_zero_tax_subtotal
+            },
+            applied_taxes {
+                rates {
+                    percent,
+                    title
+                }
+            }
+        }
+    }
+}
+
+----------------------------------
+input 
+
+Empty
+----------------------------------
+response
+
+success
+
+{
+    "data": {
+        "removeCoupon": {
+            "cartData": {
+                "subtotal": 897,
+                "subtotal_incl_tax": 897,
+                "items_qty": 3,
+                "tax_amount": 0,
+                "grand_total": 927,
+                "discount_amount": 0,
+                "quote_currency_code": "AED",
+                "subtotal_with_discount": 897,
+                "coupon_code": null,
+                "shipping_amount": null,
+                "shipping_incl_tax": null,
+                "is_virtual": false,
+                "applied_rule_ids": null,
+                "items": [{
+                        "qty": 1,
+                        "sku": "r9-1584",
+                        "price": 199,
+                        "item_id": 144,
+                        "row_total": 199,
+                        "row_total_incl_tax": 199,
+                        "tax_amount": 0,
+                        "tax_percent": 0,
+                        "discount_amount": 0,
+                        "discount_percent": 0,
+                        "customizable_options": [],
+                        "bundle_options": [],
+                        "product": {
+                            "id": 1583,
+                            "sku": "r9",
+                            "name": "comforter reem velvet available single size 4 pcs",
+                            "type_id": "configurable",
+                            "stock_status": "IN_STOCK",
+                            "price_range": {
+                                "minimum_price": {
+                                    "discount": {
+                                        "amount_off": 0,
+                                        "percent_off": 0
+                                    },
+                                    "final_price": {
+                                        "currency": "AED",
+                                        "value": 199
+                                    },
+                                    "regular_price": {
+                                        "currency": "AED",
+                                        "value": 199
+                                    }
+                                }
+                            },
+                            "thumbnail": {
+                                "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-6.jpeg",
+                                "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-6.jpeg"
+                            },
+                            "small_image": {
+                                "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-6.jpeg",
+                                "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-6.jpeg"
+                            },
+                            "short_description": {
+                                "html": ""
+                            },
+                            "special_from_date": null,
+                            "special_to_date": null,
+                            "price_tiers": [],
+                            "attributes": [{
+                                    "attribute_id": 137,
+                                    "attribute_value": null,
+                                    "attribute_code": "colors",
+                                    "attribute_type": "select",
+                                    "attribute_label": "colors",
+                                    "attribute_options": [{
+                                            "label": "15",
+                                            "value": "142",
+                                            "swatch_data": null
+                                        }, {
+                                            "label": "16",
+                                            "value": "122",
+                                            "swatch_data": null
+                                        }, {
+                                            "label": "17",
+                                            "value": "226",
+                                            "swatch_data": null
+                                        }, {
+                                            "label": "18",
+                                            "value": "306",
+                                            "swatch_data": null
+                                        }, {
+                                            "label": "19",
+                                            "value": "305",
+                                            "swatch_data": null
+                                        }, {
+                                            "label": "20",
+                                            "value": "123",
+                                            "swatch_data": null
+                                        }, {
+                                            "label": "21",
+                                            "value": "311",
+                                            "swatch_data": null
+                                        }
+                                    ]
+                                }, {
+                                    "attribute_id": 138,
+                                    "attribute_value": null,
+                                    "attribute_code": "size",
+                                    "attribute_type": "select",
+                                    "attribute_label": "size",
+                                    "attribute_options": [{
+                                            "label": "170x230",
+                                            "value": "5",
+                                            "swatch_data": null
+                                        }
+                                    ]
+                                }, {
+                                    "attribute_id": 97,
+                                    "attribute_value": "1",
+                                    "attribute_code": "status",
+                                    "attribute_type": "select",
+                                    "attribute_label": "Enable Product",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 73,
+                                    "attribute_value": "comforter reem velvet available single size 4 pcs",
+                                    "attribute_code": "name",
+                                    "attribute_type": "text",
+                                    "attribute_label": "Product Name",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 77,
+                                    "attribute_value": "199.000000",
+                                    "attribute_code": "price",
+                                    "attribute_type": "price",
+                                    "attribute_label": "Price",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 87,
+                                    "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-6.jpeg",
+                                    "attribute_code": "image",
+                                    "attribute_type": "media_image",
+                                    "attribute_label": "Base",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 88,
+                                    "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-6.jpeg",
+                                    "attribute_code": "small_image",
+                                    "attribute_type": "media_image",
+                                    "attribute_label": "Small",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 89,
+                                    "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-6.jpeg",
+                                    "attribute_code": "thumbnail",
+                                    "attribute_type": "media_image",
+                                    "attribute_label": "Thumbnail",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 121,
+                                    "attribute_value": "comforter-reem-velvet-available-single-size-4-pcs",
+                                    "attribute_code": "url_key",
+                                    "attribute_type": "text",
+                                    "attribute_label": "URL Key",
+                                    "attribute_options": []
+                                }
+                            ],
+                            "url": "\/comforter-reem-velvet-available-single-size-4-pcs.html",
+                            "review_count": 0,
+                            "rating_summary": 0,
+                            "configurable_options": [{
+                                    "attribute_code": "colors",
+                                    "values": [{
+                                            "value_index": 122
+                                        }, {
+                                            "value_index": 226
+                                        }, {
+                                            "value_index": 311
+                                        }, {
+                                            "value_index": 142
+                                        }, {
+                                            "value_index": 123
+                                        }, {
+                                            "value_index": 306
+                                        }, {
+                                            "value_index": 305
+                                        }
+                                    ]
+                                }, {
+                                    "attribute_code": "size",
+                                    "values": [{
+                                            "value_index": 5
+                                        }
+                                    ]
+                                }
+                            ],
+                            "variants": [{
+                                    "product": {
+                                        "id": 1584,
+                                        "sku": "r9-1584",
+                                        "name": "comforter reem velvet available single size 4 pcs - 15, 170x230",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 199
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 199
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-1.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-1.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-1.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-1.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 15, size: 170x230"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "142",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "5",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter reem velvet available single size 4 pcs - 15, 170x230",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "199.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 15, size: 170x230",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-1.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-1.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-1.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-reem-velvet-available-single-size-4-pcs-15-170x230",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }, {
+                                    "product": {
+                                        "id": 1585,
+                                        "sku": "r9-1585",
+                                        "name": "comforter reem velvet available single size 4 pcs - 17, 170x230",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 199
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 199
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-3.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-3.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-3.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-3.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 17, size: 170x230"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "226",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "5",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter reem velvet available single size 4 pcs - 17, 170x230",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "199.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 17, size: 170x230",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-3.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-3.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-3.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-reem-velvet-available-single-size-4-pcs-17-170x230",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }, {
+                                    "product": {
+                                        "id": 1586,
+                                        "sku": "r9-1586",
+                                        "name": "comforter reem velvet available single size 4 pcs - 16, 170x230",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 199
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 199
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-4.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-4.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-4.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-4.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 16, size: 170x230"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "122",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "5",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter reem velvet available single size 4 pcs - 16, 170x230",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "199.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 16, size: 170x230",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-4.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-4.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-4.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-reem-velvet-available-single-size-4-pcs-16-170x230",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }, {
+                                    "product": {
+                                        "id": 1587,
+                                        "sku": "r9-1587",
+                                        "name": "comforter reem velvet available single size 4 pcs - 19, 170x230",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 199
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 199
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 19, size: 170x230"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "305",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "5",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter reem velvet available single size 4 pcs - 19, 170x230",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "199.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 19, size: 170x230",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-reem-velvet-available-single-size-4-pcs-19-170x230",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }, {
+                                    "product": {
+                                        "id": 1588,
+                                        "sku": "r9-1588",
+                                        "name": "comforter reem velvet available single size 4 pcs - 18, 170x230",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 199
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 199
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-5.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-5.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-5.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-5.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 18, size: 170x230"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "306",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "5",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter reem velvet available single size 4 pcs - 18, 170x230",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "199.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 18, size: 170x230",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-5.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-5.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-5.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-reem-velvet-available-single-size-4-pcs-18-170x230",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }, {
+                                    "product": {
+                                        "id": 1589,
+                                        "sku": "r9-1589",
+                                        "name": "comforter reem velvet available single size 4 pcs - 20, 170x230",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 199
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 199
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-2.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-2.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-2.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-2.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 20, size: 170x230"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "123",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "5",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter reem velvet available single size 4 pcs - 20, 170x230",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "199.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 20, size: 170x230",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-2.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-2.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-2.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-reem-velvet-available-single-size-4-pcs-20-170x230",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }, {
+                                    "product": {
+                                        "id": 1590,
+                                        "sku": "r9-1590",
+                                        "name": "comforter reem velvet available single size 4 pcs - 21, 170x230",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 199
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 199
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-6.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-6.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-6.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-6.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 21, size: 170x230"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "311",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "5",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter reem velvet available single size 4 pcs - 21, 170x230",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "199.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 21, size: 170x230",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-6.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-6.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-4.36.03-PM-6.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-reem-velvet-available-single-size-4-pcs-21-170x230",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }
+                            ],
+                            "product_links": []
+                        }
+                    }, {
+                        "qty": 1,
+                        "sku": "so3-1572",
+                        "price": 349,
+                        "item_id": 148,
+                        "row_total": 349,
+                        "row_total_incl_tax": 349,
+                        "tax_amount": 0,
+                        "tax_percent": 0,
+                        "discount_amount": 0,
+                        "discount_percent": 0,
+                        "customizable_options": [],
+                        "bundle_options": [],
+                        "product": {
+                            "id": 1569,
+                            "sku": "so3",
+                            "name": "comforter sophia velvet double face available double size 7 pcs",
+                            "type_id": "configurable",
+                            "stock_status": "IN_STOCK",
+                            "price_range": {
+                                "minimum_price": {
+                                    "discount": {
+                                        "amount_off": 0,
+                                        "percent_off": 0
+                                    },
+                                    "final_price": {
+                                        "currency": "AED",
+                                        "value": 349
+                                    },
+                                    "regular_price": {
+                                        "currency": "AED",
+                                        "value": 349
+                                    }
+                                }
+                            },
+                            "thumbnail": {
+                                "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg"
+                            },
+                            "small_image": {
+                                "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg"
+                            },
+                            "short_description": {
+                                "html": ""
+                            },
+                            "special_from_date": null,
+                            "special_to_date": null,
+                            "price_tiers": [],
+                            "attributes": [{
+                                    "attribute_id": 137,
+                                    "attribute_value": null,
+                                    "attribute_code": "colors",
+                                    "attribute_type": "select",
+                                    "attribute_label": "colors",
+                                    "attribute_options": [{
+                                            "label": "2",
+                                            "value": "82",
+                                            "swatch_data": null
+                                        }, {
+                                            "label": "4",
+                                            "value": "83",
+                                            "swatch_data": null
+                                        }, {
+                                            "label": "5",
+                                            "value": "84",
+                                            "swatch_data": null
+                                        }, {
+                                            "label": "6",
+                                            "value": "85",
+                                            "swatch_data": null
+                                        }, {
+                                            "label": "7",
+                                            "value": "86",
+                                            "swatch_data": null
+                                        }
+                                    ]
+                                }, {
+                                    "attribute_id": 138,
+                                    "attribute_value": null,
+                                    "attribute_code": "size",
+                                    "attribute_type": "select",
+                                    "attribute_label": "size",
+                                    "attribute_options": [{
+                                            "label": "240x260",
+                                            "value": "8",
+                                            "swatch_data": null
+                                        }
+                                    ]
+                                }, {
+                                    "attribute_id": 97,
+                                    "attribute_value": "1",
+                                    "attribute_code": "status",
+                                    "attribute_type": "select",
+                                    "attribute_label": "Enable Product",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 73,
+                                    "attribute_value": "comforter sophia velvet double face available double size 7 pcs",
+                                    "attribute_code": "name",
+                                    "attribute_type": "text",
+                                    "attribute_label": "Product Name",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 77,
+                                    "attribute_value": "349.000000",
+                                    "attribute_code": "price",
+                                    "attribute_type": "price",
+                                    "attribute_label": "Price",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 87,
+                                    "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                    "attribute_code": "image",
+                                    "attribute_type": "media_image",
+                                    "attribute_label": "Base",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 88,
+                                    "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                    "attribute_code": "small_image",
+                                    "attribute_type": "media_image",
+                                    "attribute_label": "Small",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 89,
+                                    "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                    "attribute_code": "thumbnail",
+                                    "attribute_type": "media_image",
+                                    "attribute_label": "Thumbnail",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 121,
+                                    "attribute_value": "comforter-sophia-velvet-double-face-available-double-size-7-pcs-1569",
+                                    "attribute_code": "url_key",
+                                    "attribute_type": "text",
+                                    "attribute_label": "URL Key",
+                                    "attribute_options": []
+                                }
+                            ],
+                            "url": "\/comforter-sophia-velvet-double-face-available-double-size-7-pcs-1569.html",
+                            "review_count": 0,
+                            "rating_summary": 0,
+                            "configurable_options": [{
+                                    "attribute_code": "colors",
+                                    "values": [{
+                                            "value_index": 84
+                                        }, {
+                                            "value_index": 83
+                                        }, {
+                                            "value_index": 82
+                                        }, {
+                                            "value_index": 86
+                                        }, {
+                                            "value_index": 85
+                                        }
+                                    ]
+                                }, {
+                                    "attribute_code": "size",
+                                    "values": [{
+                                            "value_index": 8
+                                        }
+                                    ]
+                                }
+                            ],
+                            "variants": [{
+                                    "product": {
+                                        "id": 1571,
+                                        "sku": "so3-1571",
+                                        "name": "comforter sophia velvet double face available double size 7 pcs - 4, 240x260",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-1.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-1.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-1.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-1.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 4, size: 240x260"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "83",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "8",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter sophia velvet double face available double size 7 pcs - 4, 240x260",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "349.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 4, size: 240x260",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-1.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-1.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-1.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-sophia-velvet-double-face-available-double-size-7-pcs-4-240x260-1571",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }, {
+                                    "product": {
+                                        "id": 1572,
+                                        "sku": "so3-1572",
+                                        "name": "comforter sophia velvet double face available double size 7 pcs - 5, 240x260",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 5, size: 240x260"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "84",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "8",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter sophia velvet double face available double size 7 pcs - 5, 240x260",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "349.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 5, size: 240x260",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-sophia-velvet-double-face-available-double-size-7-pcs-5-240x260-1572",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }, {
+                                    "product": {
+                                        "id": 1573,
+                                        "sku": "so3-1573",
+                                        "name": "comforter sophia velvet double face available double size 7 pcs - 6, 240x260",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-3.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-3.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-3.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-3.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 6, size: 240x260"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "85",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "8",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter sophia velvet double face available double size 7 pcs - 6, 240x260",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "349.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 6, size: 240x260",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-3.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-3.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-3.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-sophia-velvet-double-face-available-double-size-7-pcs-6-240x260-1573",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }, {
+                                    "product": {
+                                        "id": 1574,
+                                        "sku": "so3-1574",
+                                        "name": "comforter sophia velvet double face available double size 7 pcs - 7, 240x260",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 7, size: 240x260"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "86",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "8",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter sophia velvet double face available double size 7 pcs - 7, 240x260",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "349.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 7, size: 240x260",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-sophia-velvet-double-face-available-double-size-7-pcs-7-240x260-1574",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }
+                            ],
+                            "product_links": []
+                        }
+                    }, {
+                        "qty": 1,
+                        "sku": "so3-1574",
+                        "price": 349,
+                        "item_id": 152,
+                        "row_total": 349,
+                        "row_total_incl_tax": 349,
+                        "tax_amount": 0,
+                        "tax_percent": 0,
+                        "discount_amount": 0,
+                        "discount_percent": 0,
+                        "customizable_options": [],
+                        "bundle_options": [],
+                        "product": {
+                            "id": 1569,
+                            "sku": "so3",
+                            "name": "comforter sophia velvet double face available double size 7 pcs",
+                            "type_id": "configurable",
+                            "stock_status": "IN_STOCK",
+                            "price_range": {
+                                "minimum_price": {
+                                    "discount": {
+                                        "amount_off": 0,
+                                        "percent_off": 0
+                                    },
+                                    "final_price": {
+                                        "currency": "AED",
+                                        "value": 349
+                                    },
+                                    "regular_price": {
+                                        "currency": "AED",
+                                        "value": 349
+                                    }
+                                }
+                            },
+                            "thumbnail": {
+                                "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg"
+                            },
+                            "small_image": {
+                                "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg"
+                            },
+                            "short_description": {
+                                "html": ""
+                            },
+                            "special_from_date": null,
+                            "special_to_date": null,
+                            "price_tiers": [],
+                            "attributes": [{
+                                    "attribute_id": 137,
+                                    "attribute_value": null,
+                                    "attribute_code": "colors",
+                                    "attribute_type": "select",
+                                    "attribute_label": "colors",
+                                    "attribute_options": [{
+                                            "label": "2",
+                                            "value": "82",
+                                            "swatch_data": null
+                                        }, {
+                                            "label": "4",
+                                            "value": "83",
+                                            "swatch_data": null
+                                        }, {
+                                            "label": "5",
+                                            "value": "84",
+                                            "swatch_data": null
+                                        }, {
+                                            "label": "6",
+                                            "value": "85",
+                                            "swatch_data": null
+                                        }, {
+                                            "label": "7",
+                                            "value": "86",
+                                            "swatch_data": null
+                                        }
+                                    ]
+                                }, {
+                                    "attribute_id": 138,
+                                    "attribute_value": null,
+                                    "attribute_code": "size",
+                                    "attribute_type": "select",
+                                    "attribute_label": "size",
+                                    "attribute_options": [{
+                                            "label": "240x260",
+                                            "value": "8",
+                                            "swatch_data": null
+                                        }
+                                    ]
+                                }, {
+                                    "attribute_id": 97,
+                                    "attribute_value": "1",
+                                    "attribute_code": "status",
+                                    "attribute_type": "select",
+                                    "attribute_label": "Enable Product",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 73,
+                                    "attribute_value": "comforter sophia velvet double face available double size 7 pcs",
+                                    "attribute_code": "name",
+                                    "attribute_type": "text",
+                                    "attribute_label": "Product Name",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 77,
+                                    "attribute_value": "349.000000",
+                                    "attribute_code": "price",
+                                    "attribute_type": "price",
+                                    "attribute_label": "Price",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 87,
+                                    "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                    "attribute_code": "image",
+                                    "attribute_type": "media_image",
+                                    "attribute_label": "Base",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 88,
+                                    "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                    "attribute_code": "small_image",
+                                    "attribute_type": "media_image",
+                                    "attribute_label": "Small",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 89,
+                                    "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                    "attribute_code": "thumbnail",
+                                    "attribute_type": "media_image",
+                                    "attribute_label": "Thumbnail",
+                                    "attribute_options": []
+                                }, {
+                                    "attribute_id": 121,
+                                    "attribute_value": "comforter-sophia-velvet-double-face-available-double-size-7-pcs-1569",
+                                    "attribute_code": "url_key",
+                                    "attribute_type": "text",
+                                    "attribute_label": "URL Key",
+                                    "attribute_options": []
+                                }
+                            ],
+                            "url": "\/comforter-sophia-velvet-double-face-available-double-size-7-pcs-1569.html",
+                            "review_count": 0,
+                            "rating_summary": 0,
+                            "configurable_options": [{
+                                    "attribute_code": "colors",
+                                    "values": [{
+                                            "value_index": 84
+                                        }, {
+                                            "value_index": 83
+                                        }, {
+                                            "value_index": 82
+                                        }, {
+                                            "value_index": 86
+                                        }, {
+                                            "value_index": 85
+                                        }
+                                    ]
+                                }, {
+                                    "attribute_code": "size",
+                                    "values": [{
+                                            "value_index": 8
+                                        }
+                                    ]
+                                }
+                            ],
+                            "variants": [{
+                                    "product": {
+                                        "id": 1571,
+                                        "sku": "so3-1571",
+                                        "name": "comforter sophia velvet double face available double size 7 pcs - 4, 240x260",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-1.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-1.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-1.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-1.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 4, size: 240x260"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "83",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "8",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter sophia velvet double face available double size 7 pcs - 4, 240x260",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "349.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 4, size: 240x260",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-1.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-1.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-1.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-sophia-velvet-double-face-available-double-size-7-pcs-4-240x260-1571",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }, {
+                                    "product": {
+                                        "id": 1572,
+                                        "sku": "so3-1572",
+                                        "name": "comforter sophia velvet double face available double size 7 pcs - 5, 240x260",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 5, size: 240x260"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "84",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "8",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter sophia velvet double face available double size 7 pcs - 5, 240x260",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "349.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 5, size: 240x260",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-sophia-velvet-double-face-available-double-size-7-pcs-5-240x260-1572",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }, {
+                                    "product": {
+                                        "id": 1573,
+                                        "sku": "so3-1573",
+                                        "name": "comforter sophia velvet double face available double size 7 pcs - 6, 240x260",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-3.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-3.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-3.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-3.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 6, size: 240x260"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "85",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "8",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter sophia velvet double face available double size 7 pcs - 6, 240x260",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "349.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 6, size: 240x260",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-3.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-3.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-3.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-sophia-velvet-double-face-available-double-size-7-pcs-6-240x260-1573",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }, {
+                                    "product": {
+                                        "id": 1574,
+                                        "sku": "so3-1574",
+                                        "name": "comforter sophia velvet double face available double size 7 pcs - 7, 240x260",
+                                        "type_id": "simple",
+                                        "stock_status": "IN_STOCK",
+                                        "price_range": {
+                                            "minimum_price": {
+                                                "discount": {
+                                                    "amount_off": 0,
+                                                    "percent_off": 0
+                                                },
+                                                "final_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                },
+                                                "regular_price": {
+                                                    "currency": "AED",
+                                                    "value": 349
+                                                }
+                                            }
+                                        },
+                                        "thumbnail": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/10eca27e92b40828b36d854837e91789\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg"
+                                        },
+                                        "small_image": {
+                                            "path": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                            "url": "http:\/\/vdev.store.calvocover.com\/media\/catalog\/product\/cache\/8d7a804194fd22aaa3c0d7c5bef3a404\/W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg"
+                                        },
+                                        "short_description": {
+                                            "html": "colors: 7, size: 240x260"
+                                        },
+                                        "special_from_date": null,
+                                        "special_to_date": null,
+                                        "price_tiers": [],
+                                        "attributes": [{
+                                                "attribute_id": 137,
+                                                "attribute_value": "86",
+                                                "attribute_code": "colors",
+                                                "attribute_type": "select",
+                                                "attribute_label": "colors"
+                                            }, {
+                                                "attribute_id": 138,
+                                                "attribute_value": "8",
+                                                "attribute_code": "size",
+                                                "attribute_type": "select",
+                                                "attribute_label": "size"
+                                            }, {
+                                                "attribute_id": 97,
+                                                "attribute_value": "1",
+                                                "attribute_code": "status",
+                                                "attribute_type": "select",
+                                                "attribute_label": "Enable Product"
+                                            }, {
+                                                "attribute_id": 73,
+                                                "attribute_value": "comforter sophia velvet double face available double size 7 pcs - 7, 240x260",
+                                                "attribute_code": "name",
+                                                "attribute_type": "text",
+                                                "attribute_label": "Product Name"
+                                            }, {
+                                                "attribute_id": 77,
+                                                "attribute_value": "349.000000",
+                                                "attribute_code": "price",
+                                                "attribute_type": "price",
+                                                "attribute_label": "Price"
+                                            }, {
+                                                "attribute_id": 76,
+                                                "attribute_value": "colors: 7, size: 240x260",
+                                                "attribute_code": "short_description",
+                                                "attribute_type": "textarea",
+                                                "attribute_label": "Short Description"
+                                            }, {
+                                                "attribute_id": 87,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                                "attribute_code": "image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Base"
+                                            }, {
+                                                "attribute_id": 88,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                                "attribute_code": "small_image",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Small"
+                                            }, {
+                                                "attribute_id": 89,
+                                                "attribute_value": "W\/h\/WhatsApp-Image-2020-11-25-at-3.58.54-PM-4.jpeg",
+                                                "attribute_code": "thumbnail",
+                                                "attribute_type": "media_image",
+                                                "attribute_label": "Thumbnail"
+                                            }, {
+                                                "attribute_id": 121,
+                                                "attribute_value": "comforter-sophia-velvet-double-face-available-double-size-7-pcs-7-240x260-1574",
+                                                "attribute_code": "url_key",
+                                                "attribute_type": "text",
+                                                "attribute_label": "URL Key"
+                                            }
+                                        ],
+                                        "product_links": []
+                                    }
+                                }
+                            ],
+                            "product_links": []
+                        }
+                    }
+                ],
+                "cart_display_config": {
+                    "display_tax_in_price": "DISPLAY_CART_TAX_IN_PRICE_EXL_TAX",
+                    "display_tax_in_subtotal": "DISPLAY_CART_TAX_IN_SUBTOTAL_EXL_TAX",
+                    "display_tax_in_shipping_amount": "DISPLAY_CART_TAX_IN_SHIPPING_EXL_TAX",
+                    "include_tax_in_order_total": false,
+                    "display_full_tax_summary": false,
+                    "display_zero_tax_subtotal": false
+                },
+                "applied_taxes": []
+            }
+        }
+    }
+}
+

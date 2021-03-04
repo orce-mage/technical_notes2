@@ -1,0 +1,56 @@
+mutation($address_1: EstimateShippingCostsAddress!, $guestCartId_1: String!) {
+    estimateShippingCosts(address: $address_1, guestCartId: $guestCartId_1) {
+        amount,
+        available,
+        base_amount,
+        method_code,
+        carrier_code,
+        method_title,
+        carrier_title,
+        error_message,
+        price_excl_tax,
+        price_incl_tax
+    }
+}
+
+--------------------------------------------------
+{
+  "address_1": {
+    "country_id": "AE",
+    "region": "",
+    "city": "",
+    "postcode": ""
+  },
+  "guestCartId_1": "XoSB986B84NfBf39MKLNnKuY4iRzkQGg"
+}
+---------------------------------------------------
+response
+
+{
+    "data": {
+        "estimateShippingCosts": [{
+                "amount": 0,
+                "available": false,
+                "base_amount": null,
+                "method_code": null,
+                "carrier_code": "ups",
+                "method_title": null,
+                "carrier_title": "United Parcel Service",
+                "error_message": "This shipping method is not available. Please specify the zip code.",
+                "price_excl_tax": 0,
+                "price_incl_tax": 0
+            }, {
+                "amount": 30,
+                "available": true,
+                "base_amount": 30,
+                "method_code": "flatrate",
+                "carrier_code": "flatrate",
+                "method_title": "Fixed",
+                "carrier_title": "Flat Rate",
+                "error_message": "false",
+                "price_excl_tax": 30,
+                "price_incl_tax": 30
+            }
+        ]
+    }
+}

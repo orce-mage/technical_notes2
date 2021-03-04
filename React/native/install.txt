@@ -1,0 +1,58 @@
+1. Install Chocolatey,
+   https://chocolatey.org/
+2. install node, sdk
+	node 10.19.0
+   choco install -y nodejs.install openjdk8
+3. Android development environment
+   1) Install Android Studio
+   2) Install the Android SDK
+	  a. Select the "SDK Platforms" tab from within the SDK Manager, then check the box next to "Show Package Details" in the bottom right corner. 
+		Look for and expand the Android 10 (Q) entry, then 	make sure the following items are checked:
+
+		Android SDK Platform 29
+		Intel x86 Atom_64 System Image
+	  b. select the "SDK Tools" tab and check the box next to "Show Package Details" here as well. 
+		Look for and expand the "Android SDK Build-Tools" entry, then make sure that 29.0.2 is selected.
+
+		Finally, click "Apply" to download and install the Android SDK and related build tools.
+	  c. Configure the ANDROID_HOME environment variable
+	    ANDROID_HOME   >>> F:\Android Installed\Android\Sdk
+		path           >>> F:\Android Installed\Android\Sdk\platform-tools
+4. Creating a new application
+	npx react-native init AwesomeProject
+	>>> If you want to start a new project with a specific React Native version, you can use the --version argument:
+		npx react-native init AwesomeProject --version X.XX.X
+	>>> You can also start a project with a custom React Native template, like TypeScript, with --template argument:
+		npx react-native init AwesomeTSProject --template react-native-template-typescript
+5. Preparing the Android device
+	
+	Using a virtual device
+	1)If you don't have HAXM installed, click on "Install HAXM" or follow these instructions to set it up, then go back to the AVD Manager.
+		https://github.com/intel/haxm/wiki/Installation-Instructions-on-Windows
+	   A. Downloading Intel HAXM AND install
+	     >>> Downloading through Android SDK Manager
+			Start the Android SDK Manager.
+			Under Extras, check the box next to "Intel x86 Emulator Accelerator (HAXM)."
+	   B. To verify that Intel HAXM is running, open a Command Prompt window with administrator privileges (Run as Administrator) and execute the following command:
+			sc query intelhaxm	
+	2)If you use Android Studio to open ./AwesomeProject/android, you can see the list of available Android Virtual Devices (AVDs) by opening the "AVD Manager" from within Android Studio. 
+		Look for an icon that looks like this:
+
+		Android Studio AVD Manager
+
+		If you have recently installed Android Studio, you will likely need to create a new AVD. Select "Create Virtual Device...", 
+		then pick any Phone from the list and click "Next", then select the Q API Level 29 image.
+6. Running your React Native application
+	Step 1: Start Metro
+		To start Metro, run npx react-native start inside your React Native project folder:
+		npx react-native start
+	Step 2: Start your application
+		npx react-native run-android
+		
+7. Visual Studio Code
+  1) Install the extension called "React Native Tools"
+	 https://github.com/Microsoft/vscode-react-native
+  2) Debugging React Native applications
+     
+----------------------------
+npm install expo-cli --global  

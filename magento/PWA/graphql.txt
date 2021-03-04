@@ -1,0 +1,24 @@
+Magento\Framework\App\FrontControllerInterface -> Magento\GraphQl\Controller\GraphQL
+
+1. module-graph-ql-cache\Controller\Plugin\GraphQl.php :: beforeDispatch
+2. module-page-cache/Plugin/RegisterFormKeyFromCookie.php :: beforeDispatch
+3. module-page-cache/Model/App/FrontController/BuiltinPlugin.php :: aroundDispatch
+4. vendor/scandipwa/persisted-query/src/Plugin/PersistedQuery.php :: aroundDispatch
+5. vendor/scandipwa/persisted-query/src/Plugin/PersistedQuery.php :: processRequest
+
+ref:
+	<type name="Magento\GraphQl\Controller\GraphQl">
+        <plugin name="scandipwa_persisted_query" type="ScandiPWA\PersistedQuery\Plugin\PersistedQuery" />
+    </type>
+
+
+
+-----------------------------------------------
+Category List QL
+https://devdocs.magento.com/guides/v2.4/graphql/queries/available-stores.html
+https://devdocs.magento.com/guides/v2.4/graphql/queries/category-list.html
+
+
+
+---------------------------------------------
+ScandiPWA

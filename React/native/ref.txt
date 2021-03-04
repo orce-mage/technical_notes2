@@ -1,0 +1,9 @@
+https://www.npmjs.com/package/react-native-render-html
+
+https://github.com/kristerkari/react-native-sass-transformer
+
+https://stackoverflow.com/questions/35463547/what-is-the-quickest-way-to-convert-a-react-app-to-react-native
+
+https://www.freecodecamp.org/news/converting-a-react-app-to-react-native/
+
+https://www.freakyjolly.com/ionic-react-application-tutorial/#.YDe3rOgzaUk

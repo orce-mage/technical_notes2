@@ -1,0 +1,49 @@
+-----------------------------
+Product List Not Loading
+http://vdev.store.calvocover.com/graphql?hash=1268220669&filter_1={%22conditions%22:{%22eq%22:%22XltgMWA6XltgdHlwZWA6YE1hZ2VudG98fENhdGFsb2dXaWRnZXR8fE1vZGVsfHxSdWxlfHxDb25kaXRpb258fENvbWJpbmVgLGBhZ2dyZWdhdG9yYDpgYWxsYCxgdmFsdWVgOmAxYCxgbmV3X2NoaWxkYDpgYF5dLGAxLS0xYDpeW2B0eXBlYDpgTWFnZW50b3x8Q2F0YWxvZ1dpZGdldHx8TW9kZWx8fFJ1bGV8fENvbmRpdGlvbnx8UHJvZHVjdGAsYGF0dHJpYnV0ZWA6YGNhdGVnb3J5X2lkc2AsYG9wZXJhdG9yYDpgPT1gLGB2YWx1ZWA6YDQ4LCA0N2BeXV5d%22},%22customer_group_id%22:{%22eq%22:%220%22}}&pageSize_1=10&currentPage_1=1&_currency=%22%22
+
+magento indexer:reindex catalogsearch_fulltext
+
+
+---------------------------------------
+
+Web Load Icon not working in multiple website
+
+E:\PHP\Rashed\calvo_docker\Calvo-Store\src\vendor\scandipwa\customization\src\Controller\AppIcon.php
+133 :: getIconLinks :: 
+$href = '/pub/media/' . self::STORAGE_PATH . $name . '.png';
+
+----------------------------------------
+when zooming the image, will disappear
+
+app/component/ProductGalleryBaseImage/ProductGalleryBaseImage.container.js :: _getSrc
+app/util/Media/Media.js :: 15 line    PRODUCT_MEDIA = 'catalog/product'; => PRODUCT_MEDIA = 'catalog/product/';
+----------------------------------------
+safe area
+
+https://stackoverflow.com/questions/47302707/css-safe-area-attributes-doesnt-work-on-iphone-x
+
+CSS safe area attributes doesn't work on iPhone X
+https://webkit.org/blog/7929/designing-websites-for-iphone-x/
+
+------------------------------------
+checkout order total issue
+
+a. Checkout.component ->props paymentTotals -> CheckoutBilling.component
+b. CheckoutBilling.component :: renderOrderTotal
+   pulling paymentTotals from props
+
+------------------------------------
+translation issue
+
+The translation __() doesn't work for the dynamic text, which is loaded asynchronously.
+Solution:
+	let translationMap = {
+            "Recently Arrived" : __('Recently Arrived') 
+        };
+
+        let text = translationMap[title] || title;
+
+        return (
+            <h2>{ text }</h2>
+        );

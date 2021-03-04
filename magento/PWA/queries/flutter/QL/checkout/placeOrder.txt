@@ -1,0 +1,19 @@
+mutation {
+    placeOrder: s_placeOrder {
+        order {
+            order_id
+        }
+    }
+}
+-----------------------------------
+response
+
+{
+    "data": {
+        "placeOrder": {
+            "order": {
+                "order_id": "4000033729"
+            }
+        }
+    }
+}

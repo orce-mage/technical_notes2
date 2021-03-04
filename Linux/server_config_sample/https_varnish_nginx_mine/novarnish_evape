@@ -1,0 +1,41 @@
+upstream fastcgi_backend {
+server unix:/run/php/php7.4-fpm.sock;
+}
+server {
+server_name dev2.evape.com www.dev2.evape.com;
+set $MAGE_ROOT /var/www/html;
+include /var/www/html/nginx.conf.sample;
+include /etc/nginx/apps/pagespeed/test.conf;
+
+    #listen 443 ssl; # managed by Certbot
+
+    listen [::]:443 ssl http2 ipv6only=on;
+    listen 443 ssl http2;
+
+    ssl_certificate /etc/letsencrypt/live/dev2.evape.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/dev2.evape.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    if ($host = www.dev2.evape.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = dev2.evape.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+listen 80;
+server_name dev2.evape.com www.dev2.evape.com;
+    return 404; # managed by Certbot
+
+
+
+
+}

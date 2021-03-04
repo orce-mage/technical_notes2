@@ -1,0 +1,124 @@
+
+lib/web/mage/apply/main.js ::init function
+   _.toArray(nodes).map(getData).concat(virtuals)
+   apply::73 line
+   -- fetch all components binded
+lib/web/mage/apply/scripts.js
+Magento_Ui/js/lib/knockout/template/loader.js :: loadFromNode, loadFromFile
+en_US\mage\requirejs\text.js
+Magento_Ui/js/core/app.js
+Magento_Ui/js/core/renderer/layout.js :: run, initComponent, loadSource, 
+pub/static/version1606192358/frontend/Magento/luma/en_US/knockoutjs/knockout.js : 1313 (notifySubscribers)
+   ---------------------------------
+    ref: https://github.com/requirejs/text
+	https://devdocs.magento.com/guides/v2.3/ui_comp_guide/concepts/magento-bindings.html
+	https://belvg.com/blog/what-is-knockout-js-framework.html#step_2
+	https://inviqa.com/blog/using-knockout-js-magento-2
+	knockout template loader (ui/block-loader)
+        1. $("#ui/block-loader")
+        2. require(['text!ui/template/block-loader.html'], function {}{...})
+            a. loading "text" component.
+            b. component["text"].loadContent('ui/template/block-loader.html')
+            c. search for path  [require.js :: nameToUrl]
+                  ui/template/block-loader, ui/template, ui 
+                  . getOwn(config.map, $path) 
+                  . getOwn(config.pkg, $path)
+                 
+                  . getOwn(bundlesMap, "ui/template/block-loader");
+
+                  ui/template/block-loader, ui/template, ui  
+                  . getOwn(config.paths) 
+   ---------------------------------
+
+https://webkul.com/blog/use-knockout-js-custom-template-magento2/
+
+Creating custom bindings
+https://knockoutjs.com/documentation/custom-bindings.html
+
+https://knockoutjs.com/documentation/binding-syntax.html
+https://devdocs.magento.com/guides/v2.4/ui_comp_guide/concepts/knockout-bindings.html
+
+	virtual elements
+https://knockoutjs.com/documentation/custom-bindings-for-virtual-elements.html
+----------------------------------------
+https://magento.stackexchange.com/questions/89187/in-magento2-what-is-script-type-text-x-magento-init
+
+General usage of "script type"
+When using <script type="...."> the browser interprets only what it knows (like text/javascript for example).
+Anything else is ignored.
+Basically using a custom type you are adding information to the page without displaying it and without the browser interpreting it and you can later use that information as you want.
+
+How Magento uses this
+Magento uses these sections after the page loads.
+The code that uses them is located in lib/web/mage/apply/scripts.js.
+I don't understand completely what the file mentioned above does, but there is a comment inside the file that states this:
+
+/**
+ * Parses 'script' tags with a custom type attribute and moves it's data
+ * to a 'data-mage-init' attribute of an element found by provided selector.
+ * Note: All found script nodes will be removed from DOM.
+ *
+ * @returns {Array} An array of components not assigned to the specific element.
+ *
+ * @example Sample declaration.
+ *      <script type="text/x-magento-init">
+ *          {
+ *              "body": {
+ *                  "path/to/component": {"foo": "bar"}
+ *              }
+ *          }
+ *      </script>
+ *
+ * @example Providing data without selector.
+ *      {
+ *          "*": {
+ *              "path/to/component": {"bar": "baz"}
+ *          }
+ *      }
+ */
+Conclusion / Speculation
+I speculate that this is a way to set different js behaviour to different elements in the page without the need to rewrite the template that contains the elements.
+You only need to add a <script type="text/x-magento-init"> in one of your templates, include your template in the page and magento "auto-magically" moves the behavior to the right element.
+
+---------------------------------------------------
+    Debug UI components JavaScript
+	https://devdocs.magento.com/guides/v2.4/ui_comp_guide/troubleshoot/ui_comp_troubleshoot_js.html
+	
+------------------------------------------------------
+    customer data javascript
+	https://devdocs.magento.com/guides/v2.4/extension-dev-guide/cache/page-caching/private-content.html?itm_source=devdocs&itm_medium=search_page&itm_campaign=federated_search&itm_term=scope%20data-bind
+
+	cache by custom context variables
+	https://devdocs.magento.com/guides/v2.4/extension-dev-guide/cache/page-caching/public-content.html
+	https://inviqa.com/blog/using-knockout-js-magento-2
+---------------------------------------
+  Magento_Ui/js/core/app
+
+  {
+     components:{
+	     "checkout":{
+		      "children": {
+				"errors": {
+					"sortOrder": "0",
+					"component": "Magento_Ui/js/view/messages",
+					"displayArea": "messages"
+				  },
+			  },
+			  "component": "uiComponent",
+			  "config":{
+				"template": {Mage_Checkout/onepage}
+			  }
+		 } 
+	 }
+	 
+  }  
+  
+  ****** template [Magento_Checkout/template/onepage]****************
+  <!-- ko foreach: getRegion('messages') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+  <!--/ko-->
+  
+  ------------------------------
+  How to use UI component
+  https://amasty.com/blog/how-to-use-ui-components-in-magento-2/
+  E:\PHP\magento236\vendor\magento\module-ui\Controller\Index\Render.php

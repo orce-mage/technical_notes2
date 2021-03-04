@@ -1,0 +1,25 @@
+query {
+    isEmailAvailable(email: $email_1) {
+        is_email_available
+    }
+}
+
+-------------------------------
+email_1 : a@test.com
+-------------------------------
+
+{
+  "data": {
+    "isEmailAvailable": {
+      "is_email_available": true
+    }
+  }
+}
+
+{
+  "data": {
+    "isEmailAvailable": {
+      "is_email_available": false
+    }
+  }
+}

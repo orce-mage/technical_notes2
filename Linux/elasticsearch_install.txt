@@ -1,0 +1,16 @@
+1. download
+  https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html
+2. C:\Program Files\Elastic\Elasticsearch\config\elasticsearch.yml 
+  append it to the most bottom:
+       xpack.security.enabled: true
+3. password setting via cmd line
+   bin/elasticsearch-setup-passwords auto|interactive
+4. login to magento admin panel
+5. stores/settings/configuratoin/catalong/catalog search
+   setting eleastic info and auth
+
+
+https://www.elastic.co/guide/en/elasticsearch/reference/6.4/built-in-users.html
+1.When installing it, please make sure C:\Programs Data\Elastic is empty
+2. elasticsearch-setup-passwords interactive
+the default method of elastic user: changeme

@@ -1,0 +1,7 @@
+1. Add Environment Variables in Windows
+	SCANDIPWA_THEME=Scandiweb/pwa
+	MAGENTO_BASEURL=https://calvocover.com
+	MAGENTO_SECURE_BASEURL=https://calvocover.com
+	BASEPATH=e:\Ionic\DevPWA
+2. webpack.development.config.js
+	devServer: host => 127.0.0.1

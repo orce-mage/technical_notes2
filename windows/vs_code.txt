@@ -1,0 +1,10 @@
+-----------------------------------
+REMOTE SSH
+https://code.visualstudio.com/docs/remote/troubleshooting#_installing-a-supported-ssh-client
+
+1. Installing a supported SSH server
+	sudo apt-get install openssh-server
+2. Remote-SSH extension install in VS Code
+
+3. material icon
+4. prettier 

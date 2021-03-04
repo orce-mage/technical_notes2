@@ -1,0 +1,28 @@
+Connect your Magento account to Facebook
+Install the Facebook business extension through your Magento account to help you share online and offline events with Facebook. By sharing these events, you can see how users are interacting with your business. Then you can optimise the targeting and delivery of your Facebook ads to drive more business outcomes.
+
+Below are instructions on how to install this zip file on your dev instance. Before installing, check that your Magento cron job is up and running; read more about it on this page. Make sure you test that the extension was installed correctly before delivering the code to production.
+
+Log in to your server instance.
+Execute command cd /var/www/Magento/app/code or cd /var/www/html/Magento/app/code based on your server Centos or Ubuntu. Your path might be different based on your installation choice; if you can't find it, look for /var/www/html/magento2/app/code or /var/www/magento2/app/code.
+Make sure that you have the correct read/write permissions on your Magento root directory.
+Expand the facebook-for-magento2.zip file.
+Compress the Facebook subfolder and then move and unzip it in the code directory.
+Move to Magento root folder by executing command cd ../../.
+Execute the following commands to install Facebook Business Extension:
+Install the Facebook Business SDK for PHP: composer require facebook/php-business-sdk. This dependency is used by the extension.
+You will see a message similar to: `Installing facebook/php-business-sdk (8.0.0): Downloading (100%)'.
+Execute php bin/magento module:status.
+You must see Facebook_BusinessExtension in the list of disabled modules.
+To enable module, execute php bin/magento module:enable Facebook_BusinessExtension.
+Execute php bin/magento setup:upgrade.
+Execute php bin/magento setup:static-content:deploy.
+Execute php bin/magento setup:di:compile.
+Execute php bin/magento cache:clean.
+Execute php bin/magento cron:run three times.
+Optional if you are not the owner of Magento files.
+chmod -R 755 ./
+chmod -R 777 var/
+chmod -R 777 pub/
+chmod -R 777 app/etc
+chmod -R 777 generated

@@ -1,0 +1,60 @@
+  15/2
+  total = someNumber ~/ otherNumber; // Integer division operator, total is 7
+  print(total);
+  
+  # checking operators
+  num number = 3;
+
+    print(number is int);      // prints 3
+    print(number is! String);  // prints true
+    print(number is String);   // prints false
+    print(number is double);   // prints false
+    print(number is int);      // prints true
+    print(number is num);      // prints true
+
+    print(number as int);      // prints 3
+	
+  #logical operators
+    num numberA = 1;
+    num numberB = 2;
+
+    print(numberA > 1);                 // prints false
+    print(!(numberA > 1));              // prints true
+    print(numberA > 1 || numberB > 1);  // prints true
+    print(numberA > 1 && numberB > 1);  // prints false 
+#bits operators    var value = 10;  // 00001010
+    var mask  = 0;   // 00000000
+    // bitwise operators
+    print(value & mask);  // prints 0 (00000000)
+    print(value | mask);  // prints 10 (00001010)
+    print(value ^ mask);  // prints 10 (00001010)
+    print(value << 1);    // (value << 1 = 00010100) then prints 20    
+    print(value >> 1);    // (value << 1 = 00000101) then prints 5
+    print(~value);        // (~value = 1111..1.11110101) then prints -11
+#null ware operators
+    var yeahDartIsGreat = "Obviously!";
+    var dartIsGreat = yeahDartIsGreat ?? "I don't know";
+    print(dartIsGreat); // prints Obviously!  
+	
+	var dartIsGreat = null;
+
+    dartIsGreat ??=  "Yeah!"; // Will assign Yeah! to dartIsGreat because it is currently null
+    print(dartIsGreat); // prints Yeah!
+
+    dartIsGreat ??=  "Nope"; // Will remain “Yeah!”
+    print(dartIsGreat); // prints Yeah!
+	
+    num number;
+
+    print(number?.roundToDouble()); // prints null. without ?. would throw an exception as number is null
+                                    // and the null value doesn't have the method roundToDouble
+
+    number = 10;
+    print(number?.roundToDouble()); // prints 10.0
+      
+    number = null; 
+    print(number?.roundToDouble() ?? "number was null"); // prints "number was null"
+
+	
+
+	

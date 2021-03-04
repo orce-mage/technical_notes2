@@ -1,0 +1,103 @@
+query {
+    category(id: 2) {
+        id,
+        url,
+        name,
+        image,
+        url_key,
+        url_path,
+        is_active,
+        meta_title,
+        description,
+        canonical_url,
+        product_count,
+        meta_keywords,
+        default_sort_by,
+        meta_description,
+        landing_page,
+        display_mode,
+        cms_block {
+            content,
+            disabled,
+            title,
+            identifier
+        },
+        breadcrumbs {
+            category_name,
+            category_level,
+            category_url,
+            category_is_active
+        },
+        children {
+            id,
+            url,
+            name,
+            image,
+            url_key,
+            url_path,
+            is_active,
+            meta_title,
+            description,
+            canonical_url,
+            product_count,
+            meta_keywords,
+            default_sort_by,
+            meta_description,
+            landing_page,
+            display_mode,
+            cms_block {
+                content,
+                disabled,
+                title,
+                identifier
+            },
+            breadcrumbs {
+                category_name,
+                category_level,
+                category_url,
+                category_is_active
+            },
+			
+			children {
+				id,
+				url,
+				name,
+				image,
+				url_key,
+				url_path,
+				is_active,
+				meta_title,
+				description,
+				canonical_url,
+				product_count,
+				meta_keywords,
+				default_sort_by,
+				meta_description,
+				landing_page,
+				display_mode,
+				cms_block {
+					content,
+					disabled,
+					title,
+					identifier
+				},
+				breadcrumbs {
+					category_name,
+					category_level,
+					category_url,
+					category_is_active
+				}
+			}
+        }
+    }
+}
+
+query {
+    categoryList(filters: {
+        ids: {
+            in: ["2"]
+        }
+    }) {
+        id
+    }
+}

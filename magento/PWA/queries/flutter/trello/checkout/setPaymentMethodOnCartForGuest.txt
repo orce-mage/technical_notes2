@@ -1,0 +1,29 @@
+mutation($input_1: S_SetPaymentMethodOnCartInput!) {
+    paymentMethod: s_setPaymentMethodOnCart(input: $input_1) {
+        cart {
+            id
+        }
+    }
+}
+
+--------------------------------------
+{
+  "input_1": {
+    "guest_cart_id": "715xj33vfogh2onGLaMtVTwZBXB95HUD",
+    "payment_method": {
+      "code": "checkmo"
+    }
+  }
+}
+
+----------------------------------------------
+response
+{
+    "data": {
+        "paymentMethod": {
+            "cart": {
+                "id": "715xj33vfogh2onGLaMtVTwZBXB95HUD"
+            }
+        }
+    }
+}

@@ -1,0 +1,109 @@
+npm install -g @ionic/cli
+ionic start
+	select -> react
+	enter name ->
+
+	- Go to your new project: cd .\ionic-react
+	- Run ionic serve within the app directory to see your app in the browser
+	- Run ionic capacitor add to add a native iOS or Android project using Capacitor
+	- Generate your app icon and splash screens using cordova-res --skip-config --copy
+	- Explore the Ionic docs for components, tutorials, and more: https://ion.link/docs
+	- Building an enterprise app? Ionic has Enterprise Support and Features: https://ion.link/enterprise-edition
+	
+In windows , you need to do the following in PowerShell.
+	Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+	
+ionic serve
+
+
+-----------------
+How to build it into android For Capacitor
+
+https://ionicframework.com/docs/developing/android
+	Project Setup
+	a. npm run build
+		>>>>>
+			The project was built assuming it is hosted at /.
+			You can control this with the homepage field in your package.json.
+
+			The build folder is ready to be deployed.
+			You may serve it with a static server:
+
+			  npm install -g serve
+      		  serve -s build
+		>>>>>  
+	
+	b. ionic capacitor add android
+		>>>Now you can run "npx cap open android" to launch Android Studio
+	c. Set the Package ID.
+		For Capacitor, open the capacitor.config.json file and modify the appId property.
+	
+	Running with Capacitor
+	a. Develop the Ionic app and sync it to the native project.
+		>>> With each meaningful change, Ionic apps must be built into web assets before the change can appear on Android simulators and devices. 
+			The web assets then must be copied into the native project. Luckily, this process is made easy with a single Ionic CLI command.
+		ionic capacitor copy android
+	b. In Android Studio, click the Run button and then select the target simulator or device.
+	
+	Live reload
+	To start a live-reload server run the following command.
+		ionic capacitor run android -l --host=YOUR_IP_ADDRESS
+		
+	Debugging Android Apps
+	chrome://inspect
+	View » Tool Windows » Logcat.
+-----------------
+Integrating Redux in Ionic React typescript for state management
+
+	https://blog.chinaza.dev/integrating-redux-in-ionic-react-typescript-for-state-management
+
+	npm install redux
+	npm install react-redux
+
+----------------------------
+App not connect to Internet
+
+	https://droidevtech.ticksy.com/article/15302/
+
+	>>>>>>>>>>>>>>>>>
+	It may due to the your website  that's not secure enough , to skip this problem please try this solution :
+
+	First open your androidmanifest.xml file and add this line of code inside the application tag
+
+	android:networkSecurityConfig="@xml/network_security_config"
+	like this example : 
+
+	<application    
+	android:name="com.domain.apps.appname.AppController"    
+	android:allowBackup="true"    
+	android:icon="@mipmap/ic_launcher"    
+	android:label="@string/app_name"    
+	android:theme="@style/AppTheme"    
+	android:largeHeap="true"    
+	android:supportsRtl="true"    
+	android:networkSecurityConfig="@xml/network_security_config"    
+	tools:replace="android:icon,android:theme">
+	Then go and create a new file in the XML folder , copy this content into this  file :
+
+	<?xml version="1.0" encoding="utf-8"?>
+	<network-security-config>    
+	<base-config cleartextTrafficPermitted="true">        
+	<trust-anchors>            
+	<certificates src="system" />        
+	</trust-anchors>    
+	</base-config>
+	</network-security-config>
+	Remove the app from your device and start to runing the app again from your android studio .
+	>>>>>>>>>>>>>>>>>>>>>>>>
+	
+----------------------------------------------------------
+Integrating ScandiPWA into Ionic
+	>>>
+	react         		:: ^16.6.3 => ^17.0.1
+	react-dom     		:: ^16.6.3 => ^17.0.1
+	react-redux   		:: ^6.0.0  => ^7.2.2
+	react-router  		:: ^4.3.1  => ^5.2.0
+	react-router-dom	:: ^4.3.1  => ^5.2.0
+	redux				:: ^4.0.1  => ^4.0.5
+	
+	

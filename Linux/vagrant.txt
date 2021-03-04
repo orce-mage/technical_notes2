@@ -1,0 +1,221 @@
+https://www.taniarascia.com/what-are-vagrant-and-virtualbox-and-how-do-i-use-them/
+
+https://github.com/hashicorp/vagrant/issues/9834
+
+https://medium.com/@botdotcom/installing-virtualbox-and-vagrant-on-windows-10-2e5cbc6bd6ad
+
+-----------------
+commands
+
+https://www.vagrantup.com/docs/cli/halt
+------------------
+1. for php install
+	apt-add-repository ppa:ondrej/php
+	sudo apt-get update
+	sudo apt-get install php7.3
+	
+	// http://ppa.launchpad.net/ondrej/php/ubuntu/
+
+https://app.vagrantup.com/boxes/search
+
+vagrant cmd
+   vagrant global-status
+   vagrant box
+                 add,list,remove,update
+
+vagrant install
+     vagrant box add ubuntu/xenial64
+     vagrant init ubuntu/xenial64
+	 vagrant up
+     vagrant plugin install vagrant-vbguest
+     vagrant ssh
+            1)root login allow
+              sudo su
+              sudo -i
+              passwd
+              edit /etc/ssh/sshd_config
+                PermitRootLogin yes
+            and then vagrant halt/reload
+            2) winscp  [worked]
+               protocal: sftp
+               advanced: sftp -> sudo /usr/lib/sftp-server
+               
+vagrant disk increase
+     1. vagrant plugin install vagrant-disksize
+	 2. vagrant file change: 
+	        Vagrant.configure(2) do |config|
+			   #config.vm.box = "centos/7"
+			   config.disksize.size = '20GB'
+			end
+	 3. vagrant up
+	 4. check: df -h
+*********** repository add and enable **********
+$ sudo apt-get install software-properties-common
+$ sudo add-apt-repository ppa:ondrej/php
+$ sudo apt-get update
+$ sudo apt-get install php7.3
+
+//sudo add-apt-repository universe
+//sudo add-apt-repository multiverse
+//sudo apt update
+*****************************************
+
+ubuntu pakcage search:
+    https://packages.ubuntu.com/
+
+check repository list
+    /etc/apt/sources.list and any file in this directory /etc/apt/sources.list.d/
+
+The system info: lsb_release -a
+
+************** hosts **************
+  /etc/hosts
+
+********Apache Config*********************************
+   apache2ctl configtest
+******** vagrant config **********
+  ****** make browser visitable from ubunutu server
+       locate the vagrant file and then put the following line:
+       config.vm.network "private_network", ip: "10.10.11.80"
+  ****** file shareing ****
+  config.vm.synced_folder "www/", "/var/www/html", group: 'root', owner: 'root'
+*********utuntu permission******
+ 
+ ***For shared hosting***
+ cd /var/www/html/magento2 && find var generated vendor pub/static pub/media app/etc -type f -exec chmod u+w {} + && find var generated vendor pub/static pub/media app/etc -type d -exec chmod u+w {} + && chmod u+x bin/magento
+****** mysql install********
+   apt install -y mysql-server mysql-client
+ 
+   ********************************************
+   If you expect to import large numbers of products into Magento, 
+   you can increase the value for max_allowed_packet that is larger than the default, 16MB.
+       To increase the value, open /etc/mysql/mysql.cnf in a text editor and locate the value for max_allowed_packet. 
+       Save your changes to mysql.cnf, close the text editor, and restart MySQL (service mysql restart).
+     PS: tmp_table_size = 64M
+          max_heap_table_size = 64M
+         innodb_buffer_pool_size
+		 
+		 tmp_table_size = 64M
+		max_heap_table_size = 64M
+		explicit_defaults_for_timestamp = 1
+		 
+         explicit_defaults_for_timestamp = 1
+          *********Create the remote connection*******
+          On Ubuntu 16, the path is typically /etc/mysql/mysql.conf.d/mysqld.cnf.
+          bind-address = <ip address of your Magento web node>
+		  
+		   ***adding remote user to mysql database 
+		   create user remote_magento identified by 'magento';
+		   grant all on magento241.* to remote_magento@10.10.11.1 identified by 'magento';
+		   GRANT ALL PRIVILEGES ON database_name.* TO 'username'@'localhost';
+          **********************************************
+   ********************************************
+   ********** configure************
+   create database magento241;
+   create user magento IDENTIFIED BY 'magento';
+   GRANT ALL ON magento241.* TO 'magento'@'localhost' IDENTIFIED BY 'magento';
+   flush privileges;
+
+     ref: CREATE USER 'user'@'%' IDENTIFIED BY 'password';
+   **********************
+
+****
+***************** elastic search ****************
+apt-get install -y openjdk-8-jdk
+
+  config: /etc/elasticsearch/elasticsearch.yml
+          /etc/default/elasticsearch 
+  *************************************************************
+  wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+
+
+  Import the Elasticsearch PGP Keyedit
+	We sign all of our packages with the Elasticsearch Signing Key (PGP key D88E42B4, available from https://pgp.mit.edu) with fingerprint:
+
+	4609 5ACC 8548 582C 1A26 99A9 D27D 666C D88E 42B4
+	Download and install the public signing key:
+  *****************
+  apt-get install apt-transport-https
+
+  // Save the repository definition to /etc/apt/sources.list.d/elastic-7.x.list:
+  ******************
+  echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+
+  ********************
+  apt-get update && sudo apt-get install elasticsearch
+  ***********************************************
+  SysV init vs systemdedit
+	Elasticsearch is not started automatically after installation. 
+	How to start and stop Elasticsearch depends on whether your system uses SysV init or systemd (used by newer distributions). 
+	You can tell which is being used by running this command: ps -p 1
+  Running Elasticsearch with SysV initedit
+	//Use the update-rc.d command to configure Elasticsearch to start automatically when the system boots up:
+        update-rc.d elasticsearch defaults 95 10
+  Elasticsearch can be started and stopped using the service command:
+     	4zt5j67 uijjh`.
+	sudo -i service elasticsearch stop
+*************************************************
+     vboxguest manual install
+  Connect the Guest VM using WinSCP. Copy the VBoxGuestAddition.iso from the host machine. In my case, the VBoxGuestAddition present in C:\ProgramFiles\Oracle\VirtualBox.
+
+Once iso file copied to Guest VM, login to GUest VM using putty.
+
+mkdir /media/GuestAdditionsISO
+Then execute the below command
+
+mount -o loop /path/of/VBoxGuestAddition.iso /media/GuestAdditionsISO
+Once mount command executed successfully,
+
+cd /media/GuestAdditionsISO
+sudo ./VBoxLinuxGuestAddition.run
+Then re-start the VM. This works for me
+*****************************************
+    Move vagrant disk
+	*******************
+	First, backup your work, just in case 😉
+	Stop every running Vagrant boxes
+	> cd path_to_vagrant_project_folder
+	> vagrant halt
+	Move your .vagrant.d folder
+	> mv c:/Users/[username]/.vagrant.d d:/[path]/.vagrant.d
+	Create a new VAGRANT_HOME environment variable and set its path to the new .vagrant.d location
+	Image for post
+	Create a new folder for your VirtualBox VMs on your D drive
+	> mkdir -p d:/[path]/.VirtualBoxVagrantVMs
+	Move the VirtualBox VMs directories related to your Vagrant boxes.
+	> mv c:/Users/[username]/.VirtualBoxVMs/[each VM directory] d:/[path]/.VirtualBoxVagrantVMs
+	Edit the VMs paths in your VirtualBox.xml settings file, located in:
+	c:/Users/[username]/.VirtualBox/VirtualBox.xml
+	For each VM related to a Vagrant box, edit the path included in the <MachineRegistry> tag of VirtualBox.xml as follow:
+	<MachineRegistry>
+	 <MachineEntry uuid=”{vagrant_vm_uuid}” src=”d:\[path]\.VirtualBoxVagrantVMs\[vagrant_vm_name]\[vagrant_vm_name].vbox”/>
+	<MachineEntry uuid=”{vagrant_vm2_uuid}” src=”d:\[path]\.VirtualBoxVagrantVMs\[vagrant_vm2_name]\[vagrant_vm2_name].vbox”/>
+
+	<MachineEntry uuid=”{other_vm_uuid}” src=”C:\Users\[username]\.docker\machine\machines\default\default\default.vbox”/>
+	</MachineRegistry>
+	And you’re done 😉
+	Now let’s try to run one of your old Vagrant project and check everything is running as it was before:
+	> cd path_to_vagrant_project_folder
+	> vagrant up
+
+--------------------------------------------
+Speed Up Vagrant
+	1. config.vm.synced_folder 'src/', "/var/www",
+     type:"nfs",
+     mount_options: %w{rw,async,fsc,nolock,vers=3,udp,rsize=32768,wsize=32768,hard,noatime,actimeo=2}
+	2. To install the plugin, within the command line prompt (or GitBash if installed) just run the following command 
+		vagrant plugin install vagrant-winnfsd 
+	3. Run CMD as administator
+       	netsh advfirewall firewall add rule name="VagrantWinNFSd-1.4.0" dir="in" action=allow protocol=any program="F:\virtualmachines\Core Vagrant Config\.vagrant.d\gems\2.4.4\gems\vagrant-winnfsd-1.4.0\bin\winnfsd.exe" profile=any
+        netsh advfirewall firewall add rule name="VagrantWinNFSd-1.4.0" dir="out" action=allow protocol=any program="F:\virtualmachines\Core Vagrant Config\.vagrant.d\gems\2.4.4\gems\vagrant-winnfsd-1.4.0\bin\winnfsd.exe" profile=any
+
+https://peshmerge.io/how-to-speed-up-vagrant-on-windows-10-using-nfs/
+https://graspingtech.com/mount-nfs-share-windows-10/
+
+
+-------------------------------------
+   Enable Symbolink
+ https://stackoverflow.com/questions/24200333/symbolic-links-and-synced-folders-in-vagrant  
+ 
+ config.vm.synced_folder ".", "/var/www", type: "rsync", rsync__args: ["--verbose", "--archive", "--delete", "-z"]
+ 		
